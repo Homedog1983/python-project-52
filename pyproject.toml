@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Evgeny Sokolov <sokolovsolod@gmail.com>"]
 readme = "README.md"
@@ -11,6 +11,8 @@ django = "5.0"
 dj-database-url = "^2.1.0"
 python-dotenv = "^1.0.0"
 psycopg2-binary = "^2.9.9"
+gunicorn = "^21.2.0"
+whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 
 
 [tool.poetry.group.dev.dependencies]

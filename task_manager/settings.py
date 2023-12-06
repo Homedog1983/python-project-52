@@ -26,8 +26,7 @@ if "SECRET_KEY" not in os.environ:
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv('DATABASE_URL')
-
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.getenv('DEBUG', default=False)
 
 ALLOWED_HOSTS = []
 

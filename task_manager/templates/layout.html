@@ -1,0 +1,56 @@
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Учебный проект "Менеджер задач" (курс "Python developer" от Хекслет)</title>
+  </head>
+  <header class="p-3 bg-dark text-white fixed-top">
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          {% block link_main_page %}
+            <li><a href="{% url 'main_page' %}" class="nav-link px-2 link-secondary text-white">Менеджер задач</a></li>
+          {% endblock link_main_page %}
+          {% block link_users %}
+            <li><a href="#" class="nav-link px-2 link-secondary text-white">Пользователи</a></li>
+          {% endblock link_users %}
+          {% if login_user %}
+            {% block link_statuses %}
+              <li><a href="#" class="nav-link px-2 link-secondary text-white">Статусы</a></li>
+            {% endblock link_statuses %}
+            {% block link_tags %}
+              <li><a href="#" class="nav-link px-2 link-secondary text-white">Метки</a></li>
+            {% endblock link_tags %}
+            {% block link_tasks %}
+              <li><a href="#" class="nav-link px-2 link-secondary text-white">Задачи</a></li>
+            {% endblock link_tasks %}
+          {% endif %}
+        </ul>
+  
+        <div class="text-end">
+          {% if not login_user %}
+          <button type="button" class="btn btn-outline-light me-2">Вход</button>
+          <button type="button" class="btn btn-outline-light me-2">Регистарция</button>
+          {% else %}
+          <button type="button" class="btn btn-outline-light me-2">Выход</button>
+          {% endif %}
+        </div>
+     
+      </div>
+    </div>
+  </header>
+  <body class="bg-dark text-white">
+    <div class="container-fluid">
+      <div class="m-3 p-3">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

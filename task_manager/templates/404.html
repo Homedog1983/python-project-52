@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block content %}
+  <div class="container mt-4">
+    <p class="h2">{% translate "There are not the page you're looking for." %}</p>
+    <p class="h3"><a href="{% url 'main_page' %}">{% translate "Task manager" %}</a></p>
+  </div>
+{% endblock content %}

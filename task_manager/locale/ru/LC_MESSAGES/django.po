@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-10 06:25+0000\n"
+"POT-Creation-Date: 2023-12-11 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: task_manager/settings.py:123
+#: task_manager/settings.py:125
 msgid "English"
-msgstr ""
+msgstr "Английский"
 
-#: task_manager/settings.py:124
+#: task_manager/settings.py:126
 msgid "Russian"
-msgstr "Русский"
+msgstr "Руский"
 
 #: task_manager/templates/404.html:9
 msgid "There are not the page you're looking for."
-msgstr "Здесь нет той страницы, что Вы ищете."
+msgstr ""
 
 #: task_manager/templates/404.html:10 task_manager/templates/index.html:8
 #: task_manager/templates/layout.html:19
@@ -42,6 +41,8 @@ msgid "Task manager. Training project of Hexlet course"
 msgstr "Менеджер задач. Тренировочный проект платформы Хекслет"
 
 #: task_manager/templates/layout.html:22
+#: task_manager/templates/users/index.html:8
+#: task_manager/templates/users/index.html:12
 msgid "Users"
 msgstr "Пользователи"
 
@@ -57,14 +58,38 @@ msgstr "Метки"
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/templates/layout.html:39
+#: task_manager/templates/layout.html:40
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/layout.html:40
+#: task_manager/templates/layout.html:41
 msgid "Register"
 msgstr "Регистрация"
 
-#: task_manager/templates/layout.html:42
+#: task_manager/templates/layout.html:43
 msgid "Logout"
 msgstr "Выход"
+
+#: task_manager/templates/users/create.html:12
+msgid "Registration"
+msgstr "Регистрация"
+
+#: task_manager/templates/users/index.html:17
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: task_manager/templates/users/index.html:18
+msgid "Full name"
+msgstr "Полное имя"
+
+#: task_manager/templates/users/index.html:19
+msgid "Creation date"
+msgstr "Дата создания"
+
+#: task_manager/templates/users/index.html:23
+msgid "Change"
+msgstr "Изменить"
+
+#: task_manager/templates/users/index.html:24
+msgid "Delete"
+msgstr "Удалить"

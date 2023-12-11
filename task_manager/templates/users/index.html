@@ -1,0 +1,41 @@
+{% extends "../layout.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block link_users %}
+  <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate "Users" %}</a></li>
+{% endblock link_users %}
+
+{% block content %}
+    <h1>{% translate "Users" %}</h1>
+    <table class="table table-dark table-hover align-middle text-center">
+        <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>{% translate "Username" %}</th>
+            <th>{% translate "Full name" %}</th>
+            <th>{% translate "Creation date" %}</th>
+            <th></th>
+        </tr>
+        </thead>
+        {% translate "Change" as link_change %}
+        {% translate "Delete" as link_delete %}
+        <tbody>
+        {% for user in object_list %}
+            <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.first_name}} {{user.last_name }}</td>
+            <td>{{ user.date_joined }}</td>
+            <td>
+                <a href="/users/{{ user.id }}/update/" class="nav-link px-2 link-secondary text-white">{{ link_change }}</a>
+                <br>
+                <a href="/users/{{ user.id }}/delete/" class="nav-link px-2 link-secondary text-white">{{ link_delete }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.2.3"
+version = "0.2.4"
 description = "Educational project #4 on Hexlet platform (spec: Python developer)"
 authors = ["Evgeny Sokolov <sokolovsolod@gmail.com>"]
 readme = "README.md"
@@ -19,6 +19,7 @@ gunicorn = "^21.2.0"
 whitenoise = {extras = ["brotli"], version = "^6.6.0"}
 django-bootstrap5 = "^23.3"
 python-gettext = "^5.0"
+django-widget-tweaks = "^1.5.0"
 
 
 [tool.poetry.group.dev.dependencies]

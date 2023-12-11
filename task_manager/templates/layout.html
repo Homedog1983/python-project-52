@@ -19,7 +19,7 @@
             <li><a href="{% url 'main_page' %}" class="nav-link px-2 link-secondary text-white">{% translate "Task manager" %}</a></li>
           {% endblock link_main_page %}
           {% block link_users %}
-            <li><a href="#" class="nav-link px-2 link-secondary text-white">{% translate "Users" %}</a></li>
+            <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary text-white">{% translate "Users" %}</a></li>
           {% endblock link_users %}
           {% if login_user %}
             {% block link_statuses %}
@@ -34,14 +34,16 @@
           {% endif %}
         </ul>
   
-        <div class="text-end">
-          {% if not login_user %}
-          <button type="button" class="btn btn-outline-light me-2">{% translate "Login" %}</button>
-          <button type="button" class="btn btn-outline-light me-2">{% translate "Register" %}</button>
-          {% else %}
-          <button type="button" class="btn btn-outline-light me-2">{% translate "Logout" %}</button>
-          {% endif %}
-        </div>
+        {% block auth %}
+          <div class="text-end">
+            {% if not login_user %}
+              <a class="btn btn-outline-light me-2" href="{% url 'users_create' %}">{% translate "Login" %}</a>
+              <a class="btn btn-outline-light me-2" href="{% url 'users_create' %}">{% translate "Register" %}</a>
+            {% else %}
+            <a class="btn btn-outline-light me-2" href="{% url 'users_create' %}">{% translate "Logout" %}</a>
+            {% endif %}
+          </div>
+        {% endblock auth %}
      
       </div>
     </div>
@@ -51,5 +53,5 @@
       {% block content %}
       {% endblock %}
     </div>
-  </body>
+  </body>  
 </html>

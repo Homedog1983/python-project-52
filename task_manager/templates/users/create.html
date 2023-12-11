@@ -1,0 +1,41 @@
+{% extends "../layout.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block auth %}
+{% endblock auth %}
+
+{% block content %}
+{% translate "Registration" as registration %}
+<h1 class="text-warning">{{ registration }}</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+      <div class="fieldWrapper mb-3">
+
+          {% if field.data and not field.errors %}
+            {% render_field field class+="is-valid" %}  
+          {% elif field.errors %}
+            {% render_field field class+="is-invalid" %}
+          {% else %}
+            {% render_field field %}
+          {% endif %}
+                           
+          {% if field.help_text %}
+          <div class="form-text text-warning mb-3">
+            {{ field.help_text|safe }}
+          </div>
+          {% endif %}
+          <div class="invalid-feedback">
+            <p>{{ field.errors }}</p>
+          </div>
+         
+      </div>
+  {% endfor %}
+  <input class="btn btn-outline-warning me-2" type="submit" value="{{ registration }}">
+  </form>
+{% endblock content %}

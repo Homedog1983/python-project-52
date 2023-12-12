@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from django.views import View
+# from django.shortcuts import render, redirect
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
+from django.utils.translation import gettext as _
 
 
 class UsersIndexView(ListView):
@@ -11,19 +13,13 @@ class UsersIndexView(ListView):
     template_name = 'users/index.html'
 
 
-class UsersCreateFormView(View):
-    __template = 'users/create.html'
+class UsersCreateFormView(SuccessMessageMixin, CreateView):
+    template_name = 'users/create.html'
+    form_class = CustomUserCreationForm
+    success_url = '../login/'
+    success_message = _("User was registered successfully!")
 
-    def get(self, request, *args, **kwargs):
-        form = CustomUserCreationForm()
-        return render(request, self.__template, {'form': form})
 
-    def post(self, request, *args, **kwargs):
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-        return render(request, self.__template, {'form': form})
 
 # def login(request):
 #     m = Member.objects.get(username=request.POST["username"])

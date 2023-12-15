@@ -7,13 +7,12 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block link_users %}
-  <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Users' %}</a></li>
-{% endblock link_users %}
+{% block link_statuses %}
+  <li><a href="{% url 'statuses_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Statuses' %}</a></li>
+{% endblock link_statuses %}
 
 {% block content %}
 <h1 class="text-warning">{{ h1_value }}</h1>
-
 <form method="post">
   {% csrf_token %}
   {% for field in form %}
@@ -28,5 +27,4 @@
   {% endfor %}
 <input class="btn btn-outline-warning me-2" type="submit" value="{{ button_value }}">
 </form>
-
 {% endblock content %}

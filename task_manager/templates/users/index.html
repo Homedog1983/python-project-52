@@ -1,6 +1,9 @@
 {% extends "../base.html" %}
+
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
+{% bootstrap_javascript %}
+
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -9,33 +12,32 @@
 {% endblock link_users %}
 
 {% block content %}
-
-    <h1 class="text-warning">{% translate "Users" %}</h1>
-    <table class="table table-dark table-bordered align-middle text-center">
-        <thead class="table-light">
-        <tr>
-            <th>ID</th>
-            <th>{% translate "Username" %}</th>
-            <th>{% translate "Full name" %}</th>
-            <th>{% translate "Creation date" %}</th>
-            <th></th>
+  <h1 class="text-warning">{% translate "Users" %}</h1>
+  <table class="table table-dark table-bordered align-middle text-center">
+      <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>{% translate "Username" %}</th>
+        <th>{% translate "Full name" %}</th>
+        <th>{% translate "Creation date" %}</th>
+        <th></th>
+      </tr>
+    </thead>
+    {% translate "Change" as change %}
+    {% translate "Delete" as delete %}
+    <tbody>
+      {% for register_user in object_list %}
+        <tr {% if register_user.username == user.username %} class='fw-bolder table-light'{% endif %}>
+          <td class="text-warning">{{ register_user.id }}</td>
+          <td>{{ register_user.username }}</td>
+          <td>{{ register_user.get_full_name}}</td>
+          <td>{{ register_user.date_joined }}</td>
+          <td>
+            <a href="/users/{{ register_user.id }}/update/" class="nav-link px-2 link-secondary">{{ change }}</a>
+            <a href="/users/{{ register_user.id }}/delete/" class="nav-link px-2 link-secondary">{{ delete }}</a>
+          </td>
         </tr>
-        </thead>
-        {% translate "Change" as link_change %}
-        {% translate "Delete" as link_delete %}
-        <tbody>
-        {% for register_user in object_list %}
-          <tr {% if register_user.username == user.username %} class='fw-bolder table-light'{% endif %}>
-            <td class="text-warning">{{ register_user.id }}</td>
-            <td>{{ register_user.username }}</td>
-            <td>{{ register_user.get_full_name}}</td>
-            <td>{{ register_user.date_joined }}</td>
-            <td>
-              <a href="/users/{{ register_user.id }}/update/" class="nav-link px-2 link-secondary">{{ link_change }}</a>
-              <a href="/users/{{ register_user.id }}/delete/" class="nav-link px-2 link-secondary">{{ link_delete }}</a>
-            </td>
-          </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock content %}

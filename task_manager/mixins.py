@@ -1,6 +1,23 @@
+from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.urls import reverse
 from django.contrib import messages
+
+
+class LoginRequiredRedirectMixin:
+    """
+    Requared login (if not - redirect to 'login'
+    with message
+    """
+    message_not_authenticated = _(
+        'You are not login. Please, login!')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if not user.is_authenticated:
+            messages.warning(request, self.message_not_authenticated)
+            return redirect('login')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class SuccessMessageRedirectMixin:

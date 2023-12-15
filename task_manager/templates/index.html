@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
@@ -7,10 +8,9 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block link_main_page %}
-  <li><a href="{% url 'main_page' %}" class="nav-link px-2 link-secondary text-secondary">{% translate "Task manager" %}</a></li>
+  <li><a href="{% url 'main_page' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Task manager' %}</a></li>
 {% endblock link_main_page %}
 
 {% block content %}
   <h1 class="text-warning">О проекте:</h1>
-  
 {% endblock content %}

@@ -2,7 +2,6 @@
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
-
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
@@ -24,33 +23,32 @@
           {% block link_users %}
             <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary text-white">{% translate "Users" %}</a></li>
           {% endblock link_users %}
-          {% if login_user %}
+          {% if user.is_authenticated %}
             {% block link_statuses %}
-              <li><a href="#" class="nav-link px-2 link-secondary text-white">{% translate "Statuses" %}</a></li>
+              <li><a href="{% url 'statuses_index' %}" class="nav-link px-2 link-secondary text-white">{% translate "Statuses" %}</a></li>
             {% endblock link_statuses %}
-            {% block link_tags %}
-              <li><a href="#" class="nav-link px-2 link-secondary text-white">{% translate "Labels" %}</a></li>
-            {% endblock link_tags %}
+            {% block link_labels %}
+              <li><a href="{% url 'labels_index' %}" class="nav-link px-2 link-secondary text-white">{% translate "Labels" %}</a></li>
+            {% endblock link_labels %}
             {% block link_tasks %}
-              <li><a href="#" class="nav-link px-2 link-secondary text-white">{% translate "Tasks" %}</a></li>
+              <li><a href="{% url 'tasks_index' %}" class="nav-link px-2 link-secondary text-white">{% translate "Tasks" %}</a></li>
             {% endblock link_tasks %}
           {% endif %}
         </ul>
   
-        {% block auth %}
-          <div class="text-end align-middle">
-            {% if not user.is_authenticated %}
-              <a class="btn btn-outline-warning me-2" href="{% url 'login' %}">{% translate "Login" %}</a>
-              <a class="btn btn-outline-warning me-2" href="{% url 'users_create' %}">{% translate "Register" %}</a>
-            {% else %}
-            <form action="/logout/" method="POST">
-              {% csrf_token %}
-              <input class="btn btn-outline-light me-2" type="submit" value="{% translate 'Logout' %}">
-            </form>
-            {% endif %}
-          </div>
-        {% endblock auth %}
-     
+    
+        <div class="text-end align-middle">
+          {% if not user.is_authenticated %}
+            <a class="btn btn-outline-warning me-2" href="{% url 'login' %}">{% translate "Login" %}</a>
+            <a class="btn btn-outline-warning me-2" href="{% url 'users_create' %}">{% translate "Register" %}</a>
+          {% else %}
+          <form action="/logout/" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-outline-light me-2" type="submit" value="{% translate 'Logout' %}">
+          </form>
+          {% endif %}
+        </div>
+
       </div>
     </div>
   </header>

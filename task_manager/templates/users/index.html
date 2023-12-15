@@ -28,7 +28,7 @@
           <tr {% if register_user.username == user.username %} class='fw-bolder table-light'{% endif %}>
             <td class="text-warning">{{ register_user.id }}</td>
             <td>{{ register_user.username }}</td>
-            <td>{{ register_user.first_name}} {{user.last_name }}</td>
+            <td>{{ register_user.get_full_name}}</td>
             <td>{{ register_user.date_joined }}</td>
             <td>
               <a href="/users/{{ register_user.id }}/update/" class="nav-link px-2 link-secondary">{{ link_change }}</a>

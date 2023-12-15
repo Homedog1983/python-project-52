@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
-    'widget_tweaks',
     'task_manager',
     'task_manager.users',
 ]

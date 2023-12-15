@@ -45,4 +45,4 @@ class StatusDeleteView(CommonStatusMixin, DeleteView):
     # редирект с warning сообщением
 
     template_name = 'statuses/delete.html'
-    success_message = _("User was deleted successfully!")
+    success_message = _("Status is deleted successfully!")

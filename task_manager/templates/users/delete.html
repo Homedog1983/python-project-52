@@ -1,0 +1,18 @@
+{% extends "../base.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block link_users %}
+  <li><a href="{% url 'users_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate "Users" %}</a></li>
+{% endblock link_users %}
+
+{% block content %}
+{% translate "Do you realy want delete" as answer %}
+  <h3 class="text-danger">{{ answer }} {{ user.get_full_name }}?</h3>
+    <form method="post">
+      {% csrf_token %}
+      <input class="btn btn-danger" type="submit" value="{% translate 'Yes, delete!' %}">
+    </form>
+{% endblock content %}

@@ -1,73 +1,80 @@
-# from django.shortcuts import render, redirect
-from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import CreateView
+from django.utils.translation import gettext as _
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
-from django.utils.translation import gettext as _
+from task_manager.mixins import SuccessMessageRedirectMixin
+
+
+class UsersDetailMixin:
+    """
+    Add common user detail.
+    """
+    template_name = 'users/detail.html'
+    form_class = CustomUserCreationForm
+
+
+class SameLoginUserRequaredMixin:
+    """
+    1. Authenticate requared.
+    2. Same user requared.
+    If not - return redirect with message (changed for 1 and 2 ways)
+    """
+    message_not_authenticated = _(
+        'You are not login. Please, login!')
+    message_not_same_user = _(
+        'You are have not permission to change other user!')
+
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if not user.is_authenticated:
+            messages.warning(request, self.message_not_authenticated)
+            return redirect("login")
+        requared_user = get_object_or_404(User, id=kwargs['pk'])
+        if user.username != requared_user.username:
+            messages.warning(request, self.message_not_same_user)
+            return redirect("users_index")
+        return super().dispatch(request, *args, **kwargs)
 
 
 class UsersIndexView(ListView):
-
     model = User
     template_name = 'users/index.html'
 
 
-class UsersCreateFormView(SuccessMessageMixin, CreateView):
-    template_name = 'users/create.html'
-    form_class = CustomUserCreationForm
-    success_url = '../login/'
-    success_message = _("User was registered successfully!")
+class UsersCreateFormView(
+        SuccessMessageRedirectMixin,
+        UsersDetailMixin,
+        CreateView):
+    extra_context = {
+        'h1_value': _('Registration'),
+        'button_value': _('Register'),
+        }
+    url_name = "login"
+    success_message = _("User is registered successfully!")
 
 
-
-# def login(request):
-#     m = Member.objects.get(username=request.POST["username"])
-#     if m.check_password(request.POST["password"]):
-#         request.session["member_id"] = m.id
-#         return HttpResponse("You're logged in.")
-#     else:
-#         return HttpResponse("Your username and password didn't match.")
-
-# def logout(request):
-#     try:
-#         del request.session["member_id"]
-#     except KeyError:
-#         pass
-#     return HttpResponse("You're logged out.")
+class UsersUpdateFormView(
+        SameLoginUserRequaredMixin,
+        SuccessMessageRedirectMixin,
+        UsersDetailMixin,
+        UpdateView):
+    model = User
+    extra_context = {
+        'h1_value': _('User update'),
+        'button_value': _('Update'),
+        }
+    url_name = 'users_index'
+    success_message = _("User is updated successfully!")
 
 
-# class UsersUpdateFormView(View):
-
-#     def get(self, request, *args, **kwargs):
-#         user_id = kwargs.get('pk')
-#         user = User.objects.get(id=user_id)
-#         form = UsersForm(instance=user)
-#         return render(
-#             request,
-#             'users_update.html',
-#             {'form': form, 'pk': user_id}
-#         )
-
-#     def post(self, request, *args, **kwargs):
-#         user_id = kwargs.get('pk')
-#         user = User.objects.get(id=user_id)
-#         form = UsersForm(request.POST, instance=user)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('users_index')
-#         return render(
-#             request,
-#             'users_update.html',
-#             {'form': form, 'pk': user_id}
-#         )
-
-
-# class ArticleDeleteFormView(View):
-
-#     def post(self, request, *args, **kwargs):
-#         user_id = kwargs.get('pk')
-#         user = User.objects.get(id=user_id)
-#         if user:
-#             user.delete()
-#         return redirect('articles_index')
+class UsersDeleteFormView(
+        SameLoginUserRequaredMixin,
+        SuccessMessageRedirectMixin,
+        DeleteView):
+    model = User
+    template_name = 'users/delete.html'
+    url_name = 'users_index'
+    success_message = _("User was deleted successfully!")

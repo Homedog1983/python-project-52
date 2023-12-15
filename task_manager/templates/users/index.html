@@ -9,8 +9,9 @@
 {% endblock link_users %}
 
 {% block content %}
-    <h1>{% translate "Users" %}</h1>
-    <table class="table table-dark table-hover align-middle text-center">
+
+    <h1 class="text-warning">{% translate "Users" %}</h1>
+    <table class="table table-dark table-bordered align-middle text-center">
         <thead class="table-light">
         <tr>
             <th>ID</th>
@@ -23,18 +24,17 @@
         {% translate "Change" as link_change %}
         {% translate "Delete" as link_delete %}
         <tbody>
-        {% for user in object_list %}
-            <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.first_name}} {{user.last_name }}</td>
-            <td>{{ user.date_joined }}</td>
+        {% for register_user in object_list %}
+          <tr {% if register_user.username == user.username %} class='fw-bolder table-light'{% endif %}>
+            <td class="text-warning">{{ register_user.id }}</td>
+            <td>{{ register_user.username }}</td>
+            <td>{{ register_user.first_name}} {{user.last_name }}</td>
+            <td>{{ register_user.date_joined }}</td>
             <td>
-                <a href="/users/{{ user.id }}/update/" class="nav-link px-2 link-secondary text-white">{{ link_change }}</a>
-                <br>
-                <a href="/users/{{ user.id }}/delete/" class="nav-link px-2 link-secondary text-white">{{ link_delete }}</a>
-                </td>
-            </tr>
+              <a href="/users/{{ register_user.id }}/update/" class="nav-link px-2 link-secondary">{{ link_change }}</a>
+              <a href="/users/{{ register_user.id }}/delete/" class="nav-link px-2 link-secondary">{{ link_delete }}</a>
+            </td>
+          </tr>
         {% endfor %}
         </tbody>
     </table>

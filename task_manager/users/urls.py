@@ -10,12 +10,12 @@ urlpatterns = [
         'create',
         views.UsersCreateFormView.as_view(),
         name='users_create'),
-    # path(
-    #     'users/<int:pk>/update/',
-    #     views.UsersUpdateFormView.as_view(),
-    #     name='users_update'),
-    # path(
-    #     'users/<int:pk>/delete/',
-    #     views.UsersDeleteFormView.as_view(),
-    #     name='users_delete'),
+    path(
+        '<int:pk>/update/',
+        views.UsersUpdateFormView.as_view(),
+        name='users_update'),
+    path(
+        '<int:pk>/delete/',
+        views.UsersDeleteFormView.as_view(),
+        name='users_delete'),
 ]

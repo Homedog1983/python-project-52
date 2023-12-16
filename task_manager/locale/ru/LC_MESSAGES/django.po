@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 20:58+0000\n"
+"POT-Creation-Date: 2023-12-16 15:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,50 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/mixins.py:13
+#: task_manager/labels/views.py:27
+#, fuzzy
+#| msgid "Status creation"
+msgid "Label creation"
+msgstr "Создание статуса"
+
+#: task_manager/labels/views.py:28 task_manager/statuses/views.py:28
+msgid "Create"
+msgstr "Создать"
+
+#: task_manager/labels/views.py:30
+#, fuzzy
+#| msgid "Status is created successfully!"
+msgid "Label is created successfully!"
+msgstr "Статус успешно создан!"
+
+#: task_manager/labels/views.py:36
+#, fuzzy
+#| msgid "User update"
+msgid "Label update"
+msgstr "Изменение пользователя"
+
+#: task_manager/labels/views.py:37 task_manager/statuses/views.py:37
+#: task_manager/users/views.py:63
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/labels/views.py:39
+#, fuzzy
+#| msgid "User is updated successfully!"
+msgid "Label is updated successfully!"
+msgstr "Пользователь успешно изменен!"
+
+#: task_manager/labels/views.py:49
+#, fuzzy
+#| msgid "User is deleted successfully!"
+msgid "Label is deleted successfully!"
+msgstr "Пользователь успешно удален!"
+
+#: task_manager/mixins.py:14
 msgid "You are not login. Please, login!"
 msgstr "Вы не залогинены. Пожалуйста, сделайте это!"
 
-#: task_manager/mixins.py:29
+#: task_manager/mixins.py:31
 msgid "All you wanted is succefully happened!"
 msgstr "Все, что вы хотели - получилось!"
 
@@ -40,10 +79,6 @@ msgstr "Русский"
 msgid "Status creation"
 msgstr "Создание статуса"
 
-#: task_manager/statuses/views.py:28
-msgid "Create"
-msgstr "Создать"
-
 #: task_manager/statuses/views.py:30
 msgid "Status is created successfully!"
 msgstr "Статус успешно создан!"
@@ -52,15 +87,11 @@ msgstr "Статус успешно создан!"
 msgid "Status update"
 msgstr "Изменение статуса"
 
-#: task_manager/statuses/views.py:37 task_manager/users/views.py:63
-msgid "Update"
-msgstr "Изменить"
-
 #: task_manager/statuses/views.py:39
 msgid "Status is updated successfully!"
 msgstr "Статус успешно изменен!"
 
-#: task_manager/statuses/views.py:48
+#: task_manager/statuses/views.py:49
 msgid "Status is deleted successfully!"
 msgstr "Статус успешно удален!"
 
@@ -94,6 +125,10 @@ msgid "Statuses"
 msgstr "Статусы"
 
 #: task_manager/templates/base.html:31
+#: task_manager/templates/labels/delete.html:11
+#: task_manager/templates/labels/detail.html:11
+#: task_manager/templates/labels/index.html:11
+#: task_manager/templates/labels/index.html:15
 msgid "Labels"
 msgstr "Метки"
 
@@ -113,42 +148,50 @@ msgstr "Регистрация"
 msgid "Logout"
 msgstr "Выход"
 
-#: task_manager/templates/login.html:14
-msgid "Username and password did not match. Please try again."
-msgstr "Имя пользователя и пароль не подходят друг к другу. Попробуйте снова."
-
-#: task_manager/templates/statuses/delete.html:15
-#: task_manager/templates/users/delete.html:15
+#: task_manager/templates/forms/delete_form.html:4
 msgid "Do you realy want delete"
 msgstr "Вы действительно хотите удалить"
 
-#: task_manager/templates/statuses/delete.html:19
-#: task_manager/templates/users/delete.html:19
+#: task_manager/templates/forms/delete_form.html:8
 msgid "Yes, delete!"
 msgstr "Да, удалить!"
 
-#: task_manager/templates/statuses/index.html:16
-msgid "Create status"
-msgstr "Создать статус"
+#: task_manager/templates/labels/index.html:16
+#, fuzzy
+#| msgid "Create"
+msgid "Create label"
+msgstr "Создать"
 
+#: task_manager/templates/labels/index.html:21
 #: task_manager/templates/statuses/index.html:21
 msgid "Name"
 msgstr "Имя"
 
+#: task_manager/templates/labels/index.html:22
 #: task_manager/templates/statuses/index.html:22
 #: task_manager/templates/users/index.html:22
 msgid "Creation date"
 msgstr "Дата создания"
 
+#: task_manager/templates/labels/index.html:26
 #: task_manager/templates/statuses/index.html:26
 #: task_manager/templates/users/index.html:26
 msgid "Change"
 msgstr "Изменить"
 
+#: task_manager/templates/labels/index.html:27
 #: task_manager/templates/statuses/index.html:27
 #: task_manager/templates/users/index.html:27
 msgid "Delete"
 msgstr "Удалить"
+
+#: task_manager/templates/login.html:14
+msgid "Username and password did not match. Please try again."
+msgstr "Имя пользователя и пароль не подходят друг к другу. Попробуйте снова."
+
+#: task_manager/templates/statuses/index.html:16
+msgid "Create status"
+msgstr "Создать статус"
 
 #: task_manager/templates/users/index.html:20
 msgid "Username"
@@ -182,10 +225,10 @@ msgstr "Пользователь успешно изменен!"
 msgid "User is deleted successfully!"
 msgstr "Пользователь успешно удален!"
 
-#: task_manager/views.py:13
+#: task_manager/views.py:15
 msgid "You are logged in!"
 msgstr "Вы зашли!"
 
-#: task_manager/views.py:17
+#: task_manager/views.py:21
 msgid "You are logged out!"
 msgstr "Вы вышли!"

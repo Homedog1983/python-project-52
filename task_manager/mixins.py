@@ -6,8 +6,9 @@ from django.contrib import messages
 
 class LoginRequiredRedirectMixin:
     """
-    Requared login (if not - redirect to 'login'
-    with message
+    Requared login on dispath.
+    If not returns redirect('login') with message.
+    Attrs: message_not_authenticated: str
     """
     message_not_authenticated = _(
         'You are not login. Please, login!')
@@ -22,10 +23,11 @@ class LoginRequiredRedirectMixin:
 
 class SuccessMessageRedirectMixin:
     """
-    Add a success message on successful form submission.
-    Redirect to reverse(url_name)
+    Add a success message after successful form submission.
+    Change get_success_url(self).
+    Attrs: success_message: str, success_url_name: str
     """
-    url_name = "main_page"
+    success_url_name = "main_page"
     success_message = _("All you wanted is succefully happened!")
 
     def form_valid(self, form):
@@ -35,4 +37,4 @@ class SuccessMessageRedirectMixin:
         return response
 
     def get_success_url(self):
-        return reverse(self.url_name)
+        return reverse(self.success_url_name)

@@ -18,7 +18,7 @@ class CommonStatusMixin(
         SuccessMessageRedirectMixin):
     model = Status
     template_name = 'statuses/detail.html'
-    url_name = 'statuses_index'
+    success_url_name = 'statuses_index'
 
 
 class StatusCreateView(CommonStatusMixin, CreateView):
@@ -42,7 +42,8 @@ class StatusUpdateView(CommonStatusMixin, UpdateView):
 class StatusDeleteView(CommonStatusMixin, DeleteView):
 
     # В диспатч ввести проверку в обратную сторону if not task_set
-    # редирект с warning сообщением
+    # редирект с warning сообщением. Возможно сделать общий миксин
+    # для статусов и лэйблов.
 
     template_name = 'statuses/delete.html'
     success_message = _("Status is deleted successfully!")

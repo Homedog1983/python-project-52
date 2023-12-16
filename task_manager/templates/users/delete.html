@@ -12,10 +12,7 @@
 {% endblock link_users %}
 
 {% block content %}
-{% translate "Do you realy want delete" as answer %}
-  <h3 class="text-danger">{{ answer }} {{ user.get_full_name }}?</h3>
-    <form method="post">
-      {% csrf_token %}
-      <input class="btn btn-danger" type="submit" value="{% translate 'Yes, delete!' %}">
-    </form>
+  {% with object=user.get_full_name %}
+    {% include '../forms/delete_form.html' %}
+  {% endwith %}
 {% endblock content %}

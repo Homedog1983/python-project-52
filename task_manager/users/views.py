@@ -30,7 +30,7 @@ class UserCreateView(CommonUserDetailMixin, CreateView):
         'h1_value': _('Registration'),
         'button_value': _('Register'),
         }
-    url_name = "login"
+    success_url_name = "login"
     success_message = _("User is registered successfully!")
 
 
@@ -53,7 +53,7 @@ class ChangeUserRedirectMixin(
         SameUserRequaredRedirectMixin,
         CommonUserDetailMixin):
     """ Required common mixin's sequence for user's update and delete."""
-    url_name = 'users_index'
+    success_url_name = 'users_index'
 
 
 class UserUpdateView(ChangeUserRedirectMixin, UpdateView):

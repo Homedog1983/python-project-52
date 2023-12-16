@@ -7,9 +7,9 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block link_statuses %}
-  <li><a href="{% url 'statuses_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Statuses' %}</a></li>
-{% endblock link_statuses %}
+{% block link_labels %}
+  <li><a href="{% url 'labels_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate "Labels" %}</a></li>
+{% endblock link_labels %}
 
 {% block content %}
   {% include '../forms/detail_form.html' %}

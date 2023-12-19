@@ -1,0 +1,16 @@
+{% extends "../base.html" %}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block link_tasks %}
+  <li><a href="{% url 'tasks_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Tasks' %}</a></li>
+{% endblock link_tasks %}
+
+{% block content %}
+  {% include '../includes/detail_form.html' with exclude_field_names='creator' %}
+{% endblock content %}

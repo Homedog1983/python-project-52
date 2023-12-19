@@ -33,8 +33,8 @@
           <td>{{ register_user.get_full_name}}</td>
           <td>{{ register_user.date_joined }}</td>
           <td>
-            <a href="/users/{{ register_user.id }}/update/" class="nav-link px-2 link-secondary">{{ change }}</a>
-            <a href="/users/{{ register_user.id }}/delete/" class="nav-link px-2 link-secondary">{{ delete }}</a>
+            <a href="{% url 'users_update' register_user.id %}" class="nav-link px-2 link-secondary">{{ change }}</a>
+            <a href="{% url 'users_delete' register_user.id %}" class="nav-link px-2 link-secondary">{{ delete }}</a>
           </td>
         </tr>
       {% endfor %}

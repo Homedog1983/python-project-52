@@ -32,8 +32,8 @@
           <td>{{ status.name }}</td>
           <td>{{ status.creation_date }}</td>
           <td>
-            <a href="/statuses/{{ status.id }}/update/" class="nav-link px-2 link-secondary">{{ change }}</a>
-            <a href="/statuses/{{ status.id }}/delete/" class="nav-link px-2 link-secondary">{{ delete }}</a>
+            <a href="{% url 'statuses_update' status.id %}" class="nav-link px-2 link-secondary">{{ change }}</a>
+            <a href="{% url 'statuses_delete' status.id %}" class="nav-link px-2 link-secondary">{{ delete }}</a>
           </td>
         </tr>
       {% endfor %}

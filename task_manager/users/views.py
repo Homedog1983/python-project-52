@@ -7,7 +7,9 @@ from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
 from task_manager.mixins import (
-    SuccessMessageRedirectMixin, LoginRequiredRedirectMixin)
+    SuccessMessageRedirectMixin,
+    LoginRequiredRedirectMixin,
+    TaskUnusedRequaredDeletionMixin)
 
 
 class UserIndexView(ListView):
@@ -15,7 +17,7 @@ class UserIndexView(ListView):
     template_name = 'users/index.html'
 
 
-class CommonUserDetailMixin(SuccessMessageRedirectMixin):
+class CommonUserDetailMixin:
     """
     Common attrs for all views below.
     Use attr 'success_message' to define non-default message
@@ -24,14 +26,17 @@ class CommonUserDetailMixin(SuccessMessageRedirectMixin):
     template_name = 'users/detail.html'
 
 
-class UserCreateView(CommonUserDetailMixin, CreateView):
+class UserCreateView(
+        CommonUserDetailMixin,
+        SuccessMessageRedirectMixin,
+        CreateView):
     form_class = CustomUserCreationForm
     extra_context = {
         'h1_value': _('Registration'),
         'button_value': _('Register'),
         }
-    success_url_name = "login"
-    success_message = _("User is registered successfully!")
+    url_name_success = "login"
+    message_success = _("User is registered successfully!")
 
 
 class SameUserRequaredRedirectMixin:
@@ -53,18 +58,26 @@ class ChangeUserRedirectMixin(
         SameUserRequaredRedirectMixin,
         CommonUserDetailMixin):
     """ Required common mixin's sequence for user's update and delete."""
-    success_url_name = 'users_index'
+    url_name_success = 'users_index'
 
 
-class UserUpdateView(ChangeUserRedirectMixin, UpdateView):
+class UserUpdateView(
+        ChangeUserRedirectMixin,
+        SuccessMessageRedirectMixin,
+        UpdateView):
     form_class = CustomUserCreationForm
     extra_context = {
         'h1_value': _('User update'),
         'button_value': _('Update'),
         }
-    success_message = _("User is updated successfully!")
+    message_success = _("User is updated successfully!")
 
 
-class UserDeleteView(ChangeUserRedirectMixin, DeleteView):
+class UserDeleteView(
+        ChangeUserRedirectMixin,
+        TaskUnusedRequaredDeletionMixin,
+        DeleteView):
     template_name = 'users/delete.html'
-    success_message = _("User is deleted successfully!")
+    message_success = _("User is deleted successfully!")
+    message_used_object = _('Unable to delete! This user is used in some tasks!')
+    url_name = 'users_index'

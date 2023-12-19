@@ -12,7 +12,5 @@
 {% endblock link_users %}
 
 {% block content %}
-  {% with object=user.get_full_name %}
-    {% include '../forms/delete_form.html' %}
-  {% endwith %}
+  {% include '../includes/delete_form.html' with object=user.get_full_name %}
 {% endblock content %}

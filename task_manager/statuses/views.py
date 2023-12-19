@@ -5,7 +5,9 @@ from django.views.generic.list import ListView
 from .models import Status
 from .forms import StatusForm
 from task_manager.mixins import (
-    LoginRequiredRedirectMixin, SuccessMessageRedirectMixin)
+        LoginRequiredRedirectMixin,
+        SuccessMessageRedirectMixin,
+        TaskUnusedRequaredDeletionMixin)
 
 
 class StatusIndexView(LoginRequiredRedirectMixin, ListView):
@@ -14,36 +16,36 @@ class StatusIndexView(LoginRequiredRedirectMixin, ListView):
 
 
 class CommonStatusMixin(
-        LoginRequiredRedirectMixin,
-        SuccessMessageRedirectMixin):
+        LoginRequiredRedirectMixin):
     model = Status
     template_name = 'statuses/detail.html'
-    success_url_name = 'statuses_index'
+    url_name_success = 'statuses_index'
 
 
-class StatusCreateView(CommonStatusMixin, CreateView):
+class StatusCreateView(
+        CommonStatusMixin, SuccessMessageRedirectMixin, CreateView):
     form_class = StatusForm
     extra_context = {
         'h1_value': _('Status creation'),
         'button_value': _('Create'),
         }
-    success_message = _("Status is created successfully!")
+    message_success = _("Status is created successfully!")
 
 
-class StatusUpdateView(CommonStatusMixin, UpdateView):
+class StatusUpdateView(
+        CommonStatusMixin, SuccessMessageRedirectMixin, UpdateView):
     form_class = StatusForm
     extra_context = {
         'h1_value': _('Status update'),
         'button_value': _('Update'),
         }
-    success_message = _("Status is updated successfully!")
+    message_success = _("Status is updated successfully!")
 
 
-class StatusDeleteView(CommonStatusMixin, DeleteView):
+class StatusDeleteView(
+        CommonStatusMixin, TaskUnusedRequaredDeletionMixin, DeleteView):
 
-    # В диспатч ввести проверку в обратную сторону if not task_set
-    # редирект с warning сообщением. Возможно сделать общий миксин
-    # для статусов и лэйблов.
-
-    template_name = 'statuses/delete.html'
-    success_message = _("Status is deleted successfully!")
+    template_name = 'users/delete.html'
+    message_success = _("Status is deleted successfully!")
+    message_used_object = _('Unable to delete! This status is used in some tasks!')
+    url_name = 'statuses_index'

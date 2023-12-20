@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'task_manager',
     'task_manager.users',
     'task_manager.statuses',
-    'task_manager.labels',
     'task_manager.tasks',
+    'task_manager.labels',
 ]
 
 MIDDLEWARE = [
@@ -97,8 +97,10 @@ DATABASES = {
         default=DATABASE_URL,
         conn_max_age=600,
         conn_health_checks=True
-    )
+    ),
 }
+
+FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]
 
 
 # Password validation

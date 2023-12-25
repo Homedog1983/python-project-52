@@ -1,22 +1,45 @@
-[
-    {
-      "model": "auth.User",
-      "pk": 1,
-      "fields": {
-        "first_name": "John",
-        "last_name": "Lennon",
-        "username": "user_1",
-        "password": "123"
-      }
-    },
-    {
-      "model": "auth.User",
-      "pk": 2,
-      "fields": {
-        "first_name": "Paul",
-        "last_name": "McCartney",
-        "username": "user_2",
-        "password": "456"
-      }
-    }
+{
+  "users_expected": [
+    "John Lennon",
+    "user_1",
+    "Paul McCartney",
+    "user_2"
+  ],  
+  "create": {
+    "pk": 3,
+    "first_name": "George",
+    "last_name": "Harrison",
+    "username": "user_3",
+    "password1": "123678rj",
+    "password2": "123678rj"
+  },
+  "create_expected": [
+    "John Lennon",
+    "user_1",
+    "Paul McCartney",
+    "user_2",
+    "George Harrison",
+    "user_3"
+  ],
+  "update": {
+    "pk": 1,
+    "first_name": "Ringo",
+    "last_name": "Starr",
+    "username": "user_4",
+    "password1": "xxwe456eU",
+    "password2": "xxwe456eU"
+  },
+  "update_expected": [
+    "Ringo Starr",
+    "user_4",
+    "Paul McCartney",
+    "user_2"
+  ],
+  "delete": {
+    "pk": 1
+  },
+  "delete_expected": [
+    "Paul McCartney",
+    "user_2"
   ]
+}

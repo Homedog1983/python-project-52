@@ -3,8 +3,24 @@
       "model": "statuses.Status",
       "pk": 1,
       "fields": {
-        "name": "John",
+        "name": "Not yet",
         "creation_date": "2023-12-16T15:02:54.158Z"
+      }
+    },
+    {
+      "model": "statuses.Status",
+      "pk": 2,
+      "fields": {
+        "name": "In work",
+        "creation_date": "2023-12-17T15:02:54.158Z"
+      }
+    },
+    {
+      "model": "statuses.Status",
+      "pk": 3,
+      "fields": {
+        "name": "Almost done",
+        "creation_date": "2023-12-18T15:02:54.158Z"
       }
     }
 ]

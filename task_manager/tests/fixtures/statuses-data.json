@@ -1,0 +1,39 @@
+{
+  "users_expected": [
+    "Not yet",
+    "In work",
+    "Almost done"
+  ],
+  "create": {
+    "pk": 4,
+    "name": "Well done"
+  },
+  "create_expected": [
+    "Not yet",
+    "In work",
+    "Almost done",
+    "Well done"
+  ],
+  "update": {
+    "pk": 1,
+    "name": "Never not"
+  },
+  "update_expected": [
+    "Never not",
+    "In work",
+    "Almost done"
+  ],
+  "update_not_expected": [
+    "Not yet"
+  ],
+  "delete": {
+    "pk": 3
+  },
+  "delete_expected": [
+    "Not yet",
+    "In work"
+  ],
+  "delete_not_expected": [
+    "Almost done"
+  ]
+}

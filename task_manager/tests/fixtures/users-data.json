@@ -35,11 +35,19 @@
     "Paul McCartney",
     "user_2"
   ],
+  "update_not_expected": [
+    "John Lennon",
+    "user_1"
+  ],
   "delete": {
     "pk": 1
   },
   "delete_expected": [
     "Paul McCartney",
     "user_2"
+  ],
+  "delete_not_expected": [
+    "John Lennon",
+    "user_1"
   ]
 }

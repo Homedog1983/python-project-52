@@ -28,7 +28,9 @@ def get_content_from(path):
 class CustomTestCase(TestCase):
     fixtures = [
         "users-db.json",
-        "statuses-db.json"]
+        "statuses-db.json",
+        # "tasks-db.json"
+    ]
     data_json = ''
     auth = get_content_from("users_auth.json")
     data = {}
@@ -37,10 +39,12 @@ class CustomTestCase(TestCase):
     def setUp(self):
         self.data = get_content_from(self.data_json)
 
-    def url_contains_data_test(self, url_name, expected_data: list):
+    def url_data_test(self, url_name, expected_data=[], not_expected_data=[]):
         response = self.client.get(reverse(url_name))
         for elem in expected_data:
             self.assertContains(response, elem, count=1, status_code=200)
+        for elem in not_expected_data:
+            self.assertNotContains(response, elem, status_code=200)
 
     def get_message(self, response):
         return list(response.context.get("messages"))[0].message
@@ -52,10 +56,6 @@ class CustomTestCase(TestCase):
             response, reverse(expected_url_name), status_code=302,
             target_status_code=200, fetch_redirect_response=True)
 
-    def make_login_not_same_user(self):
-        user = User.objects.get(username=self.auth["not_same_user"])
-        self.client.force_login(user)
-
-    def make_login_same_user(self):
-        user = User.objects.get(username=self.auth["same_user"])
+    def make_login(self, username):
+        user = User.objects.get(username=username)
         self.client.force_login(user)

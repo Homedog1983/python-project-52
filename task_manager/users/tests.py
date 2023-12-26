@@ -1,11 +1,9 @@
-from .conftest import CustomTestCase
+from task_manager.tests.conftests import CustomTestCase
 from django.urls import reverse
 from task_manager.users.views import (
     UserCreateView, UserUpdateView, UserDeleteView)
-from django.test import tag
 
 
-@tag("users")
 class UsersTestCase(CustomTestCase):
     data_json = 'users-data.json'
 
@@ -78,7 +76,7 @@ class UsersTestCase(CustomTestCase):
         self.redirect_with_message_test(
             response, "users_index", UserDeleteView.message_not_same_user)
 
-    def test_user_delete_same_user(self):
+    def test_user_delete_same_user_task_unused(self):
         self.make_login(self.same_user)
         response = self.client.get(
             reverse("users_delete", args=[self.delete_pk,]))
@@ -95,3 +93,20 @@ class UsersTestCase(CustomTestCase):
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
 
+    def test_user_delete_same_user_task_used(self):
+        pass
+        # self.make_login(self.same_user)
+        # response = self.client.get(
+        #     reverse("users_delete", args=[self.delete_pk,]))
+        # self.assertEqual(response.status_code, 200)
+
+        # response = self.client.post(
+        #     reverse("users_delete", args=[self.delete_pk,]),
+        #     self.data["delete"],
+        #     follow=True)
+        # self.redirect_with_message_test(
+        #     response, "users_index", UserDeleteView.message_success)
+        # self.url_data_test(
+        #     "users_index",
+        #     expected_data=self.data["delete_expected"],
+        #     not_expected_data=self.data["delete_not_expected"])

@@ -39,6 +39,9 @@
     "John Lennon",
     "user_1"
   ],
+  "delete_task_used": {
+    "pk": 2
+  },
   "delete": {
     "pk": 1
   },

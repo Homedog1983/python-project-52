@@ -1,4 +1,6 @@
 [
+// user_2 used in task (user delete test)
+// statuses pk1 - used
     {
       "model": "auth.User",
       "pk": 1,

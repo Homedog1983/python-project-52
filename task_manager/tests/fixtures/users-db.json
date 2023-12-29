@@ -18,5 +18,25 @@
         "username": "user_2",
         "password": "456"
       }
+    },
+    {
+      "model": "auth.User",
+      "pk": 3,
+      "fields": {
+        "first_name": "George",
+        "last_name": "Harrison",
+        "username": "user_3",
+        "password": "123678rj"
+      }
+    },
+    {
+      "model": "auth.User",
+      "pk": 4,
+      "fields": {
+        "first_name": "Ringo",
+        "last_name": "Starr",
+        "username": "user_4",
+        "password": "xxwe456eU"
+      }
     }
   ]

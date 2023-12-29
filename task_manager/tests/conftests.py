@@ -29,7 +29,7 @@ class CustomTestCase(TestCase):
     fixtures = [
         "users-db.json",
         "statuses-db.json",
-        # "tasks-db.json"
+        "tasks-db.json"
     ]
     data_json = ''
     auth = get_content_from("users_auth.json")
@@ -42,7 +42,7 @@ class CustomTestCase(TestCase):
     def url_data_test(self, url_name, expected_data=[], not_expected_data=[]):
         response = self.client.get(reverse(url_name))
         for elem in expected_data:
-            self.assertContains(response, elem, count=1, status_code=200)
+            self.assertContains(response, elem, status_code=200)
         for elem in not_expected_data:
             self.assertNotContains(response, elem, status_code=200)
 

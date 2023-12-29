@@ -3,15 +3,19 @@
     "John Lennon",
     "user_1",
     "Paul McCartney",
-    "user_2"
+    "user_2",
+    "George Harrison",
+    "user_3",
+    "Ringo Starr",
+    "user_4"
   ],  
   "create": {
-    "pk": 3,
-    "first_name": "George",
-    "last_name": "Harrison",
-    "username": "user_3",
-    "password1": "123678rj",
-    "password2": "123678rj"
+    "pk": 5,
+    "first_name": "Stuart",
+    "last_name": "Sutcliffe",
+    "username": "user_5",
+    "password1": "12sdds8rj",
+    "password2": "12sdds8rj"
   },
   "create_expected": [
     "John Lennon",
@@ -19,21 +23,29 @@
     "Paul McCartney",
     "user_2",
     "George Harrison",
-    "user_3"
+    "user_3",
+    "Ringo Starr",
+    "user_4",
+    "Stuart Sutcliffe",
+    "user_5"
   ],
   "update": {
     "pk": 1,
-    "first_name": "Ringo",
-    "last_name": "Starr",
-    "username": "user_4",
-    "password1": "xxwe456eU",
-    "password2": "xxwe456eU"
+    "first_name": "John Winston Ono",
+    "last_name": "Lennon",
+    "username": "user_best",
+    "password1": "xxssU",
+    "password2": "xxssU"
   },
   "update_expected": [
-    "Ringo Starr",
-    "user_4",
+    "John Winston Ono Lennon",
+    "user_best",
     "Paul McCartney",
-    "user_2"
+    "user_2",
+    "George Harrison",
+    "user_3",
+    "Ringo Starr",
+    "user_4"
   ],
   "update_not_expected": [
     "John Lennon",
@@ -47,7 +59,11 @@
   },
   "delete_expected": [
     "Paul McCartney",
-    "user_2"
+    "user_2",
+    "George Harrison",
+    "user_3",
+    "Ringo Starr",
+    "user_4"
   ],
   "delete_not_expected": [
     "John Lennon",

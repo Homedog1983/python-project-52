@@ -11,7 +11,8 @@ class StatusesTestCase(CustomTestCase):
         super().setUp()
         self.update_pk = self.data["update"]["pk"]
         self.delete_pk = self.data["delete"]["pk"]
-        self.user = self.auth["user"]
+        self.status_logined = self.auth["status_logined"]
+        self.delete_pk_task_used = self.data["delete_task_used"]["pk"]
 
 # statuses_index tests:
 
@@ -22,7 +23,7 @@ class StatusesTestCase(CustomTestCase):
             response, "login", StatusIndexView.message_not_authenticated)
 
     def test_statuses_logined(self):
-        self.make_login(self.user)
+        self.make_login(self.status_logined)
         self.url_data_test(
             "statuses_index", expected_data=self.data["statuses_expected"])
 
@@ -35,7 +36,7 @@ class StatusesTestCase(CustomTestCase):
             response, "login", StatusCreateView.message_not_authenticated)
 
     def test_status_create_logined(self):
-        self.make_login(self.user)
+        self.make_login(self.status_logined)
         response = self.client.post(
             reverse("statuses_create"), self.data["create"], follow=True)
         self.redirect_with_message_test(
@@ -53,7 +54,7 @@ class StatusesTestCase(CustomTestCase):
             response, "login", StatusUpdateView.message_not_authenticated)
 
     def test_status_update_logined(self):
-        self.make_login(self.user)
+        self.make_login(self.status_logined)
         response = self.client.get(
             reverse("statuses_update", args=[self.update_pk,]))
         self.assertEqual(response.status_code, 200)
@@ -79,7 +80,7 @@ class StatusesTestCase(CustomTestCase):
             response, "login", StatusDeleteView.message_not_authenticated)
 
     def test_status_delete_logined_task_unused(self):
-        self.make_login(self.user)
+        self.make_login(self.status_logined)
         response = self.client.get(
             reverse("statuses_delete", args=[self.delete_pk,]))
         self.assertEqual(response.status_code, 200)
@@ -96,19 +97,17 @@ class StatusesTestCase(CustomTestCase):
             not_expected_data=self.data["delete_not_expected"])
 
     def test_status_delete_logined_task_used(self):
-        pass
-        # self.make_login(self.user)
-        # response = self.client.get(
-        #     reverse("statuses_delete", args=[self.delete_pk,]))
-        # self.assertEqual(response.status_code, 200)
+        self.make_login(self.status_logined)
+        response = self.client.get(
+            reverse("statuses_delete", args=[self.delete_pk_task_used,]))
+        self.assertEqual(response.status_code, 200)
 
-        # response = self.client.post(
-        #     reverse("statuses_delete", args=[self.delete_pk,]),
-        #     self.data["delete"],
-        #     follow=True)
-        # self.redirect_with_message_test(
-        #     response, "statuses_index", StatusDeleteView.message_success)
-        # self.url_data_test(
-        #     "statuses_index",
-        #     expected_data=self.data["delete_expected"],
-        #     not_expected_data=self.data["delete_not_expected"])
+        response = self.client.post(
+            reverse("statuses_delete", args=[self.delete_pk_task_used,]),
+            self.data["delete"],
+            follow=True)
+        self.redirect_with_message_test(
+            response, "statuses_index", StatusDeleteView.message_used_object)
+        self.url_data_test(
+            "statuses_index", expected_data=self.data["statuses_expected"])
+

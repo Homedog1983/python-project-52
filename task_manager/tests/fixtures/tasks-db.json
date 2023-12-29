@@ -1,24 +1,14 @@
 [
-// user_2 used in task (user delete test)
-// statuses pk1 - used
     {
-      "model": "auth.User",
+      "model": "tasks.Task",
       "pk": 1,
       "fields": {
-        "first_name": "John",
-        "last_name": "Lennon",
-        "username": "user_1",
-        "password": "123"
-      }
-    },
-    {
-      "model": "auth.User",
-      "pk": 2,
-      "fields": {
-        "first_name": "Paul",
-        "last_name": "McCartney",
-        "username": "user_2",
-        "password": "456"
+        "name": "Sing the Yesterday song",
+        "description": "",
+        "status": 1,
+        "creator": 2,
+        "executor": null,
+        "creation_date": "2023-12-21T15:02:54.158Z"
       }
     }
-  ]
+]

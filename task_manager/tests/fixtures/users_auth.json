@@ -1,6 +1,16 @@
 {
-  "same_user": "user_1",
-  "not_same_user": "user_2",
-  "user": "user_1",
-  "user_task_used": "user_2"
+  "_users_specific": null,
+  "creator": "user_1",
+  "not_creator": "user_2",
+  "task_used": "user_2",
+  
+  "_statuses_specific": null,
+  "status_logined": "user_3",
+  
+  "_tasks_specific": null,
+  "task_logined": "user_4",
+  "logined_create": "user_1",
+  "logined_update": "user_4",
+  "not_creator_delete": "user_1",
+  "creator_delete": "user_2"
 }

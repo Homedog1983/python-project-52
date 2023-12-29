@@ -39,23 +39,23 @@ class UserCreateView(
     message_success = _("User is registered successfully!")
 
 
-class SameUserRequaredRedirectMixin:
+class CreatorRequaredRedirectMixin:
     """ Same user requared (if not - redirect with message). """
-    message_not_same_user = _(
+    message_not_creator = _(
         'You are have not permission to change other user!')
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user
         requared_user = get_object_or_404(User, id=kwargs['pk'])
         if user.username != requared_user.username:
-            messages.warning(request, self.message_not_same_user)
+            messages.warning(request, self.message_not_creator)
             return redirect("users_index")
         return super().dispatch(request, *args, **kwargs)
 
 
 class ChangeUserRedirectMixin(
         LoginRequiredRedirectMixin,
-        SameUserRequaredRedirectMixin,
+        CreatorRequaredRedirectMixin,
         CommonUserDetailMixin):
     """ Required common mixin's sequence for user's update and delete."""
     url_name_success = 'users_index'

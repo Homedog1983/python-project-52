@@ -34,8 +34,8 @@
           <td class="text-warning">{{ task.id }}</td>
           <td>{{ task.name }}</td>
           <td>{{ task.status }}</td>
-          <td>{{ task.creator }}</td>
-          <td>{{ task.executor }}</td>
+          <td>{{ task.get_full_name.creator }}</td>
+          <td>{{ task.get_full_name.executor }}</td>
           <td>{{ task.creation_date }}</td>
           <td>
             <a href="{% url 'tasks_update' task.id %}" class="nav-link px-2 link-secondary">{{ change }}</a>

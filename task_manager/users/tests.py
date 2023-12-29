@@ -11,8 +11,10 @@ class UsersTestCase(CustomTestCase):
         super().setUp()
         self.update_pk = self.data["update"]["pk"]
         self.delete_pk = self.data["delete"]["pk"]
-        self.not_same_user = self.auth["not_same_user"]
-        self.same_user = self.auth["same_user"]
+        self.not_creator = self.auth["not_creator"]
+        self.creator = self.auth["creator"]
+        self.delete_pk_task_used = self.data["delete_task_used"]["pk"]
+        self.task_used = self.auth["task_used"]
 
     def test_users(self):
         self.url_data_test(
@@ -36,15 +38,18 @@ class UsersTestCase(CustomTestCase):
         self.redirect_with_message_test(
             response, "login", UserUpdateView.message_not_authenticated)
 
-    def test_user_update_not_same_user(self):
-        self.make_login(self.not_same_user)
+    def test_user_update_not_creator(self):
+        self.make_login(self.not_creator)
         response = self.client.get(
             reverse("users_update", args=[self.update_pk,]), follow=True)
         self.redirect_with_message_test(
-            response, "users_index", UserUpdateView.message_not_same_user)
+            response, "users_index", UserUpdateView.message_not_creator)
+        self.url_data_test(
+            "users_index",
+            expected_data=self.data["users_expected"])
 
-    def test_user_update_same_user(self):
-        self.make_login(self.same_user)
+    def test_user_update_creator(self):
+        self.make_login(self.creator)
         response = self.client.get(
             reverse("users_update", args=[self.update_pk,]))
         self.assertEqual(response.status_code, 200)
@@ -69,15 +74,18 @@ class UsersTestCase(CustomTestCase):
         self.redirect_with_message_test(
             response, "login", UserDeleteView.message_not_authenticated)
 
-    def test_user_delete_not_same_user(self):
-        self.make_login(self.not_same_user)
+    def test_user_delete_not_creator(self):
+        self.make_login(self.not_creator)
         response = self.client.get(
             reverse("users_delete", args=[self.delete_pk,]), follow=True)
         self.redirect_with_message_test(
-            response, "users_index", UserDeleteView.message_not_same_user)
+            response, "users_index", UserDeleteView.message_not_creator)
+        self.url_data_test(
+            "users_index",
+            expected_data=self.data["users_expected"])
 
-    def test_user_delete_same_user_task_unused(self):
-        self.make_login(self.same_user)
+    def test_user_delete_creator_task_unused(self):
+        self.make_login(self.creator)
         response = self.client.get(
             reverse("users_delete", args=[self.delete_pk,]))
         self.assertEqual(response.status_code, 200)
@@ -93,20 +101,18 @@ class UsersTestCase(CustomTestCase):
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
 
-    def test_user_delete_same_user_task_used(self):
-        pass
-        # self.make_login(self.same_user)
-        # response = self.client.get(
-        #     reverse("users_delete", args=[self.delete_pk,]))
-        # self.assertEqual(response.status_code, 200)
+    def test_user_delete_creator_task_used(self):
+        self.make_login(self.task_used)
+        response = self.client.get(
+            reverse("users_delete", args=[self.delete_pk_task_used,]))
+        self.assertEqual(response.status_code, 200)
 
-        # response = self.client.post(
-        #     reverse("users_delete", args=[self.delete_pk,]),
-        #     self.data["delete"],
-        #     follow=True)
-        # self.redirect_with_message_test(
-        #     response, "users_index", UserDeleteView.message_success)
-        # self.url_data_test(
-        #     "users_index",
-        #     expected_data=self.data["delete_expected"],
-        #     not_expected_data=self.data["delete_not_expected"])
+        response = self.client.post(
+            reverse("users_delete", args=[self.delete_pk_task_used,]),
+            self.data["delete"],
+            follow=True)
+        self.redirect_with_message_test(
+            response, "users_index", UserDeleteView.message_used_object)
+        self.url_data_test(
+            "users_index",
+            expected_data=self.data["users_expected"])

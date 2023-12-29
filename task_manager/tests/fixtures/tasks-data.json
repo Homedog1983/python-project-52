@@ -1,0 +1,51 @@
+{
+  "tasks_expected": [
+    "Sing the Yesterday song",
+    "Not yet",
+    "Paul McCartney"
+  ],  
+  "create": {
+    "pk": 2,
+    "name": "Back vocal in the Hey Jude song",
+    "description": "Just sing The song!",
+    "status": 2,
+    "executor": 3
+  },
+  "create_expected": [
+    "Sing the Yesterday song",
+    "Not yet",
+    "Paul McCartney",
+    "Back vocal in the Hey Jude song",
+    "In work",
+    "John Lennon",
+    "George Harrison"
+  ],
+  "update": {
+    "pk": 1,
+    "name": "Back vocal in the Yesterday song",
+    "description": "Just sing The song!",
+    "status": 2,
+    "executor": 4
+
+  },
+  "update_expected": [
+    "Back vocal in the Yesterday song",
+    "In work",
+    "Paul McCartney",
+    "Ringo Starr"
+  ],
+  "update_not_expected": [
+    "Sing the Yesterday song",
+    "Not yet"
+  ],
+  "delete": {
+    "pk": 1
+  },
+  "delete_expected": [
+  ],
+  "delete_not_expected": [
+    "Sing the Yesterday song",
+    "Not yet",
+    "Paul McCartney"
+  ]
+}

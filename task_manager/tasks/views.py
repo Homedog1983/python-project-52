@@ -56,18 +56,24 @@ class TaskUpdateView(CommonTaskMixin, AutoAddCreatorMixin, UpdateView):
     message_success = _("Task is updated successfully!")
 
 
-class TaskDeleteView(CommonTaskMixin, DeleteView):
+class TaskDeleteView(SuccessMessageRedirectMixin, DeleteView):
 
+    model = Task
     template_name = 'tasks/delete.html'
+    url_name_success = "tasks_index"
     message_success = _("Task is deleted successfully!")
+    message_not_authenticated = _(
+        'You are not login. Please, login!')
     message_not_creator = _(
         'Task is possible to delete for its creator only!')
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user
+        if not user.is_authenticated:
+            messages.warning(request, self.message_not_authenticated)
+            return redirect('login')
         task = get_object_or_404(Task, id=kwargs['pk'])
         if user != task.creator:
             messages.warning(request, self.message_not_creator)
             return redirect("tasks_index")
         return super().dispatch(request, *args, **kwargs)
-

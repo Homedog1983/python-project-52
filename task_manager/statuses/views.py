@@ -45,7 +45,7 @@ class StatusUpdateView(
 class StatusDeleteView(
         CommonStatusMixin, TaskUnusedRequaredDeletionMixin, DeleteView):
 
-    template_name = 'users/delete.html'
+    template_name = 'statuses/delete.html'
     message_success = _("Status is deleted successfully!")
     message_used_object = _('Unable to delete! This status is used in some tasks!')
     url_name = 'statuses_index'

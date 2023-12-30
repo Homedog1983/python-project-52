@@ -12,7 +12,5 @@
 {% endblock link_labels %}
 
 {% block content %}
-  {% with object=label.name %}
-    {% include '../includes/delete_form.html' %}
-  {% endwith %}
+  {% include '../includes/delete_form.html' with object=status.name %}
 {% endblock content %}

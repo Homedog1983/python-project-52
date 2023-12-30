@@ -33,7 +33,7 @@
           <td>{{ label.creation_date }}</td>
           <td>
             <a href="{% url 'labels_update' label.id %}" class="nav-link px-2 link-secondary">{{ change }}</a>
-            <a href="{% url 'statuses_delete' status.id %}" class="nav-link px-2 link-secondary">{{ delete }}</a>
+            <a href="{% url 'labels_delete' label.id %}" class="nav-link px-2 link-secondary">{{ delete }}</a>
           </td>
         </tr>
       {% endfor %}

@@ -3,13 +3,14 @@
     "Sing the Yesterday song",
     "Not yet",
     "Paul McCartney"
-  ],  
+  ],
   "create": {
     "pk": 2,
     "name": "Back vocal in the Hey Jude song",
     "description": "Just sing The song!",
     "status": 2,
-    "executor": 3
+    "executor": 3,
+    "labels": 2
   },
   "create_expected": [
     "Sing the Yesterday song",
@@ -25,8 +26,11 @@
     "name": "Back vocal in the Yesterday song",
     "description": "Just sing The song!",
     "status": 2,
-    "executor": 4
-
+    "executor": 4,
+    "labels": [
+      1,
+      2
+    ]
   },
   "update_expected": [
     "Back vocal in the Yesterday song",

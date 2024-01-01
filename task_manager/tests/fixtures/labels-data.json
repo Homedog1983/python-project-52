@@ -1,0 +1,38 @@
+{
+  "labels_expected": [
+    "Skiffle",
+    "Beat"
+  ],
+  "create": {
+    "pk": 3,
+    "name": "Rock and roll"
+  },
+  "create_expected": [
+    "Skiffle",
+    "Beat",
+    "Rock and roll"
+  ],
+  "update": {
+    "pk": 2,
+    "name": "English beat"
+  },
+  "update_expected": [
+    "Skiffle",
+    "English beat"
+  ],
+  "update_not_expected": [
+    "Beat"
+  ],
+  "delete_task_used": {
+    "pk": 2
+  },
+  "delete": {
+    "pk": 1
+  },
+  "delete_expected": [
+    "Beat"
+  ],
+  "delete_not_expected": [
+    "Skiffle"
+  ]
+}

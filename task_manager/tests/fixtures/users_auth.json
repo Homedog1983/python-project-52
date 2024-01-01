@@ -12,5 +12,8 @@
   "logined_create": "user_1",
   "logined_update": "user_4",
   "not_creator_delete": "user_1",
-  "creator_delete": "user_2"
+  "creator_delete": "user_2",
+
+  "_labels_specific": null,
+  "label_logined": "user_3"
 }

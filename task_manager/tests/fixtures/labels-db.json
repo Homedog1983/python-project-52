@@ -1,0 +1,18 @@
+[
+    {
+      "model": "labels.Label",
+      "pk": 1,
+      "fields": {
+        "name": "Skiffle",
+        "creation_date": "2023-12-20T15:02:54.158Z"
+      }
+    },
+    {
+      "model": "labels.Label",
+      "pk": 2,
+      "fields": {
+        "name": "Beat",
+        "creation_date": "2023-12-21T15:02:54.158Z"
+      }
+    }
+]

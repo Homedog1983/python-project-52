@@ -8,6 +8,9 @@
         "status": 1,
         "creator": 2,
         "executor": null,
+        "labels": [
+          2
+        ],
         "creation_date": "2023-12-21T15:02:54.158Z"
       }
     }

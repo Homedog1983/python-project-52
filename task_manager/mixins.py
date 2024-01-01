@@ -63,3 +63,12 @@ class TaskUnusedRequaredDeletionMixin:
             messages.warning(self.request, self.message_used_object)
             redirect(self.url_name_object_used)
         return redirect(self.url_name_success)
+
+    # def form_valid(self, form):
+    #     print('task_set: ', self.object.task_set)
+    #     if self.object.task_set.all():
+    #         messages.warning(self.request, self.message_used_object)
+    #         redirect(self.url_name_object_used)
+    #     self.object.delete()
+    #     messages.success(self.request, self.message_success)
+    #     return redirect(self.url_name_success)

@@ -1,9 +1,10 @@
+from django.test import tag
 from task_manager.tests.conftests import CustomTestCase
-from django.urls import reverse
 from task_manager.users.views import (
     UserCreateView, UserUpdateView, UserDeleteView)
 
 
+@tag("users")
 class UsersTestCase(CustomTestCase):
     data_json = 'users-data.json'
 
@@ -16,51 +17,43 @@ class UsersTestCase(CustomTestCase):
         self.delete_pk_task_used = self.data["delete_task_used"]["pk"]
         self.task_used = self.auth["task_used"]
 
+# users_index tests:
+
     def test_users(self):
-        self.url_data_test(
+        self.url_get_data_test(
             "users_index",
             expected_data=self.data["users_expected"])
 
     def test_user_create(self):
-        response = self.client.post(
-            reverse("users_create"), self.data["create"], follow=True)
-        self.redirect_with_message_test(
-            response, "login", UserCreateView.message_success)
-        self.url_data_test(
+        self.url_post_data_redirect_test(
+            "users_create", None, self.data["create"],
+            "login", UserCreateView.message_success)
+        self.url_get_data_test(
             "users_index", expected_data=self.data["create_expected"])
 
 # users_update tests:
 
     def test_user_update_unlogined(self):
-        response = self.client.get(
-            reverse("users_update", args=[self.update_pk,]),
-            follow=True)
-        self.redirect_with_message_test(
-            response, "login", UserUpdateView.message_not_authenticated)
+        self.url_get_redirect_test(
+            "users_update", self.update_pk,
+            "login", UserUpdateView.message_not_authenticated)
 
     def test_user_update_not_creator(self):
         self.make_login(self.not_creator)
-        response = self.client.get(
-            reverse("users_update", args=[self.update_pk,]), follow=True)
-        self.redirect_with_message_test(
-            response, "users_index", UserUpdateView.message_not_creator)
-        self.url_data_test(
+        self.url_get_redirect_test(
+            "users_update", self.update_pk,
+            "users_index", UserUpdateView.message_not_creator)
+        self.url_get_data_test(
             "users_index",
             expected_data=self.data["users_expected"])
 
     def test_user_update_creator(self):
         self.make_login(self.creator)
-        response = self.client.get(
-            reverse("users_update", args=[self.update_pk,]))
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.post(
-            reverse("users_update", args=[self.update_pk,]),
-            self.data["update"],
-            follow=True)
-        self.redirect_with_message_test(
-            response, "users_index", UserUpdateView.message_success)
-        self.url_data_test(
+        self.url_get_test("users_update", self.update_pk)
+        self.url_post_data_redirect_test(
+            "users_update", self.update_pk, self.data["update"],
+            "users_index", UserUpdateView.message_success)
+        self.url_get_data_test(
             "users_index",
             expected_data=self.data["update_expected"],
             not_expected_data=self.data["update_not_expected"])
@@ -68,51 +61,36 @@ class UsersTestCase(CustomTestCase):
 # users_delete tests:
 
     def test_user_delete_unlogined(self):
-        response = self.client.get(
-            reverse("users_delete", args=[self.delete_pk,]),
-            follow=True)
-        self.redirect_with_message_test(
-            response, "login", UserDeleteView.message_not_authenticated)
+        self.url_get_redirect_test(
+            "users_delete", self.delete_pk,
+            "login", UserDeleteView.message_not_authenticated)
 
     def test_user_delete_not_creator(self):
         self.make_login(self.not_creator)
-        response = self.client.get(
-            reverse("users_delete", args=[self.delete_pk,]), follow=True)
-        self.redirect_with_message_test(
-            response, "users_index", UserDeleteView.message_not_creator)
-        self.url_data_test(
+        self.url_get_redirect_test(
+            "users_delete", self.delete_pk,
+            "users_index", UserDeleteView.message_not_creator)
+        self.url_get_data_test(
             "users_index",
             expected_data=self.data["users_expected"])
 
     def test_user_delete_creator_task_unused(self):
         self.make_login(self.creator)
-        response = self.client.get(
-            reverse("users_delete", args=[self.delete_pk,]))
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.post(
-            reverse("users_delete", args=[self.delete_pk,]),
-            self.data["delete"],
-            follow=True)
-        self.redirect_with_message_test(
-            response, "users_index", UserDeleteView.message_success)
-        self.url_data_test(
+        self.url_get_test("users_delete", self.delete_pk)
+        self.url_post_data_redirect_test(
+            "users_delete", self.delete_pk, self.data["delete"],
+            "users_index", UserDeleteView.message_success)
+        self.url_get_data_test(
             "users_index",
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
 
     def test_user_delete_creator_task_used(self):
         self.make_login(self.task_used)
-        response = self.client.get(
-            reverse("users_delete", args=[self.delete_pk_task_used,]))
-        self.assertEqual(response.status_code, 200)
-
-        response = self.client.post(
-            reverse("users_delete", args=[self.delete_pk_task_used,]),
-            self.data["delete"],
-            follow=True)
-        self.redirect_with_message_test(
-            response, "users_index", UserDeleteView.message_used_object)
-        self.url_data_test(
+        self.url_get_test("users_delete", self.delete_pk_task_used)
+        self.url_post_data_redirect_test(
+            "users_delete", self.delete_pk_task_used, self.data["delete"],
+            "users_index", UserDeleteView.message_used_object)
+        self.url_get_data_test(
             "users_index",
             expected_data=self.data["users_expected"])

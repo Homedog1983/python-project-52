@@ -20,7 +20,7 @@ class Task(models.Model):
         related_name='executor',
         null=True,
         blank=True)
-    label = models.ManyToManyField(Label, blank=True)
+    labels = models.ManyToManyField(Label, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

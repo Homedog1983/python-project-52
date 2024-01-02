@@ -79,5 +79,4 @@ class UserDeleteView(
         DeleteView):
     template_name = 'users/delete.html'
     message_success = _("User is deleted successfully!")
-    message_used_object = _('Unable to delete! This user is used in some tasks!')
-    url_name = 'users_index'
+    url_name_success, url_name_object_used = 'users_index', 'users_index'

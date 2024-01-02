@@ -13,11 +13,11 @@ class Task(models.Model):
     creator = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        related_name='creator')
+        related_name='task_creator_set')
     executor = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        related_name='executor',
+        related_name='task_executor_set',
         null=True,
         blank=True)
     labels = models.ManyToManyField(Label, blank=True)

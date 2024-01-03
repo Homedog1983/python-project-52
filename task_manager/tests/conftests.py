@@ -60,9 +60,9 @@ class CustomTestCase(TestCase):
         self.assertEqual(response.status_code, status_code)
 
     def url_get_data_test(
-            self, url, expected_data=[],
+            self, url, get_data={}, expected_data=[],
             not_expected_data=[]):
-        response = self.client.get(reverse(url))
+        response = self.client.get(reverse(url), get_data)
         for elem in expected_data:
             self.assertContains(response, elem, status_code=200)
         for elem in not_expected_data:

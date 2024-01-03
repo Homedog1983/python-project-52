@@ -3,16 +3,17 @@ from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
-from django.views.generic.list import ListView
+# from django.views.generic.list import ListView
+from django_filters.views import FilterView
 from .models import Task
-from .forms import TaskForm
+from .forms import TaskForm, TaskFilterSet
 from task_manager.mixins import (
     LoginRequiredRedirectMixin, SuccessMessageRedirectMixin)
 
 
-class TaskIndexView(LoginRequiredRedirectMixin, ListView):
-    model = Task
-    template_name = 'tasks/index.html'
+class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
+    filterset_class = TaskFilterSet
+    template_name = 'tasks/index_filter.html'
 
 
 class CommonTaskMixin(

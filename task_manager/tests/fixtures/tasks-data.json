@@ -39,8 +39,7 @@
     "Ringo Starr"
   ],
   "update_not_expected": [
-    "Sing the Yesterday song",
-    "Not yet"
+    "Sing the Yesterday song"
   ],
   "delete": {
     "pk": 1
@@ -49,7 +48,6 @@
   ],
   "delete_not_expected": [
     "Sing the Yesterday song",
-    "Not yet",
     "Paul McCartney"
   ]
 }

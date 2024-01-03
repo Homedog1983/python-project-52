@@ -1,12 +1,12 @@
 from django.test import tag
 from task_manager.tests.conftests import CustomTestCase
 from task_manager.tasks.views import (
-    TaskIndexView, TaskCreateView, TaskUpdateView, TaskDeleteView)
+    FilterIndexView, TaskCreateView, TaskUpdateView, TaskDeleteView)
+# from django.urls import reverse
 
 
-@tag("tasks")
+@tag("tasks_crud")
 class TasksTestCase(CustomTestCase):
-    pass
     data_json = 'tasks-data.json'
 
     def setUp(self):
@@ -25,7 +25,7 @@ class TasksTestCase(CustomTestCase):
     def test_tasks_unlogined(self):
         self.url_get_redirect_test(
             "tasks_index", None,
-            "login", TaskIndexView.message_not_authenticated)
+            "login", FilterIndexView.message_not_authenticated)
 
     def test_tasks_logined(self):
         self.make_login(self.task_logined)
@@ -88,3 +88,65 @@ class TasksTestCase(CustomTestCase):
             "tasks_index",
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
+
+
+@tag("tasks_filter")
+class TasksFilterTestCase(CustomTestCase):
+    fixtures = [
+        "users-db.json",
+        "statuses-db.json",
+        "tasks_filter-db.json",
+        "labels-db.json"
+    ]
+    data_json = 'tasks_filter-data.json'
+
+    def setUp(self):
+        super().setUp()
+
+        self.filter_url = "tasks_index"
+        self.logined_1 = self.auth["task_logined_1"]
+        self.logined_2 = self.auth["task_logined_2"]
+        self.logined_3 = self.auth["task_logined_3"]
+
+    def test_tf_logined(self):
+        self.make_login(self.logined_1)
+        self.url_get_data_test(
+            "tasks_index", expected_data=self.data["initial_expected"])
+
+    def test_tf_only_status(self):
+        self.make_login(self.logined_1)
+        # context = self.client.get(reverse(self.filter_url), data=self.data["only_status"]).context
+        # print("with get-data: ", context["filter"].qs)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["only_status"],
+            expected_data=self.data["only_status_expected"],
+            not_expected_data=self.data["only_status_not_expected"])
+
+    def test_tf_only_executor(self):
+        self.make_login(self.logined_1)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["only_executor"],
+            expected_data=self.data["only_executor_expected"],
+            not_expected_data=self.data["only_executor_not_expected"])
+
+    def test_tf_only_labels_simple(self):
+        self.make_login(self.logined_1)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["only_labels_simple"],
+            expected_data=self.data["only_labels_simple_expected"],
+            not_expected_data=self.data["only_labels_simple_not_expected"])
+
+    def test_tf_only_labels_complex(self):
+        self.make_login(self.logined_1)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["only_labels_complex"],
+            expected_data=self.data["only_labels_complex_expected"],
+            not_expected_data=self.data["only_labels_complex_not_expected"])
+
+    def test_tf_only_creator(self):
+        # creator chec-box activated
+        pass
+
+    def test_tf_complex(self):
+        # some complex conditions
+        pass

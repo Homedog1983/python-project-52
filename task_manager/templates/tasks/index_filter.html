@@ -1,0 +1,69 @@
+{% extends "../base.html" %}
+
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block link_tasks %}
+  <li><a href="{% url 'tasks_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Tasks' %}</a></li>
+{% endblock link_tasks %}
+
+{% block content %}
+  <h1 class="text-warning">{% translate "Tasks" %}</h1>
+  <a class="btn btn-outline-warning mb-3" href="{% url 'tasks_create' %}">{% translate 'Create task' %}</a>
+  
+  <div class="card mb-3">
+    <div class="card-body bg-dark">
+      <form class= "form-inline center" method="get">
+        {% csrf_token %}
+        {% for field in filter.form %}
+        
+        <div class="fieldWrapper mb-3">
+          {% bootstrap_field field show_help=False %}
+          {% if field.help_text %}
+            <div class="form-text text-warning mb-3">
+              {{ field.help_text|safe }}
+            </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      <input class="btn btn-outline-warning me-2" type="submit" value="{% translate 'Submit' %}">
+      </form>
+    </div>
+  </div>
+   
+  <table class="table table-dark table-bordered align-middle text-center">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>{% translate "Name" %}</th>
+        <th>{% translate "Status" %}</th>
+        <th>{% translate "Creator" %}</th>
+        <th>{% translate "Executor" %}</th>
+        <th>{% translate "Creation date" %}</th>
+        <th></th>
+        </tr>
+    </thead>
+    {% translate "Change" as change %}
+    {% translate "Delete" as delete %}
+    <tbody>
+      {% for task in filter.qs %}
+      <tr>
+        <td class="text-warning">{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.get_full_name.creator }}</td>
+        <td>{{ task.get_full_name.executor }}</td>
+        <td>{{ task.creation_date }}</td>
+        <td>
+          <a href="{% url 'tasks_update' task.id %}" class="nav-link px-2 link-secondary">{{ change }}</a>
+          <a href="{% url 'tasks_delete' task.id %}" class="nav-link px-2 link-secondary">{{ delete }}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

@@ -4,7 +4,7 @@ from task_manager.tasks import views
 urlpatterns = [
     path(
         '',
-        views.TaskIndexView.as_view(),
+        views.FilterIndexView.as_view(),
         name='tasks_index'),
     path(
         'create',

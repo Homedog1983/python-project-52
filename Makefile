@@ -7,7 +7,7 @@ dev:
 test:
 	python manage.py test --noinput -v 2
 test-tag:
-	python manage.py test --tag=labels --noinput -v 2
+	python manage.py test --tag=tasks_filter --noinput -v 2
 PORT ?= 8000
 start:
 	poetry run python -m gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager:application

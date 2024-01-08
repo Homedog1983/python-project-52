@@ -22,6 +22,7 @@ class Task(models.Model):
         blank=True)
     labels = models.ManyToManyField(Label, blank=True)
     creation_date = models.DateTimeField(auto_now_add=True)
+    self_tasks = False
 
     def __str__(self):
         return self.name

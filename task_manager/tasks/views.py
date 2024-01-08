@@ -3,10 +3,10 @@ from django.utils.translation import gettext as _
 from django.contrib import messages
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
-# from django.views.generic.list import ListView
 from django_filters.views import FilterView
 from .models import Task
-from .forms import TaskForm, TaskFilterSet
+from .forms import TaskForm
+from .filter import TaskFilterSet
 from task_manager.mixins import (
     LoginRequiredRedirectMixin, SuccessMessageRedirectMixin)
 
@@ -14,6 +14,11 @@ from task_manager.mixins import (
 class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
     filterset_class = TaskFilterSet
     template_name = 'tasks/index_filter.html'
+
+    def get(self, request, *args, **kwargs):
+        print("request.user", request.user)
+        print("request.GET", request.GET)
+        return super().get(request, *args, **kwargs)
 
 
 class CommonTaskMixin(

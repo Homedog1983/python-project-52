@@ -15,11 +15,6 @@ class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
     filterset_class = TaskFilterSet
     template_name = 'tasks/index_filter.html'
 
-    def get(self, request, *args, **kwargs):
-        print("request.user", request.user)
-        print("request.GET", request.GET)
-        return super().get(request, *args, **kwargs)
-
 
 class CommonTaskMixin(
         LoginRequiredRedirectMixin,

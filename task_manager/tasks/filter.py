@@ -8,8 +8,8 @@ class CustomBooleanFilter(BooleanFilter):
 
     def filter(self, qs, value):
         # there is access to value, but not access to request.user,
-        # therefore only able pass-filter with use request.GET["self_tasks"]
-        # in @property qs later.
+        # therefore only able pass-filter with later use 
+        # request.GET["self_tasks"] in @property qs
         return qs
 
 

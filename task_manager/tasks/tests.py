@@ -144,7 +144,7 @@ class TasksFilterTestCase(CustomTestCase):
             not_expected_data=self.data["only_labels_complex_not_expected"])
 
     def test_tf_only_creator(self):
-        # creator chec-box activated
+        # creator check-box activated
         pass
 
     def test_tf_complex(self):

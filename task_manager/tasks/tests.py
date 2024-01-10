@@ -115,8 +115,6 @@ class TasksFilterTestCase(CustomTestCase):
 
     def test_tf_only_status(self):
         self.make_login(self.logined_1)
-        # context = self.client.get(reverse(self.filter_url), data=self.data["only_status"]).context
-        # print("with get-data: ", context["filter"].qs)
         self.url_get_data_test(
             self.filter_url, get_data=self.data["only_status"],
             expected_data=self.data["only_status_expected"],
@@ -143,10 +141,37 @@ class TasksFilterTestCase(CustomTestCase):
             expected_data=self.data["only_labels_complex_expected"],
             not_expected_data=self.data["only_labels_complex_not_expected"])
 
-    def test_tf_only_creator(self):
-        # creator check-box activated
-        pass
+    def test_tf_only_creator_1(self):
+        self.make_login(self.logined_1)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["self_tasks"],
+            expected_data=self.data["self_tasks_1_expected"],
+            not_expected_data=self.data["self_tasks_1_not_expected"])
 
-    def test_tf_complex(self):
-        # some complex conditions
-        pass
+    def test_tf_only_creator_2(self):
+        self.make_login(self.logined_2)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["self_tasks"],
+            expected_data=self.data["self_tasks_2_expected"],
+            not_expected_data=self.data["self_tasks_2_not_expected"])
+
+    def test_tf_only_creator_3(self):
+        self.make_login(self.logined_3)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["self_tasks"],
+            expected_data=self.data["self_tasks_3_expected"],
+            not_expected_data=self.data["self_tasks_3_not_expected"])
+
+    def test_tf_complex_user_3_1(self):
+        self.make_login(self.logined_3)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["complex_user_3_1"],
+            expected_data=self.data["complex_user_3_1_expected"],
+            not_expected_data=self.data["complex_user_3_1_not_expected"])
+
+    def test_tf_complex_user_3_2(self):
+        self.make_login(self.logined_3)
+        self.url_get_data_test(
+            self.filter_url, get_data=self.data["complex_user_3_2"],
+            expected_data=self.data["complex_user_3_2_expected"],
+            not_expected_data=self.data["complex_user_3_2_not_expected"])

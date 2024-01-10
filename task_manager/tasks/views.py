@@ -28,7 +28,7 @@ class CommonTaskMixin(
 class AutoAddCreatorMixin:
     """
     Add authenticated user as task.creator
-    in creation, not change in updating.
+    for creation, not change for updating.
     After creator's saving it is proceed parent method
     (allow save many2many relations by generic editing views)
     ! Use after is_authenticated = True check !

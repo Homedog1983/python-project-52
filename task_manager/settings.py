@@ -24,6 +24,7 @@ if "SECRET_KEY" not in os.environ:
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv('DATABASE_URL')
 DEBUG = os.getenv('DEBUG', default=False)
+ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN')
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -209,4 +211,11 @@ BOOTSTRAP5 = {
     'field_renderers': {
         'default': 'django_bootstrap5.renderers.FieldRenderer',
     },
+}
+
+ROLLBAR = {
+    'access_token': ROLLBAR_TOKEN,
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
 }

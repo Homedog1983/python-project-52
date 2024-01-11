@@ -2,8 +2,8 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% translate "Do you realy want delete" as answer %}
-<h3 class="text-danger">{{ answer }} {{ object }}?</h3>
-  <form method="post">
+<h3 class="text-danger text-center">{{ answer }} {{ object }}?</h3>
+  <form class="text-center" method="post">
     {% csrf_token %}
     <input class="btn btn-danger" type="submit" value="{% translate 'Yes, delete!' %}">
   </form>

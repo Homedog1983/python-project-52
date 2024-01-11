@@ -5,7 +5,7 @@
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<h1 class="text-warning">{{ h1_value }}</h1>
+<h1 class="text-warning text-center">{{ h1_value }}</h1>
 <form method="post">
   {% csrf_token %}
   {% for field in form %}

@@ -8,9 +8,9 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block link_labels %}
-  <li><a href="{% url 'labels_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate "Labels" %}</a></li>
+  <li><a href="{% url 'labels_index' %}" class="nav-link px-2 fs-5 link-secondary text-secondary">{% translate "Labels" %}</a></li>
 {% endblock link_labels %}
 
 {% block content %}
-  {% include '../includes/delete_form.html' with object=status.name %}
+  {% include '../includes/delete_form.html' with object=label.name %}
 {% endblock content %}

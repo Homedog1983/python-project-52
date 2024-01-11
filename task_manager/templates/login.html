@@ -18,7 +18,7 @@
     {% csrf_token %}
     {% for field in form %}
     <div class="fieldWrapper mb-3">
-      {% bootstrap_field field show_help=False %}
+      {% bootstrap_field field placeholder='' show_help=False %}
     </div>
   {% endfor %}
   <input class="btn btn-outline-warning me-2" type="submit" value="{{ login }}">

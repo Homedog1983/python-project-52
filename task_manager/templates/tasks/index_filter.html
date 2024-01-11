@@ -8,13 +8,14 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block link_tasks %}
-  <li><a href="{% url 'tasks_index' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Tasks' %}</a></li>
+  <li><a href="{% url 'tasks_index' %}" class="nav-link px-2 fs-5 link-secondary text-secondary">{% translate 'Tasks' %}</a></li>
 {% endblock link_tasks %}
 
 {% block content %}
-  <h1 class="text-warning">{% translate "Tasks" %}</h1>
-  <a class="btn btn-outline-warning mb-3" href="{% url 'tasks_create' %}">{% translate 'Create task' %}</a>
-  
+  <h1 class="text-warning text-center">{% translate "Tasks" %}</h1>
+  <p class="text-center">
+    <a class="btn btn-outline-warning mb-3" href="{% url 'tasks_create' %}">{% translate 'Create task' %}</a>
+  </p>
   <div class="card mb-3">
     <div class="card-body bg-dark">
       <form class= "form-inline center" method="get">
@@ -46,7 +47,7 @@
         <th>{% translate "Creator" %}</th>
         <th>{% translate "Executor" %}</th>
         <th>{% translate "Creation date" %}</th>
-        <th></th>
+        <th>{% translate "Actions" %}</th>
         </tr>
     </thead>
     {% translate "Change" as change %}
@@ -61,8 +62,8 @@
         <td>{{ task.get_full_name.executor }}</td>
         <td>{{ task.creation_date }}</td>
         <td>
-          <a href="{% url 'tasks_update' task.id %}" class="nav-link px-2 link-secondary">{{ change }}</a>
-          <a href="{% url 'tasks_delete' task.id %}" class="nav-link px-2 link-secondary">{{ delete }}</a>
+          <a href="{% url 'tasks_update' task.id %}" class="nav-link px-2 link-warning text-secondary">{{ change }}</a>
+          <a href="{% url 'tasks_delete' task.id %}" class="nav-link px-2 link-warning text-secondary">{{ delete }}</a>
         </td>
       </tr>
       {% endfor %}

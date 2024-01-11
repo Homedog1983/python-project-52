@@ -8,9 +8,48 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block link_main_page %}
-  <li><a href="{% url 'main_page' %}" class="nav-link px-2 link-secondary text-secondary">{% translate 'Task manager' %}</a></li>
+  <li><a href="{% url 'main_page' %}" class="nav-link px-2 fs-5 link-secondary text-secondary">{% translate 'Task manager' %}</a></li>
 {% endblock link_main_page %}
 
 {% block content %}
-  <h1 class="text-warning">О проекте:</h1>
+<div class="container-lg">
+  <div class="row">
+    <div class="col bg-secondary">
+    </div>
+    <div class="col-8">
+      <div class="text-center">
+        <h2 class="text-warning">{% translate "О проекте"%}:</h2>
+        <p class="lh-sm">Итоговый тренировочный проект: "Менеджер задач"</p>
+        <p class="lh-sm">Профессия: "python-developer"</p>
+        <p>Образовательная платформа: <a href="https://hexlet.io/" target="_blank" class="text-decoration-none badge bg-warning text-dark">Хекслет. Практические курсы по программированию</a></p>
+        <p class="lh-sm text-center">Проект отрабатывает навыки, в числе которых:</p>
+      </div>
+      <ul>
+        <li>Установка и настройка бекэнд-фреймворка Django, подключение базы данных PostgreSQL</li>
+        <li>Максимальное использование встроенных классов Django (отображения, формы и т.д.). Наследование и/или использование миксинов при усложнении поведения встроенных классов.</li>
+        <li>Создания CRUD сущностей (отдельное приложение, модель, форма, отображения) с различными связями между ними (o2m, m2m) с использованием Django ORM</li>
+        <li>Различные поведения компонентов CRUD в зависимости от аутентификации пользователя</li>        
+        <li>Создание шаблонов совместно с фронтенд-фреймворком bootstrap</li>
+        <li>Фильтрация вывода из БД по различным критериям при отображении списка сущностей</li>
+        <li>Создание автотестов, подключение коллектора ошибок, деплой</li>
+      </ul>
+      <div class="text-center">
+      <p><a href="https://ru.hexlet.io/programs/python/projects/52" target="_blank" class="text-decoration-none badge bg-warning text-dark">Подробно о проекте от создателей курса</a></p>
+      <h2 class="text-warning">{% translate "Особенности проекта"%}:</h2>
+      <p class="lh-sm">Без входа доступна только страница с выводом всех зарегистрированных пользователей</p>
+      <p class="lh-sm">После регистрации и входа открываются новые вкладки "Статусы", "Метки", "Задачи"</p>
+      <p class="lh-sm">Эти сущности может создавать, изменять и удалять только залогиненный пользователь</p>
+      <p class="lh-sm">Самая интересная вкладка - Задачи. При создании задачи используется статус (выбирается из существующих).
+        Примечательно, что как и при создании, так и при изменении задачи, можно добавить метки и назначить исполнителя (выбираются из существующих).
+      </p>
+      <p class="lh-sm">На странице задач есть фильтр, который выводит задачи в зависимости от заданных параметров (статус, метки, исполнитель). Также
+        можно вывести только свои задачи.
+      </p>
+      <p><a href="https://github.com/Homedog1983/python-project-52" target="_blank" class="text-decoration-none badge bg-warning text-dark">Публичный репозиторий проекта</a></p>
+
+      </div>
+     </div>
+    <div class="col bg-secondary">
+    </div>
+  </div>
 {% endblock content %}

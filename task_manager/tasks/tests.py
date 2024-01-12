@@ -127,19 +127,12 @@ class TasksFilterTestCase(CustomTestCase):
             expected_data=self.data["only_executor_expected"],
             not_expected_data=self.data["only_executor_not_expected"])
 
-    def test_tf_only_labels_simple(self):
+    def test_tf_only_labels(self):
         self.make_login(self.logined_1)
         self.url_get_data_test(
-            self.filter_url, get_data=self.data["only_labels_simple"],
-            expected_data=self.data["only_labels_simple_expected"],
-            not_expected_data=self.data["only_labels_simple_not_expected"])
-
-    def test_tf_only_labels_complex(self):
-        self.make_login(self.logined_1)
-        self.url_get_data_test(
-            self.filter_url, get_data=self.data["only_labels_complex"],
-            expected_data=self.data["only_labels_complex_expected"],
-            not_expected_data=self.data["only_labels_complex_not_expected"])
+            self.filter_url, get_data=self.data["only_labels"],
+            expected_data=self.data["only_labels_expected"],
+            not_expected_data=self.data["only_labels_not_expected"])
 
     def test_tf_only_creator_1(self):
         self.make_login(self.logined_1)

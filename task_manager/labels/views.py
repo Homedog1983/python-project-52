@@ -47,4 +47,4 @@ class LabelDeleteView(
 
     template_name = 'labels/delete.html'
     message_success = _("Label is deleted successfully!")
-    url_name_success, url_name_object_used = 'labels_index', 'labels_index' 
+    url_name_success, url_name_object_used = 'labels_index', 'labels_index'

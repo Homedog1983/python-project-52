@@ -33,34 +33,16 @@
     "S1_L1_E1_C3",
     "S2_L12_E1_C4"
   ],
-  "only_labels_simple": {
-    "labels": [
-      1
-    ]
+  "only_labels": {
+    "label": 1
   },
-  "only_labels_simple_expected": [
+  "only_labels_expected": [
     "S1_L1_E1_C3",
     "S2_L1_E2_C2",
     "S1_L12_E2_C3",
     "S2_L12_E1_C4"
   ],
-  "only_labels_simple_not_expected": [
-    "S2_L0_E2_C3",
-    "S1_L0_E1_C3"
-  ],
-  "only_labels_complex": {
-    "labels": [
-      1,
-      2
-    ]
-  },
-  "only_labels_complex_expected": [
-    "S1_L12_E2_C3",
-    "S2_L12_E1_C4",
-    "S1_L1_E1_C3",
-    "S2_L1_E2_C2"
-  ],
-  "only_labels_complex_not_expected": [
+  "only_labels_not_expected": [
     "S2_L0_E2_C3",
     "S1_L0_E1_C3"
   ],
@@ -117,9 +99,7 @@
     "self_tasks": true,
     "executor": 1,
     "status": 1,
-    "labels": [
-      1
-    ]
+    "label": 1
   },
   "complex_user_3_2_expected": [
     "S1_L1_E1_C3"

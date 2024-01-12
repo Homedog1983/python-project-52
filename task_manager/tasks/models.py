@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
 from task_manager.labels.models import Label
+from task_manager.mixins import UserFullNameMixin
 
 
-class Task(models.Model):
+class Task(UserFullNameMixin, models.Model):
     name = models.CharField(unique=True, max_length=150)
     description = models.TextField(blank=True)
     status = models.ForeignKey(

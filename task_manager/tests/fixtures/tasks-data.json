@@ -1,8 +1,8 @@
 {
   "tasks_expected": [
     "Sing the Yesterday song",
-    "Not yet",
-    "Paul McCartney"
+    "<td>Not yet</td>",
+    "<td>Paul McCartney</td>"
   ],
   "create": {
     "pk": 2,
@@ -14,12 +14,12 @@
   },
   "create_expected": [
     "Sing the Yesterday song",
-    "Not yet",
-    "Paul McCartney",
+    "<td>Not yet</td>",
+    "<td>Paul McCartney</td>",
     "Back vocal in the Hey Jude song",
-    "In work",
-    "John Lennon",
-    "George Harrison"
+    "<td>In work</td>",
+    "<td>John Lennon</td>",
+    "<td>George Harrison</td>"
   ],
   "update": {
     "pk": 1,
@@ -34,12 +34,13 @@
   },
   "update_expected": [
     "Back vocal in the Yesterday song",
-    "In work",
-    "Paul McCartney",
-    "Ringo Starr"
+    "<td>In work</td>",
+    "<td>Paul McCartney</td>",
+    "<td>Ringo Starr</td>"
   ],
   "update_not_expected": [
-    "Sing the Yesterday song"
+    "Sing the Yesterday song",
+    "<td>Not yet</td>"
   ],
   "delete": {
     "pk": 1
@@ -48,6 +49,7 @@
   ],
   "delete_not_expected": [
     "Sing the Yesterday song",
-    "Paul McCartney"
+    "<td>Not yet</td>",
+    "<td>Paul McCartney</td>"
   ]
 }

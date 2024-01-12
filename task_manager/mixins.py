@@ -70,3 +70,8 @@ class TaskUnusedRequaredDeletionMixin:
         messages.success(self.request, self.message_success)
         self.object.delete()
         return redirect(self.url_name_success)
+
+
+class UserFullNameMixin:
+    def label_from_instance(self, obj):
+        return obj.get_full_name()

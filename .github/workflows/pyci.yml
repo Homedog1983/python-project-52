@@ -36,14 +36,18 @@ jobs:
       - name: Build
         run: |
           python -m pip install --upgrade pip
-          python3 -m pip install --user pipx
-          pipx install poetry
+          pip install poetry
           poetry install
-          python3 -m pipx ensurepath --force
+          echo 'poetry config --list'
           poetry config --list
+          echo 'PATH:'
           echo $PATH
-          ls /home/runner/.cache/pypoetry/virtualenvs
+          echo 'poetry env info'
           poetry env info
+          echo 'ls virtual'
+          ls /home/runner/.cache/pypoetry/virtualenvs/
+          find /home -name django-admin*
+          export PATH=/home/runner/.cache/pypoetry/virtualenvs/:$PATH
 
       - name: Run linter
         run: |

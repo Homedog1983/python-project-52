@@ -35,9 +35,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Build
         run: |
-          pip install poetry
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+          ./build.sh
       - name: Run linter
         run: |
           make lint

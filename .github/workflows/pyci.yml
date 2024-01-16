@@ -38,22 +38,24 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           poetry install
-          echo 'poetry config --list'
-          poetry config --list
+          poetry config virtualenvs.prompt python
           echo 'PATH:'
           echo $PATH
           echo 'poetry env info'
           poetry env info
           echo 'ls virtual'
-          ls /home/runner/.cache/pypoetry/virtualenvs/
+          ls /home/runner/.cache/pypoetry/virtualenvs/python/bin
           find /home -name django-admin*
-          export PATH=/home/runner/.cache/pypoetry/virtualenvs/:$PATH
-
+          export PATH=/home/runner/.cache/pypoetry/virtualenvs/python/bin:$PATH
+          echo $PATH
       - name: Run linter
         run: |
           make lint
       - name: Run pytest
         run: |
+          find /home -name django-admin*
+          export PATH=/home/runner/.cache/pypoetry/virtualenvs/python/bin:$PATH
+          echo $PATH
           make test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0

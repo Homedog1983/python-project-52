@@ -36,12 +36,13 @@ jobs:
       - name: Build
         run: |
           python -m pip install --upgrade pip
-          pip install poetry
+          echo "install django"
           pip install django
+          echo "install poetry"
+          pip install poetry
           poetry install
           echo 'PATH:'
           echo $PATH
-          find /home -name django-admin
       - name: Run linter
         run: |
           make lint

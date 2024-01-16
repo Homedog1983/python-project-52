@@ -1,0 +1,55 @@
+name: Python CI with PostgreSQL-container
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DEBUG: False
+      ROLLBAR_TOKEN: ${{ secrets.ROLLBAR_TOKEN }}
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    strategy:
+      matrix:
+        python-version: [3.10.x,]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Build
+        run: |
+          pip install poetry
+      - name: Install dependencies
+        run: |
+          poetry install
+      - name: Run linter
+        run: |
+          make lint
+      - name: Run pytest
+        run: |
+          make test
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.2.0
+        if: github.ref_name == 'main'
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_PROJECT_52 }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true

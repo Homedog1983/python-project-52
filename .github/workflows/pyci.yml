@@ -10,7 +10,7 @@ jobs:
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      DEBUG: False
+      DEBUG: ${{ secrets.DEBUG }}
       ROLLBAR_TOKEN: ${{ secrets.ROLLBAR_TOKEN }}
     services:
       postgres:

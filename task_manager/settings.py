@@ -24,7 +24,7 @@ if "SECRET_KEY" not in os.environ:
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv('DATABASE_URL')
 DEBUG = os.getenv('DEBUG', default=True)
-ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN')
+ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN', default='ROLLBAR_TOKEN')
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -96,11 +96,15 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 if DEBUG:
     DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "dev_db",
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
+
 else:
     DATABASES = {
         'default': dj_database_url.config(

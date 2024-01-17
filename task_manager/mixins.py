@@ -7,7 +7,7 @@ from django.contrib import messages
 class LoginRequiredRedirectMixin:
     """
     Requared login on dispath.
-    If not returns redirect('login') with message.
+    If not - returns redirect('login') with message.
     Attrs: message_not_authenticated: str
     """
     message_not_authenticated = _(

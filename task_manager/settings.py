@@ -95,6 +95,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 if DEBUG:
+    print("Way: DEBUG is True")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -102,6 +103,7 @@ if DEBUG:
         }
     }
 else:
+    print("Way: DEBUG is False")
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -109,7 +111,7 @@ else:
             conn_health_checks=True
         ),
     }
-
+print('DEBUG: ', DEBUG)
 print('DATABASES: ', DATABASES)
 print('BASE_DIR: ', BASE_DIR)
 print('listdir(BASE_DIR): ', os.listdir(BASE_DIR))

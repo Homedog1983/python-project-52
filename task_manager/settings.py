@@ -23,7 +23,7 @@ if "SECRET_KEY" not in os.environ:
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_URL = os.getenv('DATABASE_URL')
-DEBUG = os.getenv('DEBUG', default=False)
+DEBUG = os.getenv('DEBUG', default=True)
 ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN')
 
 ALLOWED_HOSTS = [

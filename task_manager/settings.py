@@ -94,6 +94,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 if DEBUG:
     print("Way: DEBUG is True")
     DATABASES = {
@@ -114,7 +115,14 @@ else:
 print('DEBUG: ', DEBUG)
 print('DATABASES: ', DATABASES)
 print('BASE_DIR: ', BASE_DIR)
-print('listdir(BASE_DIR): ', os.listdir(BASE_DIR))
+listdir = os.listdir(BASE_DIR)
+print('listdir(BASE_DIR): ', listdir)
+if '.env' in listdir: 
+    with open(os.path.join(BASE_DIR, '.env'), "r") as input_file:
+        print("file .env start:")
+        for line in input_file:
+                print(line)
+        print("file-end")
 
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]

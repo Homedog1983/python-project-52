@@ -101,10 +101,6 @@ if DEBUG:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-    db_from_env = dj_database_url.config(conn_max_age=600)
-    DATABASES['default'].update(db_from_env)
-
 else:
     DATABASES = {
         'default': dj_database_url.config(
@@ -113,6 +109,8 @@ else:
             conn_health_checks=True
         ),
     }
+print('BASE_DIR: ', BASE_DIR)
+print('DATABASES: ', DATABASES)
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]
 

@@ -109,8 +109,11 @@ else:
             conn_health_checks=True
         ),
     }
-print('BASE_DIR: ', BASE_DIR)
+
 print('DATABASES: ', DATABASES)
+print('BASE_DIR: ', BASE_DIR)
+print('listdir(BASE_DIR): ', os.listdir(BASE_DIR))
+
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]
 

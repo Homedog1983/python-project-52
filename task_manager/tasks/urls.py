@@ -7,7 +7,7 @@ urlpatterns = [
         views.FilterIndexView.as_view(),
         name='tasks_index'),
     path(
-        'create',
+        'create/',
         views.TaskCreateView.as_view(),
         name='tasks_create'),
     path(

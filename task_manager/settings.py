@@ -15,6 +15,9 @@ import os
 from dotenv import load_dotenv
 import dj_database_url
 from django.utils.translation import gettext_lazy as _
+from colorama import init, Fore
+
+init(autoreset=True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -113,7 +116,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 #         ),
 #     }
 if 'postgres' not in DATABASE_URL:
-    print('postgres NOT in DB_URL')
+    print(Fore.RED + 'postgres NOT in DB_URL')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -121,7 +124,7 @@ if 'postgres' not in DATABASE_URL:
         }
     }
 else:
-    print('postgres in DB_URL')
+    print(Fore.RED + 'postgres in DB_URL')
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -130,17 +133,17 @@ else:
         ),
     }
 
-print('DEBUG: ', DEBUG)
-print('DATABASES: ', DATABASES)
-print('BASE_DIR: ', BASE_DIR)
+print(Fore.GREEN + 'DEBUG: ', DEBUG)
+print(Fore.GREEN + 'DATABASES: ', DATABASES)
+print(Fore.GREEN + 'BASE_DIR: ', BASE_DIR)
 listdir = os.listdir(BASE_DIR)
-print('listdir(BASE_DIR): ', listdir)
+print(Fore.GREEN + 'listdir(BASE_DIR): ', listdir)
 if '.env' in listdir: 
     with open(os.path.join(BASE_DIR, '.env'), "r") as input_file:
-        print("file .env start:")
+        print(Fore.RED + "file .env start:")
         for line in input_file:
-                print(line)
-        print("file-end")
+                print(Fore.RED + line)
+        print(Fore.RED + "file-end")
 
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]

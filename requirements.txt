@@ -19,3 +19,4 @@ python-dotenv >= 1.0.0
 python-gettext >= 5.0
 whitenoise >= 6.6.0
 rollbar == 0.16.3
+colorama >= 0.4.6

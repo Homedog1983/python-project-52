@@ -97,34 +97,12 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
-class Colors():
-    ltgr = '\033[92m'
-    reset = '\033[0m'
+ltgr = '\033[92m'
+reset = '\033[0m'
+print(ltgr)
 
-colors = Colors()
-
-print(colors.ltgr)
-
-if DEBUG:
-    print("Way: DEBUG is True")
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    print("Way: DEBUG is False")
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=600,
-            conn_health_checks=True
-        ),
-    }
-
-# if 'postgres' not in DATABASE_URL:
-#     print('postgres NOT in DB_URL')
+# if DEBUG:
+#     print("Way: DEBUG is True")
 #     DATABASES = {
 #         'default': {
 #             'ENGINE': 'django.db.backends.sqlite3',
@@ -132,7 +110,7 @@ else:
 #         }
 #     }
 # else:
-#     print('postgres in DB_URL')
+#     print("Way: DEBUG is False")
 #     DATABASES = {
 #         'default': dj_database_url.config(
 #             default=DATABASE_URL,
@@ -140,6 +118,24 @@ else:
 #             conn_health_checks=True
 #         ),
 #     }
+
+if 'postgres' not in DATABASE_URL:
+    print('postgres NOT in DB_URL')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
+    print('postgres in DB_URL')
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True
+        ),
+    }
 
 print('DEBUG: ', DEBUG)
 print('DATABASES: ', DATABASES)
@@ -153,7 +149,7 @@ if '.env' in listdir:
                 print(line)
         print("file-end")
 
-print(colors.reset)
+print(reset)
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]
 

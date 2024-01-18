@@ -7,7 +7,7 @@ urlpatterns = [
         views.LabelIndexView.as_view(),
         name='labels_index'),
     path(
-        'create',
+        'create/',
         views.LabelCreateView.as_view(),
         name='labels_create'),
     path(

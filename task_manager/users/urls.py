@@ -7,7 +7,7 @@ urlpatterns = [
         views.UserIndexView.as_view(),
         name='users_index'),
     path(
-        'create',
+        'create/',
         views.UserCreateView.as_view(),
         name='users_create'),
     path(

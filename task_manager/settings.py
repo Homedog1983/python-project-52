@@ -141,11 +141,6 @@ if '.env' in listdir:
         for line in input_file:
                 print(line)
         print("file-end")
-print('DATABASE_URL: ', DATABASE_URL)
-if 'postgres' in DATABASE_URL:
-    print('postgres in DB_URL')
-else:
-    print('postgres not in DB_URL')
 
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]

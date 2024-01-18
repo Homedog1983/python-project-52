@@ -7,7 +7,7 @@ urlpatterns = [
         views.StatusIndexView.as_view(),
         name='statuses_index'),
     path(
-        'create',
+        'create/',
         views.StatusCreateView.as_view(),
         name='statuses_create'),
     path(

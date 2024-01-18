@@ -11,7 +11,7 @@ class LoginRequiredRedirectMixin:
     Attrs: message_not_authenticated: str
     """
     message_not_authenticated = _(
-        'You are not login. Please, login!')
+        'You are not login. Please, login')
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user

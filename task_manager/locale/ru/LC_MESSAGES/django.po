@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 08:31+0000\n"
+"POT-Creation-Date: 2024-01-18 12:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,9 +57,9 @@ msgstr "Метка успешно изменена"
 msgid "Label is deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: task_manager/mixins.py:14 task_manager/tasks/views.py:71
-msgid "You are not login. Please, login!"
-msgstr "Вы не в системе. Пожалуйста, залогиньтесь!"
+#: task_manager/mixins.py:14
+msgid "You are not login. Please, login"
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
 #: task_manager/mixins.py:30
 msgid "All you wanted is succefully happened!"
@@ -156,6 +156,10 @@ msgstr "Задача успешно изменена"
 msgid "Task is deleted successfully"
 msgstr "Задача успешно удалена"
 
+#: task_manager/tasks/views.py:71
+msgid "You are not login. Please, login!"
+msgstr "Вы не в системе. Пожалуйста, залогиньтесь!"
+
 #: task_manager/tasks/views.py:73
 msgid "Task is possible to delete for its creator only!"
 msgstr "Задачу может удалить только ее создатель!"
@@ -214,8 +218,8 @@ msgid "Do you realy want delete"
 msgstr "Вы действительно хотите удалить"
 
 #: task_manager/templates/includes/delete_form.html:8
-msgid "Yes, delete!"
-msgstr "Да, удалить!"
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: task_manager/templates/index.html:21
 msgid "About project"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 07:55+0000\n"
+"POT-Creation-Date: 2024-01-18 08:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -205,9 +205,9 @@ msgstr "Выход"
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:42 task_manager/users/views.py:36
-msgid "Register"
-msgstr "Зарегистрировать"
+#: task_manager/templates/base.html:42 task_manager/users/views.py:35
+msgid "Registration"
+msgstr "Регистрация"
 
 #: task_manager/templates/includes/delete_form.html:4
 msgid "Do you realy want delete"
@@ -409,9 +409,9 @@ msgstr "Пароль"
 msgid "Input more then 3 symbols, please."
 msgstr "Введите минимум 3 символа, пожалуйста."
 
-#: task_manager/users/views.py:35
-msgid "Registration"
-msgstr "Регистрация"
+#: task_manager/users/views.py:36
+msgid "Register"
+msgstr "Зарегистрировать"
 
 #: task_manager/users/views.py:39
 msgid "User is registered successfully"

@@ -22,7 +22,7 @@ if "SECRET_KEY" not in os.environ:
     load_dotenv()
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = os.getenv('DATABASE_URL', default='sqlite3')
 DEBUG = os.getenv('DEBUG', default=True)
 ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN', default='ROLLBAR_TOKEN')
 
@@ -95,8 +95,25 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if DEBUG:
-    print("Way: DEBUG is True")
+# if DEBUG:
+#     print("Way: DEBUG is True")
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
+# else:
+#     print("Way: DEBUG is False")
+#     DATABASES = {
+#         'default': dj_database_url.config(
+#             default=DATABASE_URL,
+#             conn_max_age=600,
+#             conn_health_checks=True
+#         ),
+#     }
+if 'postgres' not in DATABASE_URL:
+    print('postgres NOT in DB_URL')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -104,7 +121,7 @@ if DEBUG:
         }
     }
 else:
-    print("Way: DEBUG is False")
+    print('postgres in DB_URL')
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -112,6 +129,7 @@ else:
             conn_health_checks=True
         ),
     }
+
 print('DEBUG: ', DEBUG)
 print('DATABASES: ', DATABASES)
 print('BASE_DIR: ', BASE_DIR)
@@ -123,6 +141,11 @@ if '.env' in listdir:
         for line in input_file:
                 print(line)
         print("file-end")
+print('DATABASE_URL: ', DATABASE_URL)
+if 'postgres' in DATABASE_URL:
+    print('postgres in DB_URL')
+else:
+    print('postgres not in DB_URL')
 
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]

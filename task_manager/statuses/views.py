@@ -29,7 +29,7 @@ class StatusCreateView(
         'h1_value': _('Status creation'),
         'button_value': _('Create'),
         }
-    message_success = _("Status is created successfully!")
+    message_success = _("Status is created successfully")
 
 
 class StatusUpdateView(
@@ -39,12 +39,12 @@ class StatusUpdateView(
         'h1_value': _('Status update'),
         'button_value': _('Update'),
         }
-    message_success = _("Status is updated successfully!")
+    message_success = _("Status is updated successfully")
 
 
 class StatusDeleteView(
         CommonStatusMixin, TaskUnusedRequaredDeletionMixin, DeleteView):
 
     template_name = 'statuses/delete.html'
-    message_success = _("Status is deleted successfully!")
+    message_success = _("Status is deleted successfully")
     url_name_success, url_name_object_used = 'statuses_index', 'statuses_index'

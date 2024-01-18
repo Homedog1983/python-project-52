@@ -58,7 +58,7 @@ class TaskUpdateView(CommonTaskMixin, AutoAddCreatorMixin, UpdateView):
         'h1_value': _('Task update'),
         'button_value': _('Update'),
         }
-    message_success = _("Task is updated successfully!")
+    message_success = _("Task is updated successfully")
 
 
 class TaskDeleteView(SuccessMessageRedirectMixin, DeleteView):
@@ -66,7 +66,7 @@ class TaskDeleteView(SuccessMessageRedirectMixin, DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     url_name_success = "tasks_index"
-    message_success = _("Task is deleted successfully!")
+    message_success = _("Task is deleted successfully")
     message_not_authenticated = _(
         'You are not login. Please, login!')
     message_not_creator = _(

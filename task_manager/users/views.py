@@ -70,7 +70,7 @@ class UserUpdateView(
         'h1_value': _('User update'),
         'button_value': _('Update'),
         }
-    message_success = _("User is updated successfully!")
+    message_success = _("User is updated successfully")
 
 
 class UserDeleteView(
@@ -78,5 +78,5 @@ class UserDeleteView(
         TaskUnusedRequaredDeletionMixin,
         DeleteView):
     template_name = 'users/delete.html'
-    message_success = _("User is deleted successfully!")
+    message_success = _("User is deleted successfully")
     url_name_success, url_name_object_used = 'users_index', 'users_index'

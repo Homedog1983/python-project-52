@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 08:11+0000\n"
+"POT-Creation-Date: 2024-01-18 08:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,8 +37,8 @@ msgid "Create"
 msgstr "Создать"
 
 #: task_manager/labels/views.py:32
-msgid "Label is created successfully!"
-msgstr "Метка успешно создана!"
+msgid "Label is created successfully"
+msgstr "Метка успешно создана"
 
 #: task_manager/labels/views.py:39
 msgid "Label update"
@@ -47,15 +47,15 @@ msgstr "Изменение метки"
 #: task_manager/labels/views.py:40 task_manager/statuses/views.py:40
 #: task_manager/tasks/views.py:59 task_manager/users/views.py:71
 msgid "Update"
-msgstr "Изменение"
+msgstr "Изменить"
 
 #: task_manager/labels/views.py:42
-msgid "Label is updated successfully!"
-msgstr "Метка успешно изменена!"
+msgid "Label is updated successfully"
+msgstr "Метка успешно изменена"
 
 #: task_manager/labels/views.py:49
-msgid "Label is deleted successfully!"
-msgstr "Метка успешно удалена!"
+msgid "Label is deleted successfully"
+msgstr "Метка успешно удалена"
 
 #: task_manager/mixins.py:14 task_manager/tasks/views.py:71
 msgid "You are not login. Please, login!"
@@ -86,20 +86,20 @@ msgid "Status creation"
 msgstr "Создание статуса"
 
 #: task_manager/statuses/views.py:32
-msgid "Status is created successfully!"
-msgstr "Статус успешно создан!"
+msgid "Status is created successfully"
+msgstr "Статус успешно создан"
 
 #: task_manager/statuses/views.py:39
 msgid "Status update"
 msgstr "Изменение статуса"
 
 #: task_manager/statuses/views.py:42
-msgid "Status is updated successfully!"
-msgstr "Статус успешно изменен!"
+msgid "Status is updated successfully"
+msgstr "Статус успешно изменен"
 
 #: task_manager/statuses/views.py:49
-msgid "Status is deleted successfully!"
-msgstr "Статус успешно удален!"
+msgid "Status is deleted successfully"
+msgstr "Статус успешно удален"
 
 #: task_manager/tasks/filter.py:32 task_manager/tasks/forms.py:22
 #: task_manager/templates/tasks/index_filter.html:46
@@ -146,15 +146,15 @@ msgstr "Задача успешно создана!"
 
 #: task_manager/tasks/views.py:58
 msgid "Task update"
-msgstr "Изменить задачу"
+msgstr "Изменение задачи"
 
 #: task_manager/tasks/views.py:61
-msgid "Task is updated successfully!"
-msgstr "Задача успешно изменена!"
+msgid "Task is updated successfully"
+msgstr "Задача успешно изменена"
 
 #: task_manager/tasks/views.py:69
-msgid "Task is deleted successfully!"
-msgstr "Задача успешно удалена!"
+msgid "Task is deleted successfully"
+msgstr "Задача успешно удалена"
 
 #: task_manager/tasks/views.py:73
 msgid "Task is possible to delete for its creator only!"
@@ -426,12 +426,12 @@ msgid "User update"
 msgstr "Изменение пользователя"
 
 #: task_manager/users/views.py:73
-msgid "User is updated successfully!"
-msgstr "Пользователь успешно изменен!"
+msgid "User is updated successfully"
+msgstr "Пользователь успешно изменен"
 
 #: task_manager/users/views.py:81
-msgid "User is deleted successfully!"
-msgstr "Пользователь успешно удален!"
+msgid "User is deleted successfully"
+msgstr "Пользователь успешно удален"
 
 #: task_manager/views.py:15
 msgid "You are logined in"

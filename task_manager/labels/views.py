@@ -29,7 +29,7 @@ class LabelCreateView(
         'h1_value': _('Label creation'),
         'button_value': _('Create'),
         }
-    message_success = _("Label is created successfully!")
+    message_success = _("Label is created successfully")
 
 
 class LabelUpdateView(
@@ -39,12 +39,12 @@ class LabelUpdateView(
         'h1_value': _('Label update'),
         'button_value': _('Update'),
         }
-    message_success = _("Label is updated successfully!")
+    message_success = _("Label is updated successfully")
 
 
 class LabelDeleteView(
         CommonLabelMixin, TaskUnusedRequaredDeletionMixin, DeleteView):
 
     template_name = 'labels/delete.html'
-    message_success = _("Label is deleted successfully!")
+    message_success = _("Label is deleted successfully")
     url_name_success, url_name_object_used = 'labels_index', 'labels_index'

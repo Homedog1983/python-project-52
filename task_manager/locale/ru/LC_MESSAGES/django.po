@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 07:39+0000\n"
+"POT-Creation-Date: 2024-01-18 07:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,7 +207,7 @@ msgstr "Вход"
 
 #: task_manager/templates/base.html:42 task_manager/users/views.py:36
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/includes/delete_form.html:4
 msgid "Do you realy want delete"
@@ -297,7 +297,7 @@ msgstr "Особенности проекта"
 
 #: task_manager/templates/index.html:39
 msgid ""
-"Without logging in, only the page with the output of all registered users is "
+"Without login in, only the page with the output of all registered users is "
 "available"
 msgstr ""
 "Без входа доступна только страница с выводом всех зарегистрированных "
@@ -310,7 +310,7 @@ msgstr ""
 
 #: task_manager/templates/index.html:41
 msgid ""
-"These entities can only be created, modified and deleted by a logged in user"
+"These entities can only be created, modified and deleted by a logined user"
 msgstr ""
 "Эти сущности может создавать, изменять и удалять только залогиненный "
 "пользователь"
@@ -414,8 +414,8 @@ msgid "Registration"
 msgstr "Регистрация"
 
 #: task_manager/users/views.py:39
-msgid "User is registered successfully!"
-msgstr "Пользователь успешно зарегистрирован!"
+msgid "User is registered successfully"
+msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/users/views.py:45
 msgid "You are have not permission to change other user!"
@@ -434,11 +434,9 @@ msgid "User is deleted successfully!"
 msgstr "Пользователь успешно удален!"
 
 #: task_manager/views.py:15
-#| msgid "You are logged in!"
 msgid "You are logined in"
 msgstr "Вы залогинены"
 
 #: task_manager/views.py:21
-#| msgid "You are logged out!"
 msgid "You are logined out"
 msgstr "Вы разлогинены"

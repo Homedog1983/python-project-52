@@ -36,7 +36,7 @@ class UserCreateView(
         'button_value': _('Register'),
         }
     url_name_success = "login"
-    message_success = _("User is registered successfully!")
+    message_success = _("User is registered successfully")
 
 
 class CreatorRequaredRedirectMixin:

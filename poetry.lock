@@ -621,20 +621,6 @@ doc = ["sphinx"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
-name = "termcolor"
-version = "2.4.0"
-description = "ANSI color formatting for output in terminal"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "termcolor-2.4.0-py3-none-any.whl", hash = "sha256:9297c0df9c99445c2412e832e882a7884038a25617c60cea2ad69488d4040d63"},
-    {file = "termcolor-2.4.0.tar.gz", hash = "sha256:aab9e56047c8ac41ed798fa36d892a37aca6b3e9159f3e0c24bc64a9b3ac7b7a"},
-]
-
-[package.extras]
-tests = ["pytest", "pytest-cov"]
-
-[[package]]
 name = "typing-extensions"
 version = "4.8.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -692,4 +678,4 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "2bc06c0e7b0c42c983d041e02d887d921449221d6ee636db652a391a05eafd98"
+content-hash = "947569c7ce0cb967b140c51adfa9cb990e81527b1b42c94db4f0039386be7feb"

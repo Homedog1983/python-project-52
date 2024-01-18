@@ -21,7 +21,6 @@
       <form class= "form-inline center" method="get">
         {% csrf_token %}
         {% for field in filter.form %}
-        
         <div class="fieldWrapper mb-3">
           {% bootstrap_field field show_help=False %}
           {% if field.help_text %}

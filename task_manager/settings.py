@@ -15,8 +15,6 @@ import os
 from dotenv import load_dotenv
 import dj_database_url
 from django.utils.translation import gettext_lazy as _
-import sys
-from termcolor import colored
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -98,25 +96,17 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# if DEBUG:
-#     print("Way: DEBUG is True")
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         }
-#     }
-# else:
-#     print("Way: DEBUG is False")
-#     DATABASES = {
-#         'default': dj_database_url.config(
-#             default=DATABASE_URL,
-#             conn_max_age=600,
-#             conn_health_checks=True
-#         ),
-#     }
-if 'postgres' not in DATABASE_URL:
-    print(colored('postgres NOT in DB_URL','green'))
+
+class Colors():
+    ltgr = '\033[92m'
+    reset = '\033[0m'
+
+colors = Colors()
+
+print(colors.ltgr)
+
+if DEBUG:
+    print("Way: DEBUG is True")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -124,7 +114,7 @@ if 'postgres' not in DATABASE_URL:
         }
     }
 else:
-    print(colored('postgres in DB_URL','green'))
+    print("Way: DEBUG is False")
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -133,18 +123,37 @@ else:
         ),
     }
 
-print(colored('DEBUG: ','green'), DEBUG)
+# if 'postgres' not in DATABASE_URL:
+#     print('postgres NOT in DB_URL')
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
+# else:
+#     print('postgres in DB_URL')
+#     DATABASES = {
+#         'default': dj_database_url.config(
+#             default=DATABASE_URL,
+#             conn_max_age=600,
+#             conn_health_checks=True
+#         ),
+#     }
+
+print('DEBUG: ', DEBUG)
 print('DATABASES: ', DATABASES)
 print('BASE_DIR: ', BASE_DIR)
 listdir = os.listdir(BASE_DIR)
 print('listdir(BASE_DIR): ', listdir)
 if '.env' in listdir: 
     with open(os.path.join(BASE_DIR, '.env'), "r") as input_file:
-        print(colored("file .env start:", 'red'))
+        print("file .env start:")
         for line in input_file:
                 print(line)
         print("file-end")
 
+print(colors.reset)
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]
 

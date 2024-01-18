@@ -11,7 +11,8 @@ class UserFullNameModelChoiceField(UserFullNameMixin, ModelChoiceField):
 
 
 class TaskForm(ModelForm):
-    executor = UserFullNameModelChoiceField(queryset=User.objects.all())
+    executor = UserFullNameModelChoiceField(
+        queryset=User.objects.all(), label=_("Executor"))
 
     class Meta:
         model = Task
@@ -20,7 +21,6 @@ class TaskForm(ModelForm):
             "name": _("Name"),
             "description": _("Description"),
             "status": _("Status"),
-            "executor": _("Executor"),
             "labels": _("Labels"),
             "cretor": _("Creator")
         }

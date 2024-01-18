@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 12:14+0000\n"
+"POT-Creation-Date: 2024-01-18 12:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: task_manager/labels/forms.py:13 task_manager/statuses/forms.py:13
-#: task_manager/tasks/forms.py:20 task_manager/templates/labels/index.html:24
+#: task_manager/tasks/forms.py:21 task_manager/templates/labels/index.html:24
 #: task_manager/templates/statuses/index.html:24
 #: task_manager/templates/tasks/index_filter.html:43
 msgid "Name"
@@ -73,11 +73,11 @@ msgstr "Невозможно удалить, поскольку объект и�
 msgid "Object is deleted successfully!"
 msgstr "Объект успешно удален!"
 
-#: task_manager/settings.py:176
+#: task_manager/settings.py:177
 msgid "English"
 msgstr "Английский"
 
-#: task_manager/settings.py:177
+#: task_manager/settings.py:178
 msgid "Russian"
 msgstr "Русский"
 
@@ -101,12 +101,12 @@ msgstr "Статус успешно изменен"
 msgid "Status is deleted successfully"
 msgstr "Статус успешно удален"
 
-#: task_manager/tasks/filter.py:32 task_manager/tasks/forms.py:22
+#: task_manager/tasks/filter.py:32 task_manager/tasks/forms.py:23
 #: task_manager/templates/tasks/index_filter.html:44
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/tasks/filter.py:37 task_manager/tasks/forms.py:23
+#: task_manager/tasks/filter.py:37 task_manager/tasks/forms.py:15
 #: task_manager/templates/tasks/index_filter.html:46
 msgid "Executor"
 msgstr "Исполнитель"
@@ -119,7 +119,7 @@ msgstr "Метка"
 msgid "Self tasks only"
 msgstr "Только собственные задачи"
 
-#: task_manager/tasks/forms.py:21
+#: task_manager/tasks/forms.py:22
 msgid "Description"
 msgstr "Описание"
 

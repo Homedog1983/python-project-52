@@ -7,8 +7,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block content %}
-{% translate 'Login' as login %}
-<h1 class="text-warning">{{ login }}</h1>
+<h1 class="text-warning">{% translate 'Login' %}</h1>
 
 {% if form.errors %}
 <p class="text-danger">{%translate 'Username and password did not match. Please try again.' %}</p>
@@ -21,7 +20,7 @@
       {% bootstrap_field field placeholder='' show_help=False %}
     </div>
   {% endfor %}
-  <input class="btn btn-outline-warning me-2" type="submit" value="{{ login }}">
+  <input class="btn btn-outline-warning me-2" type="submit" value="{% translate 'Enter' %}">
 </form>
 
 {% endblock content %}

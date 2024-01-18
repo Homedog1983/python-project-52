@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 10:14+0000\n"
+"POT-Creation-Date: 2024-01-18 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: task_manager/labels/forms.py:13 task_manager/statuses/forms.py:13
-#: task_manager/tasks/forms.py:12 task_manager/templates/labels/index.html:24
+#: task_manager/tasks/forms.py:20 task_manager/templates/labels/index.html:24
 #: task_manager/templates/statuses/index.html:24
 #: task_manager/templates/tasks/index_filter.html:45
 msgid "Name"
@@ -73,11 +73,11 @@ msgstr "Невозможно удалить, поскольку объект и�
 msgid "Object is deleted successfully!"
 msgstr "Объект успешно удален!"
 
-#: task_manager/settings.py:136
+#: task_manager/settings.py:176
 msgid "English"
 msgstr "Английский"
 
-#: task_manager/settings.py:137
+#: task_manager/settings.py:177
 msgid "Russian"
 msgstr "Русский"
 
@@ -101,29 +101,29 @@ msgstr "Статус успешно изменен!"
 msgid "Status is deleted successfully!"
 msgstr "Статус успешно удален!"
 
-#: task_manager/tasks/filter.py:22 task_manager/tasks/forms.py:14
+#: task_manager/tasks/filter.py:32 task_manager/tasks/forms.py:22
 #: task_manager/templates/tasks/index_filter.html:46
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/tasks/filter.py:27 task_manager/tasks/forms.py:15
+#: task_manager/tasks/filter.py:37 task_manager/tasks/forms.py:23
 #: task_manager/templates/tasks/index_filter.html:48
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/tasks/filter.py:32
+#: task_manager/tasks/filter.py:42
 msgid "Label"
 msgstr "Метка"
 
-#: task_manager/tasks/filter.py:36
+#: task_manager/tasks/filter.py:46
 msgid "Self tasks only"
 msgstr "Только собственные задачи"
 
-#: task_manager/tasks/forms.py:13
+#: task_manager/tasks/forms.py:21
 msgid "Description"
 msgstr "Описание"
 
-#: task_manager/tasks/forms.py:16 task_manager/templates/base.html:29
+#: task_manager/tasks/forms.py:24 task_manager/templates/base.html:29
 #: task_manager/templates/labels/delete.html:11
 #: task_manager/templates/labels/detail.html:11
 #: task_manager/templates/labels/index.html:11
@@ -131,7 +131,7 @@ msgstr "Описание"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/tasks/forms.py:17
+#: task_manager/tasks/forms.py:25
 #: task_manager/templates/tasks/index_filter.html:47
 msgid "Creator"
 msgstr "Создатель"
@@ -372,10 +372,14 @@ msgstr "Изменить"
 msgid "Delete"
 msgstr "Удалить"
 
-#: task_manager/templates/login.html:14
+#: task_manager/templates/login.html:13
 msgid "Username and password did not match. Please try again."
 msgstr ""
 "Имя пользователия и пароль не соответствуют друг другу. Попробуйте снова."
+
+#: task_manager/templates/login.html:23
+msgid "Enter"
+msgstr "Войти"
 
 #: task_manager/templates/statuses/index.html:17
 msgid "Create status"
@@ -430,9 +434,11 @@ msgid "User is deleted successfully!"
 msgstr "Пользователь успешно удален!"
 
 #: task_manager/views.py:15
-msgid "You are logged in!"
-msgstr "Вы залогинены!"
+#| msgid "You are logged in!"
+msgid "You are logined in"
+msgstr "Вы залогинены"
 
 #: task_manager/views.py:21
-msgid "You are logged out!"
-msgstr "Вы разлогинены!"
+#| msgid "You are logged out!"
+msgid "You are logined out"
+msgstr "Вы разлогинены"

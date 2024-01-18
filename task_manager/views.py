@@ -12,11 +12,11 @@ class IndexView(TemplateView):
 
 class CustomLoginView(SuccessMessageRedirectMixin, LoginView):
     template_name = "login.html"
-    message_success = _("You are logged in!")
+    message_success = _("You are logined in")
 
 
 class CustomLogoutView(LogoutView):
     def post(self, request, *args, **kwargs):
         super().post(request, *args, **kwargs)
-        messages.info(request, _("You are logged out!"))
+        messages.info(request, _("You are logined out"))
         return redirect("main_page")

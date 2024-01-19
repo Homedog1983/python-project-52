@@ -55,7 +55,7 @@ class CustomTestCase(TestCase):
             target_status_code=200, fetch_redirect_response=True)
 
     def url_get_test(self, url, pk, status_code=200):
-        args = [pk,] if pk else []
+        args = [pk, ] if pk else []
         response = self.client.get(reverse(url, args=args))
         self.assertEqual(response.status_code, status_code)
 
@@ -69,7 +69,7 @@ class CustomTestCase(TestCase):
             self.assertNotContains(response, elem, status_code=200)
 
     def url_get_redirect_test(self, url, pk, url_redirect, expected_message):
-        args = [pk,] if pk else []
+        args = [pk, ] if pk else []
         response = self.client.get(
             reverse(url, args=args), follow=True)
         self.redirect_with_message_test(
@@ -77,7 +77,7 @@ class CustomTestCase(TestCase):
 
     def url_post_data_redirect_test(
             self, url, pk, data, url_redirect, message_expected):
-        args = [pk,] if pk else []
+        args = [pk, ] if pk else []
         response = self.client.post(
             reverse(url, args=args), data, follow=True)
         self.redirect_with_message_test(

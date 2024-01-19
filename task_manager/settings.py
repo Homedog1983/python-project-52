@@ -96,11 +96,6 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
-ltgr = '\033[92m'
-reset = '\033[0m'
-print(ltgr)
-
 # if DEBUG:
 #     print("Way: DEBUG is True")
 #     DATABASES = {
@@ -142,17 +137,14 @@ print('DATABASES: ', DATABASES)
 print('BASE_DIR: ', BASE_DIR)
 listdir = os.listdir(BASE_DIR)
 print('listdir(BASE_DIR): ', listdir)
-if '.env' in listdir: 
+if '.env' in listdir:
     with open(os.path.join(BASE_DIR, '.env'), "r") as input_file:
         print("file .env start:")
         for line in input_file:
-                print(line)
+            print(line)
         print("file-end")
 
-print(reset)
-
-FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'),]
-
+FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'), ]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -212,7 +204,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BOOTSTRAP5 = {
     "theme_url": None,
 
-    # Put JavaScript in the HEAD section of the HTML document (only relevant if you use bootstrap5.html).
+    # Put JavaScript in the HEAD section of the HTML document
+    # (only relevant if you use bootstrap5.html).
     'javascript_in_head': True,
 
     # Wrapper class for non-inline fields.
@@ -220,7 +213,8 @@ BOOTSTRAP5 = {
     'wrapper_class': 'mb-3',
 
     # Wrapper class for inline fields.
-    # The default value is empty, as Bootstrap5 example code doesn't use a wrapper class.
+    # The default value is empty, as Bootstrap5 example code doesn't
+    # use a wrapper class.
     'inline_wrapper_class': '',
 
     # Label class to use in horizontal forms.
@@ -239,17 +233,21 @@ BOOTSTRAP5 = {
     # 'required_css_class': '',
     "required_css_class": "django_bootstrap5-required",
 
-    # Class to indicate field has one or more errors (better to set this in your Django form).
+    # Class to indicate field has one or more errors
+    # (better to set this in your Django form).
     # 'error_css_class': '',
     "error_css_class": "django_bootstrap5-error",
 
-    # Class to indicate success, meaning the field has valid input (better to set this in your Django form).
+    # Class to indicate success, meaning the field has valid input
+    # (better to set this in your Django form).
     'success_css_class': '',
 
-    # Enable or disable Bootstrap 5 server side validation classes (separate from the indicator classes above).
+    # Enable or disable Bootstrap 5 server side validation classes
+    # (separate from the indicator classes above).
     'server_side_validation': True,
 
-    # Renderers (only set these if you have studied the source and understand the inner workings).
+    # Renderers (only set these if you have studied the source
+    # and understand the inner workings).
     'formset_renderers': {
         'default': 'django_bootstrap5.renderers.FormsetRenderer',
     },

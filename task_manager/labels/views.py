@@ -5,9 +5,9 @@ from django.views.generic.list import ListView
 from .models import Label
 from .forms import LabelForm
 from task_manager.mixins import (
-        LoginRequiredRedirectMixin,
-        SuccessMessageRedirectMixin,
-        TaskUnusedRequaredDeletionMixin)
+    LoginRequiredRedirectMixin,
+    SuccessMessageRedirectMixin,
+    TaskUnusedRequaredDeletionMixin)
 
 
 class LabelIndexView(LoginRequiredRedirectMixin, ListView):
@@ -28,7 +28,7 @@ class LabelCreateView(
     extra_context = {
         'h1_value': _('Label creation'),
         'button_value': _('Create'),
-        }
+    }
     message_success = _("Label is created successfully")
 
 
@@ -38,7 +38,7 @@ class LabelUpdateView(
     extra_context = {
         'h1_value': _('Label update'),
         'button_value': _('Update'),
-        }
+    }
     message_success = _("Label is updated successfully")
 
 

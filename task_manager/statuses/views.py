@@ -5,9 +5,9 @@ from django.views.generic.list import ListView
 from .models import Status
 from .forms import StatusForm
 from task_manager.mixins import (
-        LoginRequiredRedirectMixin,
-        SuccessMessageRedirectMixin,
-        TaskUnusedRequaredDeletionMixin)
+    LoginRequiredRedirectMixin,
+    SuccessMessageRedirectMixin,
+    TaskUnusedRequaredDeletionMixin)
 
 
 class StatusIndexView(LoginRequiredRedirectMixin, ListView):
@@ -28,7 +28,7 @@ class StatusCreateView(
     extra_context = {
         'h1_value': _('Status creation'),
         'button_value': _('Create'),
-        }
+    }
     message_success = _("Status is created successfully")
 
 
@@ -38,7 +38,7 @@ class StatusUpdateView(
     extra_context = {
         'h1_value': _('Status update'),
         'button_value': _('Update'),
-        }
+    }
     message_success = _("Status is updated successfully")
 
 

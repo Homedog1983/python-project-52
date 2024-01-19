@@ -18,8 +18,7 @@ class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
 
 class CommonTaskMixin(
         LoginRequiredRedirectMixin,
-        SuccessMessageRedirectMixin
-        ):
+        SuccessMessageRedirectMixin):
     model = Task
     template_name = 'tasks/detail.html'
     url_name_success = 'tasks_index'
@@ -48,7 +47,7 @@ class TaskCreateView(CommonTaskMixin, AutoAddCreatorMixin, CreateView):
     extra_context = {
         'h1_value': _('Task creation'),
         'button_value': _('Create'),
-        }
+    }
     message_success = _("Task is created successfully!")
 
 
@@ -57,7 +56,7 @@ class TaskUpdateView(CommonTaskMixin, AutoAddCreatorMixin, UpdateView):
     extra_context = {
         'h1_value': _('Task update'),
         'button_value': _('Update'),
-        }
+    }
     message_success = _("Task is updated successfully")
 
 

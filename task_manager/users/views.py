@@ -34,7 +34,7 @@ class UserCreateView(
     extra_context = {
         'h1_value': _('Registration'),
         'button_value': _('Register'),
-        }
+    }
     url_name_success = "login"
     message_success = _("User is registered successfully")
 
@@ -69,7 +69,7 @@ class UserUpdateView(
     extra_context = {
         'h1_value': _('User update'),
         'button_value': _('Update'),
-        }
+    }
     message_success = _("User is updated successfully")
 
 

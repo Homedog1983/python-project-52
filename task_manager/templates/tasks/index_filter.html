@@ -40,6 +40,7 @@
       <tr>
         <th>ID</th>
         <th>{% translate "Name" %}</th>
+        <th>{% translate "Description" %}</th>
         <th>{% translate "Status" %}</th>
         <th>{% translate "Creator" %}</th>
         <th>{% translate "Executor" %}</th>
@@ -54,6 +55,7 @@
       <tr>
         <td class="text-warning">{{ task.id }}</td>
         <td>{{ task.name }}</td>
+        <td>{{ task.description }}</td>
         <td>{{ task.status }}</td>
         <td>{{ task.get_full_name.creator }}</td>
         <td>{{ task.get_full_name.executor }}</td>

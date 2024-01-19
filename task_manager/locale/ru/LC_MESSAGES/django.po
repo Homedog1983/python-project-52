@@ -117,7 +117,7 @@ msgstr "Метка"
 
 #: task_manager/tasks/filter.py:46
 msgid "Self tasks only"
-msgstr "Только собственные задачи"
+msgstr "Только свои задачи"
 
 #: task_manager/tasks/forms.py:22
 msgid "Description"

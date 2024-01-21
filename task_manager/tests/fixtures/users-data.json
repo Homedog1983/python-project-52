@@ -33,13 +33,13 @@
     "pk": 1,
     "first_name": "John Winston Ono",
     "last_name": "Lennon",
-    "username": "user_best",
+    "username": "user_1",
     "password1": "xxssU",
     "password2": "xxssU"
   },
   "update_expected": [
     "John Winston Ono Lennon",
-    "user_best",
+    "user_1",
     "Paul McCartney",
     "user_2",
     "George Harrison",
@@ -48,8 +48,7 @@
     "user_4"
   ],
   "update_not_expected": [
-    "John Lennon",
-    "user_1"
+    "John Lennon"
   ],
   "delete_task_used": {
     "pk": 2

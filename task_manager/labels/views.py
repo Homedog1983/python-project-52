@@ -8,18 +8,12 @@ from task_manager.mixins import (
     LoginRequiredRedirectMixin,
     SuccessMessageRedirectMixin,
     TaskUnusedRequaredDeletionMixin)
+from .mixins import CommonLabelMixin
 
 
 class LabelIndexView(LoginRequiredRedirectMixin, ListView):
     model = Label
     template_name = 'labels/index.html'
-
-
-class CommonLabelMixin(
-        LoginRequiredRedirectMixin):
-    model = Label
-    template_name = 'labels/detail.html'
-    url_name_success = 'labels_index'
 
 
 class LabelCreateView(
@@ -36,7 +30,7 @@ class LabelUpdateView(
         CommonLabelMixin, SuccessMessageRedirectMixin, UpdateView):
     form_class = LabelForm
     extra_context = {
-        'h1_value': _('Label update'),
+        'header': _('Label update'),
         'button_value': _('Update'),
     }
     message_success = _("Label is updated successfully")

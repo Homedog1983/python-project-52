@@ -9,19 +9,12 @@ from .forms import TaskForm
 from .filter import TaskFilterSet
 from task_manager.mixins import (
     LoginRequiredRedirectMixin, SuccessMessageRedirectMixin)
+from .mixins import CommonTaskMixin
 
 
 class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
     filterset_class = TaskFilterSet
     template_name = 'tasks/index_filter.html'
-
-
-class CommonTaskMixin(
-        LoginRequiredRedirectMixin,
-        SuccessMessageRedirectMixin):
-    model = Task
-    template_name = 'tasks/detail.html'
-    url_name_success = 'tasks_index'
 
 
 class AutoAddCreatorMixin:
@@ -54,7 +47,7 @@ class TaskCreateView(CommonTaskMixin, AutoAddCreatorMixin, CreateView):
 class TaskUpdateView(CommonTaskMixin, AutoAddCreatorMixin, UpdateView):
     form_class = TaskForm
     extra_context = {
-        'h1_value': _('Task update'),
+        'header': _('Task update'),
         'button_value': _('Update'),
     }
     message_success = _("Task is updated successfully")

@@ -8,18 +8,12 @@ from task_manager.mixins import (
     LoginRequiredRedirectMixin,
     SuccessMessageRedirectMixin,
     TaskUnusedRequaredDeletionMixin)
+from .mixins import CommonStatusMixin
 
 
 class StatusIndexView(LoginRequiredRedirectMixin, ListView):
     model = Status
     template_name = 'statuses/index.html'
-
-
-class CommonStatusMixin(
-        LoginRequiredRedirectMixin):
-    model = Status
-    template_name = 'statuses/detail.html'
-    url_name_success = 'statuses_index'
 
 
 class StatusCreateView(
@@ -36,7 +30,7 @@ class StatusUpdateView(
         CommonStatusMixin, SuccessMessageRedirectMixin, UpdateView):
     form_class = StatusForm
     extra_context = {
-        'h1_value': _('Status update'),
+        'header': _('Status update'),
         'button_value': _('Update'),
     }
     message_success = _("Status is updated successfully")

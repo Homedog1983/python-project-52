@@ -4,7 +4,7 @@ NORM_COLOR='\033[0m'
 
 setup_render: build_dependencies install_project
 
-setup_git_action: install_poetry install_project
+setup_git_action: build_dependencies install_poetry install_project
 
 build_dependencies:
 	echo -e "${LGRN_COLOR}build_dependencies:${NORM_COLOR}"

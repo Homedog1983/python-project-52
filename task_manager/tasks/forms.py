@@ -17,13 +17,6 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         exclude = ["creator", "creation_date"]
-        labels = {
-            "name": _("Name"),
-            "description": _("Description"),
-            "status": _("Status"),
-            "labels": _("Labels"),
-            "cretor": _("Creator")
-        }
         widgets = {
             "description": Textarea(attrs={"cols": 40, "rows": 10}),
         }

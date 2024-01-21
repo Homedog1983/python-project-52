@@ -7,3 +7,5 @@ class CommonLabelMixin(
     model = Label
     template_name = 'labels/detail.html'
     url_name_success = 'labels_index'
+
+# from django.contrib.messages.views import SuccessMessageMixin

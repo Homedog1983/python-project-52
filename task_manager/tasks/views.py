@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import gettext as _
+from django.urls import reverse
 from django.contrib import messages
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
@@ -68,9 +69,9 @@ class TaskDeleteView(SuccessMessageRedirectMixin, DeleteView):
         user = request.user
         if not user.is_authenticated:
             messages.warning(request, self.message_not_authenticated)
-            return redirect('login')
+            return redirect(reverse('login'))
         task = get_object_or_404(Task, id=kwargs['pk'])
         if user != task.creator:
             messages.warning(request, self.message_not_creator)
-            return redirect("tasks_index")
+            return redirect(reverse("tasks_index"))
         return super().dispatch(request, *args, **kwargs)

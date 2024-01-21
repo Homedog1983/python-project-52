@@ -22,6 +22,10 @@ lint:
 	poetry run flake8 task_manager
 dev:
 	python3 manage.py runserver
+messages:
+	python manage.py makemessages -l ru
+compile:
+	python manage.py compilemessages
 test:
 	python manage.py test --noinput -v 2
 test-coverage:

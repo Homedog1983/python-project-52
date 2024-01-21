@@ -17,7 +17,7 @@ class LoginRequiredRedirectMixin:
         user = request.user
         if not user.is_authenticated:
             messages.warning(request, self.message_not_authenticated)
-            return redirect('login')
+            return redirect(reverse('login'))
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -33,7 +33,7 @@ class SuccessMessageRedirectMixin:
         super().form_valid(form)
         if self.message_success:
             messages.success(self.request, self.message_success)
-        return redirect(self.url_name_success)
+        return redirect(reverse(self.url_name_success))
 
     def get_success_url(self):
         return reverse(self.url_name_success)
@@ -66,10 +66,10 @@ class TaskUnusedRequaredDeletionMixin:
     def form_valid(self, form):
         if self.is_task_used():
             messages.warning(self.request, self.message_used_object)
-            return redirect(self.url_name_object_used)
+            return redirect(reverse(self.url_name_object_used))
         messages.success(self.request, self.message_success)
         self.object.delete()
-        return redirect(self.url_name_success)
+        return redirect(reverse(self.url_name_success))
 
 
 class UserFullNameMixin:

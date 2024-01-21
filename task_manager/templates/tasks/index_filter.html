@@ -1,4 +1,4 @@
-{% extends "../base.html" %}
+{% extends "base.html" %}
 
 {% load django_bootstrap5 %}
 {% bootstrap_css %}
@@ -57,8 +57,8 @@
         <td>{{ task.name }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.status }}</td>
-        <td>{{ task.get_full_name.creator }}</td>
-        <td>{{ task.get_full_name.executor }}</td>
+        <td>{{ task.full_names.creator }}</td>
+        <td>{{ task.full_names.executor }}</td>
         <td>{{ task.creation_date }}</td>
         <td>
           <a href="{% url 'tasks_update' task.id %}" class="nav-link px-2 link-warning text-secondary">{{ change }}</a>

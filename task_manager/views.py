@@ -1,4 +1,5 @@
 from django.utils.translation import gettext as _
+from django.urls import reverse
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.views.generic.base import TemplateView
@@ -19,4 +20,4 @@ class CustomLogoutView(LogoutView):
     def post(self, request, *args, **kwargs):
         super().post(request, *args, **kwargs)
         messages.info(request, _("You are logged out"))
-        return redirect("main_page")
+        return redirect(reverse("main_page"))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-18 12:46+0000\n"
+"POT-Creation-Date: 2024-01-21 07:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: task_manager/labels/forms.py:13 task_manager/statuses/forms.py:13
 #: task_manager/tasks/forms.py:21 task_manager/templates/labels/index.html:24
 #: task_manager/templates/statuses/index.html:24
-#: task_manager/templates/tasks/index_filter.html:43
+#: task_manager/templates/tasks/index_filter.html:42
 msgid "Name"
 msgstr "Имя"
 
@@ -32,7 +32,7 @@ msgid "Label creation"
 msgstr "Создание метки"
 
 #: task_manager/labels/views.py:30 task_manager/statuses/views.py:30
-#: task_manager/tasks/views.py:50
+#: task_manager/tasks/views.py:49
 msgid "Create"
 msgstr "Создать"
 
@@ -45,7 +45,7 @@ msgid "Label update"
 msgstr "Изменение метки"
 
 #: task_manager/labels/views.py:40 task_manager/statuses/views.py:40
-#: task_manager/tasks/views.py:59 task_manager/users/views.py:71
+#: task_manager/tasks/views.py:58 task_manager/users/views.py:71
 msgid "Update"
 msgstr "Изменить"
 
@@ -73,11 +73,11 @@ msgstr "Невозможно удалить, поскольку объект и�
 msgid "Object is deleted successfully!"
 msgstr "Объект успешно удален!"
 
-#: task_manager/settings.py:177
+#: task_manager/settings.py:176
 msgid "English"
 msgstr "Английский"
 
-#: task_manager/settings.py:178
+#: task_manager/settings.py:177
 msgid "Russian"
 msgstr "Русский"
 
@@ -120,6 +120,7 @@ msgid "Self tasks only"
 msgstr "Только свои задачи"
 
 #: task_manager/tasks/forms.py:22
+#: task_manager/templates/tasks/index_filter.html:43
 msgid "Description"
 msgstr "Описание"
 
@@ -136,31 +137,31 @@ msgstr "Метки"
 msgid "Creator"
 msgstr "Создатель"
 
-#: task_manager/tasks/views.py:49
+#: task_manager/tasks/views.py:48
 msgid "Task creation"
 msgstr "Создание задачи"
 
-#: task_manager/tasks/views.py:52
+#: task_manager/tasks/views.py:51
 msgid "Task is created successfully!"
 msgstr "Задача успешно создана!"
 
-#: task_manager/tasks/views.py:58
+#: task_manager/tasks/views.py:57
 msgid "Task update"
 msgstr "Изменение задачи"
 
-#: task_manager/tasks/views.py:61
+#: task_manager/tasks/views.py:60
 msgid "Task is updated successfully"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:69
+#: task_manager/tasks/views.py:68
 msgid "Task is deleted successfully"
 msgstr "Задача успешно удалена"
 
-#: task_manager/tasks/views.py:71
+#: task_manager/tasks/views.py:70
 msgid "You are not login. Please, login!"
 msgstr "Вы не в системе. Пожалуйста, залогиньтесь!"
 
-#: task_manager/tasks/views.py:73
+#: task_manager/tasks/views.py:72
 msgid "Task is possible to delete for its creator only!"
 msgstr "Задачу может удалить только ее создатель!"
 
@@ -393,7 +394,7 @@ msgstr "Создать статус"
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/templates/tasks/index_filter.html:34
+#: task_manager/templates/tasks/index_filter.html:33
 msgid "Show"
 msgstr "Показать"
 
@@ -438,11 +439,11 @@ msgid "User is deleted successfully"
 msgstr "Пользователь успешно удален"
 
 #: task_manager/views.py:15
-msgid "You are logined in"
+msgid "You are logged in"
 msgstr "Вы залогинены"
 
 #: task_manager/views.py:21
-msgid "You are logined out"
+msgid "You are logged out"
 msgstr "Вы разлогинены"
 
 #~ msgid "Submit"

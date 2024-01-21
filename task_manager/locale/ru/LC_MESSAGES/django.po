@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-21 12:52+0000\n"
+"POT-Creation-Date: 2024-01-21 13:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,28 +101,29 @@ msgstr "Статус успешно изменен"
 msgid "Status is deleted successfully"
 msgstr "Статус успешно удален"
 
-#: task_manager/tasks/filter.py:30
-msgid "Label"
-msgstr "Метка"
+#: task_manager/tasks/filter.py:33 task_manager/tasks/models.py:20
+#: task_manager/templates/tasks/index_filter.html:44
+msgid "Status"
+msgstr "Статус"
 
-#: task_manager/tasks/filter.py:34
-msgid "Self tasks only"
-msgstr "Только свои задачи"
-
-#: task_manager/tasks/forms.py:15 task_manager/tasks/models.py:32
+#: task_manager/tasks/filter.py:38 task_manager/tasks/forms.py:15
+#: task_manager/tasks/models.py:32
 #: task_manager/templates/tasks/index_filter.html:46
 msgid "Executor"
 msgstr "Исполнитель"
+
+#: task_manager/tasks/filter.py:43
+msgid "Label"
+msgstr "Метка"
+
+#: task_manager/tasks/filter.py:47
+msgid "Self tasks only"
+msgstr "Только свои задачи"
 
 #: task_manager/tasks/models.py:15
 #: task_manager/templates/tasks/index_filter.html:43
 msgid "Description"
 msgstr "Описание"
-
-#: task_manager/tasks/models.py:20
-#: task_manager/templates/tasks/index_filter.html:44
-msgid "Status"
-msgstr "Статус"
 
 #: task_manager/tasks/models.py:25
 #: task_manager/templates/tasks/index_filter.html:45

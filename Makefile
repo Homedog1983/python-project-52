@@ -1,12 +1,20 @@
 PORT ?= 8000
-LGRN='\033[1;32m'
-setup: build_dependencies install_project
+LGRN_COLOR='\033[1;32m'
+NORM_COLOR='\033[0m'
+
+setup_render: build_dependencies install_project
+
+setup_git_action: install_poetry install_project
+
 build_dependencies:
-	echo -e "${LGRN}build_dependencies:"
+	echo -e "${LGRN_COLOR}build_dependencies:${NORM_COLOR}"
 	python -m pip install --upgrade pip
 	pip install -r requirements.txt
+install_poetry:
+	echo -e "${LGRN_COLOR}install poetry:${NORM_COLOR}"
+	pip install poetry
 install_project:
-	echo -e "${LGRN}install project:"
+	echo -e "${LGRN_COLOR}install project:${NORM_COLOR}"
 	poetry install
 	python manage.py collectstatic --no-input
 	python manage.py migrate

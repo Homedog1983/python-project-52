@@ -38,7 +38,7 @@ class StatusesTestCase(CustomTestCase):
         self.make_login(self.label_logined)
         self.url_post_data_redirect_test(
             "labels_create", None, self.data["create"],
-            "labels_index", LabelCreateView.message_success)
+            "labels_index", LabelCreateView.success_message)
         self.url_get_data_test(
             "labels_index", expected_data=self.data["create_expected"])
 
@@ -54,7 +54,7 @@ class StatusesTestCase(CustomTestCase):
         self.url_get_test("labels_update", self.update_pk)
         self.url_post_data_redirect_test(
             "labels_update", self.update_pk, self.data["update"],
-            "labels_index", LabelUpdateView.message_success)
+            "labels_index", LabelUpdateView.success_message)
         self.url_get_data_test(
             "labels_index",
             expected_data=self.data["update_expected"],
@@ -72,7 +72,7 @@ class StatusesTestCase(CustomTestCase):
         self.url_get_test("labels_delete", self.delete_pk)
         self.url_post_data_redirect_test(
             "labels_delete", self.delete_pk, self.data["delete"],
-            "labels_index", LabelDeleteView.message_success)
+            "labels_index", LabelDeleteView.success_message)
         self.url_get_data_test(
             "labels_index",
             expected_data=self.data["delete_expected"],

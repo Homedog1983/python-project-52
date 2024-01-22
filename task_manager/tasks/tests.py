@@ -43,7 +43,7 @@ class TasksTestCase(CustomTestCase):
         self.make_login(self.logined_create)
         self.url_post_data_redirect_test(
             "tasks_create", None, self.data["create"],
-            "tasks_index", TaskCreateView.message_success)
+            "tasks_index", TaskCreateView.success_message)
         self.url_get_data_test(
             "tasks_index",
             expected_data=self.data["create_expected"])
@@ -60,7 +60,7 @@ class TasksTestCase(CustomTestCase):
         self.url_get_test("tasks_update", self.update_pk)
         self.url_post_data_redirect_test(
             "tasks_update", self.update_pk, self.data["update"],
-            "tasks_index", TaskUpdateView.message_success)
+            "tasks_index", TaskUpdateView.success_message)
         self.url_get_data_test(
             "tasks_index",
             expected_data=self.data["update_expected"],
@@ -83,7 +83,7 @@ class TasksTestCase(CustomTestCase):
         self.url_get_test("tasks_delete", self.update_pk)
         self.url_post_data_redirect_test(
             "tasks_delete", self.delete_pk, self.data["delete"],
-            "tasks_index", TaskDeleteView.message_success)
+            "tasks_index", TaskDeleteView.success_message)
         self.url_get_data_test(
             "tasks_index",
             expected_data=self.data["delete_expected"],

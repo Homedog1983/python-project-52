@@ -21,24 +21,6 @@ class LoginRequiredRedirectMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class SuccessMessageRedirectMixin:
-    """
-    Add a success message after successful form submission.
-    Attrs: message_success: str, url_name_success: str
-    """
-    url_name_success = "main_page"
-    message_success = _("All you wanted is succefully happened!")
-
-    def form_valid(self, form):
-        super().form_valid(form)
-        if self.message_success:
-            messages.success(self.request, self.message_success)
-        return redirect(reverse(self.url_name_success))
-
-    def get_success_url(self):
-        return reverse(self.url_name_success)
-
-
 class TaskUnusedRequaredDeletionMixin:
     '''
     Check object's usage in some task.
@@ -49,7 +31,6 @@ class TaskUnusedRequaredDeletionMixin:
     '''
     message_used_object = _('Unable to delete because it is used in task!')
     url_name_object_used = "main_page"
-    message_success = _("Object is deleted successfully!")
     url_name_success = "main_page"
 
     def is_task_used(self):
@@ -67,9 +48,7 @@ class TaskUnusedRequaredDeletionMixin:
         if self.is_task_used():
             messages.warning(self.request, self.message_used_object)
             return redirect(reverse(self.url_name_object_used))
-        messages.success(self.request, self.message_success)
-        self.object.delete()
-        return redirect(reverse(self.url_name_success))
+        return super().form_valid(form)
 
 
 class UserFullNameMixin:

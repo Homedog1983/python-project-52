@@ -4,9 +4,9 @@ from django.views.generic.edit import (
 from django.views.generic.list import ListView
 from .models import Status
 from .forms import StatusForm
+from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import (
     LoginRequiredRedirectMixin,
-    SuccessMessageRedirectMixin,
     TaskUnusedRequaredDeletionMixin)
 from .mixins import CommonStatusMixin
 
@@ -17,28 +17,27 @@ class StatusIndexView(LoginRequiredRedirectMixin, ListView):
 
 
 class StatusCreateView(
-        CommonStatusMixin, SuccessMessageRedirectMixin, CreateView):
+        CommonStatusMixin, SuccessMessageMixin, CreateView):
     form_class = StatusForm
     extra_context = {
-        'h1_value': _('Status creation'),
-        'button_value': _('Create'),
-    }
-    message_success = _("Status is created successfully")
+        'header': _('Status creation'),
+        'button_value': _('Create')}
+    success_message = _("Status is created successfully")
 
 
 class StatusUpdateView(
-        CommonStatusMixin, SuccessMessageRedirectMixin, UpdateView):
+        CommonStatusMixin, SuccessMessageMixin, UpdateView):
     form_class = StatusForm
     extra_context = {
         'header': _('Status update'),
-        'button_value': _('Update'),
-    }
-    message_success = _("Status is updated successfully")
+        'button_value': _('Update')}
+    success_message = _("Status is updated successfully")
 
 
 class StatusDeleteView(
-        CommonStatusMixin, TaskUnusedRequaredDeletionMixin, DeleteView):
+        CommonStatusMixin, TaskUnusedRequaredDeletionMixin,
+        SuccessMessageMixin, DeleteView):
 
     template_name = 'statuses/delete.html'
-    message_success = _("Status is deleted successfully")
+    success_message = _("Status is deleted successfully")
     url_name_success, url_name_object_used = 'statuses_index', 'statuses_index'

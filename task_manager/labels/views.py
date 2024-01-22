@@ -4,9 +4,9 @@ from django.views.generic.edit import (
 from django.views.generic.list import ListView
 from .models import Label
 from .forms import LabelForm
+from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import (
     LoginRequiredRedirectMixin,
-    SuccessMessageRedirectMixin,
     TaskUnusedRequaredDeletionMixin)
 from .mixins import CommonLabelMixin
 
@@ -17,28 +17,27 @@ class LabelIndexView(LoginRequiredRedirectMixin, ListView):
 
 
 class LabelCreateView(
-        CommonLabelMixin, SuccessMessageRedirectMixin, CreateView):
+        CommonLabelMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
     extra_context = {
-        'h1_value': _('Label creation'),
-        'button_value': _('Create'),
-    }
-    message_success = _("Label is created successfully")
+        'header': _('Label creation'),
+        'button_value': _('Create')}
+    success_message = _("Label is created successfully")
 
 
 class LabelUpdateView(
-        CommonLabelMixin, SuccessMessageRedirectMixin, UpdateView):
+        CommonLabelMixin, SuccessMessageMixin, UpdateView):
     form_class = LabelForm
     extra_context = {
         'header': _('Label update'),
-        'button_value': _('Update'),
-    }
-    message_success = _("Label is updated successfully")
+        'button_value': _('Update')}
+    success_message = _("Label is updated successfully")
 
 
 class LabelDeleteView(
-        CommonLabelMixin, TaskUnusedRequaredDeletionMixin, DeleteView):
+        CommonLabelMixin, TaskUnusedRequaredDeletionMixin,
+        SuccessMessageMixin, DeleteView):
 
     template_name = 'labels/delete.html'
-    message_success = _("Label is deleted successfully")
+    success_message = _("Label is deleted successfully")
     url_name_success, url_name_object_used = 'labels_index', 'labels_index'

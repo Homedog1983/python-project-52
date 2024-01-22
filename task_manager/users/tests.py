@@ -27,7 +27,7 @@ class UsersTestCase(CustomTestCase):
     def test_user_create(self):
         self.url_post_data_redirect_test(
             "users_create", None, self.data["create"],
-            "login", UserCreateView.message_success)
+            "login", UserCreateView.success_message)
         self.url_get_data_test(
             "users_index", expected_data=self.data["create_expected"])
 
@@ -52,7 +52,7 @@ class UsersTestCase(CustomTestCase):
         self.url_get_test("users_update", self.update_pk)
         self.url_post_data_redirect_test(
             "users_update", self.update_pk, self.data["update"],
-            "users_index", UserUpdateView.message_success)
+            "users_index", UserUpdateView.success_message)
         self.url_get_data_test(
             "users_index",
             expected_data=self.data["update_expected"],
@@ -79,7 +79,7 @@ class UsersTestCase(CustomTestCase):
         self.url_get_test("users_delete", self.delete_pk)
         self.url_post_data_redirect_test(
             "users_delete", self.delete_pk, self.data["delete"],
-            "users_index", UserDeleteView.message_success)
+            "users_index", UserDeleteView.success_message)
         self.url_get_data_test(
             "users_index",
             expected_data=self.data["delete_expected"],

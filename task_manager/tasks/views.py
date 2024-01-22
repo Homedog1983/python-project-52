@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import gettext as _
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
@@ -8,9 +8,9 @@ from django_filters.views import FilterView
 from .models import Task
 from .forms import TaskForm
 from .filter import TaskFilterSet
-from task_manager.mixins import (
-    LoginRequiredRedirectMixin, SuccessMessageRedirectMixin)
-from .mixins import CommonTaskMixin
+from django.contrib.messages.views import SuccessMessageMixin
+from .mixins import CommonTaskMixin, AutoAddCreatorMixin
+from task_manager.mixins import LoginRequiredRedirectMixin
 
 
 class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
@@ -18,48 +18,32 @@ class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
     template_name = 'tasks/index_filter.html'
 
 
-class AutoAddCreatorMixin:
-    """
-    Add authenticated user as task.creator
-    for creation, not change for updating.
-    After creator's saving it is proceed parent method
-    (allow save many2many relations by generic editing views)
-    ! Use after is_authenticated = True check !
-    """
-    def form_valid(self, form):
-        if self.request.method == 'POST':
-            task = form.save(commit=False)
-            try:
-                task.creator
-            except Task.creator.RelatedObjectDoesNotExist:
-                task.creator = self.request.user
-        super().form_valid(form)
-
-
-class TaskCreateView(CommonTaskMixin, AutoAddCreatorMixin, CreateView):
+class TaskCreateView(
+        CommonTaskMixin, AutoAddCreatorMixin,
+        SuccessMessageMixin, CreateView):
     form_class = TaskForm
     extra_context = {
-        'h1_value': _('Task creation'),
-        'button_value': _('Create'),
-    }
-    message_success = _("Task is created successfully!")
+        'header': _('Task creation'),
+        'button_value': _('Create')}
+    success_message = _("Task is created successfully!")
 
 
-class TaskUpdateView(CommonTaskMixin, AutoAddCreatorMixin, UpdateView):
+class TaskUpdateView(
+        CommonTaskMixin, AutoAddCreatorMixin,
+        SuccessMessageMixin, UpdateView):
     form_class = TaskForm
     extra_context = {
         'header': _('Task update'),
-        'button_value': _('Update'),
-    }
-    message_success = _("Task is updated successfully")
+        'button_value': _('Update')}
+    success_message = _("Task is updated successfully")
 
 
-class TaskDeleteView(SuccessMessageRedirectMixin, DeleteView):
+class TaskDeleteView(SuccessMessageMixin, DeleteView):
 
     model = Task
     template_name = 'tasks/delete.html'
-    url_name_success = "tasks_index"
-    message_success = _("Task is deleted successfully")
+    success_url = reverse_lazy("tasks_index")
+    success_message = _("Task is deleted successfully")
     message_not_authenticated = _(
         'You are not login. Please, login!')
     message_not_creator = _(

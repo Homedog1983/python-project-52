@@ -6,8 +6,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import (
-    TaskUnusedRequaredDeletionMixin)
+from task_manager.mixins import ObjectUnusedRequaredMixin
 from .mixins import (
     CommonUserDetailMixin, ChangeUserRedirectMixin)
 
@@ -42,9 +41,9 @@ class UserUpdateView(
 
 class UserDeleteView(
         ChangeUserRedirectMixin,
-        TaskUnusedRequaredDeletionMixin,
+        ObjectUnusedRequaredMixin,
         SuccessMessageMixin,
         DeleteView):
     template_name = 'users/delete.html'
     success_message = _("User is deleted successfully")
-    url_name_success, url_name_object_used = 'users_index', 'users_index'
+    url_name_object_used = 'users_index'

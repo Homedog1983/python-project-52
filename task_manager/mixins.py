@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.utils.translation import gettext as _
 from django.urls import reverse
 from django.contrib import messages
@@ -21,34 +21,51 @@ class LoginRequiredRedirectMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class TaskUnusedRequaredDeletionMixin:
+def is_object_used_in_task(object):
+    model_name = object.__class__.__name__
+    if model_name in ["Label", "Status"]:
+        return True if object.task_set.all() else False
+    # User had two related managers, both differ from task_set
+    if object.task_creator_set.all():
+        return True
+    if object.task_executor_set.all():
+        return True
+    return False
+
+
+class ObjectUnusedRequaredMixin:
     '''
     Check object's usage in some task.
-    If is used - prevent delete (redirect with message).
-    If isn't used - delete (redirect with message)
+    If is used - redirect with message.
     Attrs: message_used_object: str, url_name_object_used,
     message_success: str, url_name_success: str
     '''
     message_used_object = _('Unable to delete because it is used in task!')
     url_name_object_used = "main_page"
-    url_name_success = "main_page"
-
-    def is_task_used(self):
-        model_name = self.object.__class__.__name__
-        if model_name in ["Label", "Status"]:
-            return True if self.object.task_set.all() else False
-        # User had two related managers, both differ from task_set
-        if self.object.task_creator_set.all():
-            return True
-        if self.object.task_executor_set.all():
-            return True
-        return False
 
     def form_valid(self, form):
-        if self.is_task_used():
+        if is_object_used_in_task(self.object):
             messages.warning(self.request, self.message_used_object)
             return redirect(reverse(self.url_name_object_used))
         return super().form_valid(form)
+
+
+class CreatorRequaredRedirectMixin:
+    """ Creator requared (if not - redirect with message). """
+    message_not_creator = _(
+        'Object is possible to change for its creator only!')
+    url_name_not_creator = "main_page"
+
+    def dispatch(self, request, *args, **kwargs):
+        object = get_object_or_404(self.model, id=kwargs['pk'])
+        if self.model.__name__ == 'User':
+            requared_username = object.username
+        else:
+            requared_username = object.creator.username
+        if request.user.username != requared_username:
+            messages.warning(request, self.message_not_creator)
+            return redirect(reverse(self.url_name_not_creator))
+        return super().dispatch(request, *args, **kwargs)
 
 
 class UserFullNameMixin:

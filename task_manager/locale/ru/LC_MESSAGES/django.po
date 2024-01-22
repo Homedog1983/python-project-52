@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-21 13:46+0000\n"
+"POT-Creation-Date: 2024-01-22 16:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,28 +32,28 @@ msgid "Label creation"
 msgstr "Создание метки"
 
 #: task_manager/labels/views.py:24 task_manager/statuses/views.py:24
-#: task_manager/tasks/views.py:43
+#: task_manager/tasks/views.py:27
 msgid "Create"
 msgstr "Создать"
 
-#: task_manager/labels/views.py:26
+#: task_manager/labels/views.py:25
 msgid "Label is created successfully"
 msgstr "Метка успешно создана"
 
-#: task_manager/labels/views.py:33
+#: task_manager/labels/views.py:32
 msgid "Label update"
 msgstr "Изменение метки"
 
-#: task_manager/labels/views.py:34 task_manager/statuses/views.py:34
-#: task_manager/tasks/views.py:52 task_manager/users/views.py:39
+#: task_manager/labels/views.py:33 task_manager/statuses/views.py:33
+#: task_manager/tasks/views.py:37 task_manager/users/views.py:38
 msgid "Update"
 msgstr "Изменить"
 
-#: task_manager/labels/views.py:36
+#: task_manager/labels/views.py:34
 msgid "Label is updated successfully"
 msgstr "Метка успешно изменена"
 
-#: task_manager/labels/views.py:43
+#: task_manager/labels/views.py:42
 msgid "Label is deleted successfully"
 msgstr "Метка успешно удалена"
 
@@ -61,17 +61,13 @@ msgstr "Метка успешно удалена"
 msgid "You are not login. Please, login"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/mixins.py:30
-msgid "All you wanted is succefully happened!"
-msgstr "Все что вы хотели успешно произошло!"
-
-#: task_manager/mixins.py:50
+#: task_manager/mixins.py:43
 msgid "Unable to delete because it is used in task!"
 msgstr "Невозможно удалить, поскольку объект изспользуется в задаче!"
 
-#: task_manager/mixins.py:52
-msgid "Object is deleted successfully!"
-msgstr "Объект успешно удален!"
+#: task_manager/mixins.py:56
+msgid "Object is possible to change for its creator only!"
+msgstr "Объект может удалить только ее создатель!"
 
 #: task_manager/settings.py:176
 msgid "English"
@@ -85,19 +81,19 @@ msgstr "Русский"
 msgid "Status creation"
 msgstr "Создание статуса"
 
-#: task_manager/statuses/views.py:26
+#: task_manager/statuses/views.py:25
 msgid "Status is created successfully"
 msgstr "Статус успешно создан"
 
-#: task_manager/statuses/views.py:33
+#: task_manager/statuses/views.py:32
 msgid "Status update"
 msgstr "Изменение статуса"
 
-#: task_manager/statuses/views.py:36
+#: task_manager/statuses/views.py:34
 msgid "Status is updated successfully"
 msgstr "Статус успешно изменен"
 
-#: task_manager/statuses/views.py:43
+#: task_manager/statuses/views.py:42
 msgid "Status is deleted successfully"
 msgstr "Статус успешно удален"
 
@@ -138,31 +134,27 @@ msgstr "Создатель"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/tasks/views.py:42
+#: task_manager/tasks/views.py:26
 msgid "Task creation"
 msgstr "Создание задачи"
 
-#: task_manager/tasks/views.py:45
+#: task_manager/tasks/views.py:28
 msgid "Task is created successfully!"
 msgstr "Задача успешно создана!"
 
-#: task_manager/tasks/views.py:51
+#: task_manager/tasks/views.py:36
 msgid "Task update"
 msgstr "Изменение задачи"
 
-#: task_manager/tasks/views.py:54
+#: task_manager/tasks/views.py:38
 msgid "Task is updated successfully"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:62
+#: task_manager/tasks/views.py:45
 msgid "Task is deleted successfully"
 msgstr "Задача успешно удалена"
 
-#: task_manager/tasks/views.py:64
-msgid "You are not login. Please, login!"
-msgstr "Вы не в системе. Пожалуйста, залогиньтесь!"
-
-#: task_manager/tasks/views.py:66
+#: task_manager/tasks/views.py:48
 msgid "Task is possible to delete for its creator only!"
 msgstr "Задачу может удалить только ее создатель!"
 
@@ -415,7 +407,7 @@ msgstr "Пароль"
 msgid "Input more then 3 symbols, please."
 msgstr "Введите минимум 3 символа, пожалуйста."
 
-#: task_manager/users/mixins.py:21
+#: task_manager/users/mixins.py:25
 msgid "You are have not permission to change other user!"
 msgstr "Вы не имеете прав для изменения другого пользователя!"
 
@@ -423,19 +415,19 @@ msgstr "Вы не имеете прав для изменения другого
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: task_manager/users/views.py:29
+#: task_manager/users/views.py:28
 msgid "User is registered successfully"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/users/views.py:38
+#: task_manager/users/views.py:37
 msgid "User update"
 msgstr "Изменение пользователя"
 
-#: task_manager/users/views.py:41
+#: task_manager/users/views.py:39
 msgid "User is updated successfully"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:49
+#: task_manager/users/views.py:48
 msgid "User is deleted successfully"
 msgstr "Пользователь успешно удален"
 
@@ -446,6 +438,15 @@ msgstr "Вы залогинены"
 #: task_manager/views.py:22
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "All you wanted is succefully happened!"
+#~ msgstr "Все что вы хотели успешно произошло!"
+
+#~ msgid "Object is deleted successfully!"
+#~ msgstr "Объект успешно удален!"
+
+#~ msgid "You are not login. Please, login!"
+#~ msgstr "Вы не в системе. Пожалуйста, залогиньтесь!"
 
 #~ msgid "Submit"
 #~ msgstr "Подтвердить"

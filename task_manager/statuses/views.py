@@ -7,7 +7,7 @@ from .forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import (
     LoginRequiredRedirectMixin,
-    TaskUnusedRequaredDeletionMixin)
+    ObjectUnusedRequaredMixin)
 from .mixins import CommonStatusMixin
 
 
@@ -35,9 +35,9 @@ class StatusUpdateView(
 
 
 class StatusDeleteView(
-        CommonStatusMixin, TaskUnusedRequaredDeletionMixin,
+        CommonStatusMixin, ObjectUnusedRequaredMixin,
         SuccessMessageMixin, DeleteView):
 
     template_name = 'statuses/delete.html'
     success_message = _("Status is deleted successfully")
-    url_name_success, url_name_object_used = 'statuses_index', 'statuses_index'
+    url_name_object_used = 'statuses_index'

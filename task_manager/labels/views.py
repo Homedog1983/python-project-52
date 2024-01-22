@@ -7,7 +7,7 @@ from .forms import LabelForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import (
     LoginRequiredRedirectMixin,
-    TaskUnusedRequaredDeletionMixin)
+    ObjectUnusedRequaredMixin)
 from .mixins import CommonLabelMixin
 
 
@@ -35,9 +35,9 @@ class LabelUpdateView(
 
 
 class LabelDeleteView(
-        CommonLabelMixin, TaskUnusedRequaredDeletionMixin,
+        CommonLabelMixin, ObjectUnusedRequaredMixin,
         SuccessMessageMixin, DeleteView):
 
     template_name = 'labels/delete.html'
     success_message = _("Label is deleted successfully")
-    url_name_success, url_name_object_used = 'labels_index', 'labels_index'
+    url_name_object_used = 'labels_index'

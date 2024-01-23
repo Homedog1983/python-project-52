@@ -1,7 +1,5 @@
 from django_filters import FilterSet, BooleanFilter, ModelChoiceFilter
 from django.forms import CheckboxInput
-from django_filters.fields import ModelChoiceField
-from task_manager.mixins import UserFullNameMixin
 from .models import Task
 from task_manager.statuses.models import Status
 from django.contrib.auth.models import User
@@ -18,14 +16,6 @@ class CustomBooleanFilter(BooleanFilter):
         return qs
 
 
-class UserFullNameModelChoiceField(UserFullNameMixin, ModelChoiceField):
-    pass
-
-
-class UserFullNameModelChoiceFilter(ModelChoiceFilter):
-    field_class = UserFullNameModelChoiceField
-
-
 class TaskFilterSet(FilterSet):
 
     status = ModelChoiceFilter(
@@ -33,7 +23,7 @@ class TaskFilterSet(FilterSet):
         label=_('Status'),
         queryset=Status.objects.all())
 
-    executor = UserFullNameModelChoiceFilter(
+    executor = ModelChoiceFilter(
         field_name='executor',
         label=_('Executor'),
         queryset=User.objects.all())

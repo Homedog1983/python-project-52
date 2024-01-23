@@ -66,8 +66,3 @@ class CreatorRequaredRedirectMixin:
             messages.warning(request, self.message_not_creator)
             return redirect(reverse(self.url_name_not_creator))
         return super().dispatch(request, *args, **kwargs)
-
-
-class UserFullNameMixin:
-    def label_from_instance(self, obj):
-        return obj.get_full_name()

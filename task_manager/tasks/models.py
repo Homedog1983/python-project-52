@@ -2,11 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from task_manager.statuses.models import Status
 from task_manager.labels.models import Label
-from task_manager.mixins import UserFullNameMixin
 from django.utils.translation import gettext_lazy as _
 
 
-class Task(UserFullNameMixin, models.Model):
+class Task(models.Model):
     name = models.CharField(
         verbose_name=_('Name'),
         unique=True,
@@ -39,9 +38,3 @@ class Task(UserFullNameMixin, models.Model):
 
     def __str__(self):
         return self.name
-
-    def full_names(self):
-        return {
-            "creator": self.creator.get_full_name(),
-            "executor": self.executor.get_full_name() if self.executor else ''
-        }

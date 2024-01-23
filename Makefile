@@ -21,9 +21,12 @@ messages:
 	python manage.py makemessages -l ru
 compile:
 	python manage.py compilemessages
+commit:
+	git add -A
+	git commit
 amend:
 	git add -A
-	git commit --amend
+	git commit --amend --no-edit
 	git push --force
 test:
 	python manage.py test --noinput -v 2

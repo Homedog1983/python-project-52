@@ -21,6 +21,10 @@ messages:
 	python manage.py makemessages -l ru
 compile:
 	python manage.py compilemessages
+amend:
+	git add -A
+	git commit --amend
+	git push --force
 test:
 	python manage.py test --noinput -v 2
 test-coverage:

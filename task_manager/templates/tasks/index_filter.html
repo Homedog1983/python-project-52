@@ -58,7 +58,7 @@
         <td>{{ task.description }}</td>
         <td>{{ task.status }}</td>
         <td>{{ task.creator }}</td>
-        <td>{{ task.executor }}</td>
+        <td>{% firstof task.executor '' %}</td>
         <td>{{ task.creation_date }}</td>
         <td>
           <a href="{% url 'tasks_update' task.id %}" class="nav-link px-2 link-warning text-secondary">{{ change }}</a>

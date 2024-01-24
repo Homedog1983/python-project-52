@@ -9,3 +9,6 @@ class Label(models.Model):
 
     def __str__(self):
         return self.name
+
+    def is_used_in_task(self):
+        return True if self.task_set.all() else False

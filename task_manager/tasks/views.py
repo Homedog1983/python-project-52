@@ -21,7 +21,7 @@ class TaskCreateView(
     form_class = TaskForm
     extra_context = {
         'header': _('Task creation'),
-        'button_value': _('Create')}
+        'button_text': _('Create')}
     success_message = _("Task is created successfully!")
 
 
@@ -31,7 +31,7 @@ class TaskUpdateView(
     form_class = TaskForm
     extra_context = {
         'header': _('Task update'),
-        'button_value': _('Update')}
+        'button_text': _('Update')}
     success_message = _("Task is updated successfully")
 
 

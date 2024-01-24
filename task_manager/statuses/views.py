@@ -21,7 +21,7 @@ class StatusCreateView(
     form_class = StatusForm
     extra_context = {
         'header': _('Status creation'),
-        'button_value': _('Create')}
+        'button_text': _('Create')}
     success_message = _("Status is created successfully")
 
 
@@ -30,7 +30,7 @@ class StatusUpdateView(
     form_class = StatusForm
     extra_context = {
         'header': _('Status update'),
-        'button_value': _('Update')}
+        'button_text': _('Update')}
     success_message = _("Status is updated successfully")
 
 

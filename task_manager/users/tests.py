@@ -1,11 +1,11 @@
 from django.test import tag
-from task_manager.tests.conftests import CustomTestCase
+from task_manager.tests.conftests import BaseTestCase
 from task_manager.users.views import (
     UserCreateView, UserUpdateView, UserDeleteView)
 
 
 @tag("users")
-class UsersTestCase(CustomTestCase):
+class UsersTestCase(BaseTestCase):
     data_json = 'users-data.json'
 
     def setUp(self):

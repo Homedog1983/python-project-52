@@ -1,6 +1,5 @@
 from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
-# from django.contrib.auth.models import User
 from task_manager.users.models import CustomUser
 from task_manager.mixins import (
     LoginRequiredRedirectMixin, CreatorRequaredRedirectMixin)

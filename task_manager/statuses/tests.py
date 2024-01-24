@@ -1,11 +1,11 @@
 from django.test import tag
-from task_manager.tests.conftests import CustomTestCase
+from task_manager.tests.conftests import BaseTestCase
 from task_manager.statuses.views import (
     StatusIndexView, StatusCreateView, StatusUpdateView, StatusDeleteView)
 
 
 @tag("statuses")
-class StatusesTestCase(CustomTestCase):
+class StatusesTestCase(BaseTestCase):
     data_json = 'statuses-data.json'
 
     def setUp(self):

@@ -12,7 +12,7 @@ class TaskFilterSet(FilterSet):
         label=_('Label'),
         queryset=Label.objects.all())
 
-    def self_tasks_filter(self, queryset, name, value):
+    def logined_user_is_creator_filter(self, queryset, name, value):
         user = self.request.user
         if value:
             return queryset.filter(creator=user)
@@ -20,8 +20,8 @@ class TaskFilterSet(FilterSet):
 
     self_tasks = BooleanFilter(
         field_name="creator",
-        method='self_tasks_filter',
-        label=_("Self tasks only"),
+        method='logined_user_is_creator_filter',
+        label=_("Show only my tasks"),
         widget=CheckboxInput(attrs={'checked': False}))
 
     class Meta:

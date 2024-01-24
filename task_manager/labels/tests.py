@@ -1,11 +1,11 @@
 from django.test import tag
-from task_manager.tests.conftests import CustomTestCase
+from task_manager.tests.conftests import BaseTestCase
 from task_manager.labels.views import (
     LabelIndexView, LabelCreateView, LabelUpdateView, LabelDeleteView)
 
 
 @tag("labels")
-class StatusesTestCase(CustomTestCase):
+class StatusesTestCase(BaseTestCase):
     data_json = 'labels-data.json'
 
     def setUp(self):

@@ -21,7 +21,7 @@ class LabelCreateView(
     form_class = LabelForm
     extra_context = {
         'header': _('Label creation'),
-        'button_value': _('Create')}
+        'button_text': _('Create')}
     success_message = _("Label is created successfully")
 
 
@@ -30,7 +30,7 @@ class LabelUpdateView(
     form_class = LabelForm
     extra_context = {
         'header': _('Label update'),
-        'button_value': _('Update')}
+        'button_text': _('Update')}
     success_message = _("Label is updated successfully")
 
 

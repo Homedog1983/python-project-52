@@ -2,7 +2,7 @@ from json import load as json_load
 from os.path import splitext
 from task_manager.settings import BASE_DIR
 from django.urls import reverse
-from django.contrib.auth.models import User
+from task_manager.users.models import CustomUser
 from django.test import TestCase
 from django.test import Client
 
@@ -25,7 +25,7 @@ def get_content_from(path):
     return result
 
 
-class CustomTestCase(TestCase):
+class BaseTestCase(TestCase):
     fixtures = [
         "users-db.json",
         "statuses-db.json",
@@ -41,7 +41,7 @@ class CustomTestCase(TestCase):
         self.data = get_content_from(self.data_json)
 
     def make_login(self, username):
-        user = User.objects.get(username=username)
+        user = CustomUser.objects.get(username=username)
         self.client.force_login(user)
 
     def get_message(self, response):

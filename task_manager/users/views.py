@@ -3,7 +3,6 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
 from django.views.generic.list import ListView
-# from django.contrib.auth.models import User
 from task_manager.users.models import CustomUser
 from .forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
@@ -24,7 +23,7 @@ class UserCreateView(
     form_class = CustomUserCreationForm
     extra_context = {
         'header': _('Registration'),
-        'button_value': _('Register')}
+        'button_text': _('Register')}
     success_url = reverse_lazy("login")
     success_message = _("User is registered successfully")
 
@@ -36,7 +35,7 @@ class UserUpdateView(
     form_class = CustomUserCreationForm
     extra_context = {
         'header': _('User update'),
-        'button_value': _('Update')}
+        'button_text': _('Update')}
     success_message = _("User is updated successfully")
 
 

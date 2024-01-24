@@ -1,12 +1,11 @@
 from django.test import tag
-from task_manager.tests.conftests import CustomTestCase
+from task_manager.tests.conftests import BaseTestCase
 from task_manager.tasks.views import (
     FilterIndexView, TaskCreateView, TaskUpdateView, TaskDeleteView)
-# from django.urls import reverse
 
 
 @tag("tasks_crud")
-class TasksTestCase(CustomTestCase):
+class TasksTestCase(BaseTestCase):
     data_json = 'tasks-data.json'
 
     def setUp(self):
@@ -91,7 +90,7 @@ class TasksTestCase(CustomTestCase):
 
 
 @tag("tasks_filter")
-class TasksFilterTestCase(CustomTestCase):
+class TasksFilterTestCase(BaseTestCase):
     fixtures = [
         "users-db.json",
         "statuses-db.json",

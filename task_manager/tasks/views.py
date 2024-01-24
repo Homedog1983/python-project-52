@@ -7,10 +7,10 @@ from .filter import TaskFilterSet
 from django.contrib.messages.views import SuccessMessageMixin
 from .mixins import CommonTaskMixin, AutoAddCreatorMixin
 from task_manager.mixins import (
-    LoginRequiredRedirectMixin, CreatorRequaredRedirectMixin)
+    LoginRequiredMixin, CreatorRequaredMixin)
 
 
-class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
+class FilterIndexView(LoginRequiredMixin, FilterView):
     filterset_class = TaskFilterSet
     template_name = 'tasks/index_filter.html'
 
@@ -36,7 +36,7 @@ class TaskUpdateView(
 
 
 class TaskDeleteView(
-        CommonTaskMixin, CreatorRequaredRedirectMixin,
+        CommonTaskMixin, CreatorRequaredMixin,
         SuccessMessageMixin, DeleteView):
     template_name = 'tasks/delete.html'
     success_message = _("Task is deleted successfully")

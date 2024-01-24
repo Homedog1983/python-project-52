@@ -1,9 +1,9 @@
 from django.urls import reverse_lazy
 from .models import Status
-from task_manager.mixins import LoginRequiredRedirectMixin
+from task_manager.mixins import LoginRequiredMixin
 
 
-class CommonStatusMixin(LoginRequiredRedirectMixin):
+class CommonStatusMixin(LoginRequiredMixin):
     model = Status
     template_name = 'statuses/detail.html'
     success_url = reverse_lazy('statuses_index')

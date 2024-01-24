@@ -1,9 +1,9 @@
 from django.urls import reverse_lazy
 from .models import Task
-from task_manager.mixins import LoginRequiredRedirectMixin
+from task_manager.mixins import LoginRequiredMixin
 
 
-class CommonTaskMixin(LoginRequiredRedirectMixin):
+class CommonTaskMixin(LoginRequiredMixin):
     model = Task
     template_name = 'tasks/detail.html'
     success_url = reverse_lazy('tasks_index')

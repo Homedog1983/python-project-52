@@ -8,7 +8,7 @@ from .forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import ObjectUnusedRequaredMixin
 from .mixins import (
-    CommonUserDetailMixin, ChangeUserRedirectMixin)
+    CommonUserDetailMixin, ChangeUserMixin)
 
 
 class UserIndexView(ListView):
@@ -29,7 +29,7 @@ class UserCreateView(
 
 
 class UserUpdateView(
-        ChangeUserRedirectMixin,
+        ChangeUserMixin,
         SuccessMessageMixin,
         UpdateView):
     form_class = CustomUserCreationForm
@@ -40,7 +40,7 @@ class UserUpdateView(
 
 
 class UserDeleteView(
-        ChangeUserRedirectMixin,
+        ChangeUserMixin,
         ObjectUnusedRequaredMixin,
         SuccessMessageMixin,
         DeleteView):

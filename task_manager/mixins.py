@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib import messages
 
 
-class LoginRequiredRedirectMixin:
+class LoginRequiredMixin:
     """
     Requared login on dispath.
     If not - returns redirect('login') with message.
@@ -38,7 +38,7 @@ class ObjectUnusedRequaredMixin:
         return super().form_valid(form)
 
 
-class CreatorRequaredRedirectMixin:
+class CreatorRequaredMixin:
     """ Creator requared (if not - redirect with message). """
     message_not_creator = _(
         'Object is possible to change for its creator only!')
@@ -50,3 +50,6 @@ class CreatorRequaredRedirectMixin:
             messages.warning(request, self.message_not_creator)
             return redirect(reverse(self.url_name_not_creator))
         return super().dispatch(request, *args, **kwargs)
+
+
+# from django.contrib.auth.mixins import UserPassesTestMixin

@@ -6,12 +6,11 @@ from .models import Label
 from .forms import LabelForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import (
-    LoginRequiredRedirectMixin,
-    ObjectUnusedRequaredMixin)
+    LoginRequiredMixin, ObjectUnusedRequaredMixin)
 from .mixins import CommonLabelMixin
 
 
-class LabelIndexView(LoginRequiredRedirectMixin, ListView):
+class LabelIndexView(LoginRequiredMixin, ListView):
     model = Label
     template_name = 'labels/index.html'
 

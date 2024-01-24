@@ -58,7 +58,7 @@ class CreatorRequaredRedirectMixin:
 
     def dispatch(self, request, *args, **kwargs):
         object = get_object_or_404(self.model, id=kwargs['pk'])
-        if self.model.__name__ == 'User':
+        if self.model.__name__ == 'CustomUser':
             requared_username = object.username
         else:
             requared_username = object.creator.username

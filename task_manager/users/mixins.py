@@ -1,6 +1,7 @@
 from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from task_manager.users.models import CustomUser
 from task_manager.mixins import (
     LoginRequiredRedirectMixin, CreatorRequaredRedirectMixin)
 
@@ -10,7 +11,7 @@ class CommonUserDetailMixin:
     Common attrs for all instead IndexView.
     Use attr 'success_message' to define non-default message
     """
-    model = User
+    model = CustomUser
     template_name = 'users/detail.html'
 
 

@@ -3,7 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
 from django.views.generic.list import ListView
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from task_manager.users.models import CustomUser
 from .forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import ObjectUnusedRequaredMixin
@@ -12,7 +13,7 @@ from .mixins import (
 
 
 class UserIndexView(ListView):
-    model = User
+    model = CustomUser
     template_name = 'users/index.html'
 
 

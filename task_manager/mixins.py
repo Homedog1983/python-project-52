@@ -50,6 +50,3 @@ class CreatorRequaredMixin:
             messages.warning(request, self.message_not_creator)
             return redirect(reverse(self.url_name_not_creator))
         return super().dispatch(request, *args, **kwargs)
-
-
-# from django.contrib.auth.mixins import UserPassesTestMixin

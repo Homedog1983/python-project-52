@@ -1,10 +1,10 @@
 from django.utils.translation import gettext as _
 from django import forms
 from task_manager.users.models import CustomUser
-from django.contrib.auth.forms import BaseUserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
 
-class CustomUserCreationForm(BaseUserCreationForm):
+class CustomUserCreationForm(UserCreationForm):
 
     password1 = forms.CharField(
         label=_("Password"),
@@ -13,7 +13,7 @@ class CustomUserCreationForm(BaseUserCreationForm):
         help_text=_("Input more then 3 symbols, please."),
     )
 
-    class Meta(BaseUserCreationForm.Meta):
+    class Meta(UserCreationForm.Meta):
         model = CustomUser
         fields = [
             'first_name',
@@ -26,3 +26,10 @@ class CustomUserCreationForm(BaseUserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].required = True
         self.fields['last_name'].required = True
+
+    def clean_username(self):
+        """Reject usernames that differ only in case
+        and allow to use same username"""
+        if 'username' not in self.changed_data:
+            return self.cleaned_data.get("username")
+        return super().clean_username()

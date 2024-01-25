@@ -14,83 +14,91 @@ class UsersTestCase(BaseTestCase):
         self.delete_pk = self.data["delete"]["pk"]
         self.not_creator = self.auth["not_creator"]
         self.creator = self.auth["creator"]
-        self.delete_pk_task_used = self.data["delete_task_used"]["pk"]
-        self.task_used = self.auth["task_used"]
+        self.delete_pk_used_in_task = self.data["delete_used_in_task"]["pk"]
+        self.used_in_task = self.auth["used_in_task"]
 
 # users_index tests:
 
-    def test_users(self):
-        self.url_get_data_test(
+    def test_get_users(self):
+        self.check_for_response_data_after_get_request(
             "users_index",
             expected_data=self.data["users_expected"])
 
-    def test_user_create(self):
-        self.url_post_data_redirect_test(
+# users_create tests:
+
+    def test_post_users_create(self):
+        self.check_for_redirect_with_message_after_post_request(
             "users_create", None, self.data["create"],
             "login", UserCreateView.success_message)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "users_index", expected_data=self.data["create_expected"])
 
 # users_update tests:
 
-    def test_user_update_unlogined(self):
-        self.url_get_redirect_test(
+    def test_get_users_update_by_unlogged(self):
+        self.check_for_redirect_with_message_after_get_request(
             "users_update", self.update_pk,
             "login", UserUpdateView.message_not_authenticated)
 
-    def test_user_update_not_creator(self):
-        self.make_login(self.not_creator)
-        self.url_get_redirect_test(
+    def test_get_users_update_by_logged_not_creator(self):
+        self.make_logged_as(self.not_creator)
+        self.check_for_redirect_with_message_after_get_request(
             "users_update", self.update_pk,
             "users_index", UserUpdateView.message_not_creator)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "users_index",
             expected_data=self.data["users_expected"])
 
-    def test_user_update_creator(self):
-        self.make_login(self.creator)
-        self.url_get_test("users_update", self.update_pk)
-        self.url_post_data_redirect_test(
+    def test_dispatch_users_update_by_logged_creator(self):
+        self.make_logged_as(self.creator)
+        self.check_for_status_code_after_get_request(
+            "users_update", self.update_pk)
+        self.check_for_redirect_with_message_after_post_request(
             "users_update", self.update_pk, self.data["update"],
             "users_index", UserUpdateView.success_message)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "users_index",
             expected_data=self.data["update_expected"],
             not_expected_data=self.data["update_not_expected"])
 
 # users_delete tests:
 
-    def test_user_delete_unlogined(self):
-        self.url_get_redirect_test(
+    def test_get_users_delete_by_unlogged(self):
+        self.check_for_redirect_with_message_after_get_request(
             "users_delete", self.delete_pk,
             "login", UserDeleteView.message_not_authenticated)
 
-    def test_user_delete_not_creator(self):
-        self.make_login(self.not_creator)
-        self.url_get_redirect_test(
+    def test_dispatch_users_delete_by_logged_not_creator(self):
+        self.make_logged_as(self.not_creator)
+        self.check_for_redirect_with_message_after_get_request(
             "users_delete", self.delete_pk,
             "users_index", UserDeleteView.message_not_creator)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "users_index",
             expected_data=self.data["users_expected"])
 
-    def test_user_delete_creator_task_unused(self):
-        self.make_login(self.creator)
-        self.url_get_test("users_delete", self.delete_pk)
-        self.url_post_data_redirect_test(
+    def test_dispatch_users_delete_by_logged_creator_with_user_unused_in_task(
+            self):
+        self.make_logged_as(self.creator)
+        self.check_for_status_code_after_get_request(
+            "users_delete", self.delete_pk)
+        self.check_for_redirect_with_message_after_post_request(
             "users_delete", self.delete_pk, self.data["delete"],
             "users_index", UserDeleteView.success_message)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "users_index",
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
 
-    def test_user_delete_creator_task_used(self):
-        self.make_login(self.task_used)
-        self.url_get_test("users_delete", self.delete_pk_task_used)
-        self.url_post_data_redirect_test(
-            "users_delete", self.delete_pk_task_used, self.data["delete"],
+    def test_dispatch_users_delete_by_logged_creator_with_user_used_in_task(
+            self):
+        self.make_logged_as(self.used_in_task)
+        self.check_for_status_code_after_get_request(
+            "users_delete", self.delete_pk_used_in_task)
+        self.check_for_redirect_with_message_after_post_request(
+            "users_delete",
+            self.delete_pk_used_in_task, self.data["delete"],
             "users_index", UserDeleteView.message_used_object)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "users_index",
             expected_data=self.data["users_expected"])

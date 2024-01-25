@@ -12,77 +12,83 @@ class StatusesTestCase(BaseTestCase):
         super().setUp()
         self.update_pk = self.data["update"]["pk"]
         self.delete_pk = self.data["delete"]["pk"]
-        self.status_logined = self.auth["status_logined"]
-        self.delete_pk_task_used = self.data["delete_task_used"]["pk"]
+        self.logged = self.auth["statuses_logged"]
+        self.delete_pk_used_in_task = self.data["delete_used_in_task"]["pk"]
 
 # statuses_index tests:
 
-    def test_statuses_unlogined(self):
-        self.url_get_redirect_test(
+    def test_get_statuses_by_unlogged(self):
+        self.check_for_redirect_with_message_after_get_request(
             "statuses_index", None,
             "login", StatusIndexView.message_not_authenticated)
 
-    def test_statuses_logined(self):
-        self.make_login(self.status_logined)
-        self.url_get_data_test(
+    def test_get_statuses_by_logged(self):
+        self.make_logged_as(self.logged)
+        self.check_for_response_data_after_get_request(
             "statuses_index", expected_data=self.data["statuses_expected"])
 
 # statuses_create tests:
 
-    def test_status_create_unlogined(self):
-        self.url_get_redirect_test(
+    def test_get_statuses_create_by_unlogged(self):
+        self.check_for_redirect_with_message_after_get_request(
             "statuses_create", None,
             "login", StatusCreateView.message_not_authenticated)
 
-    def test_status_create_logined(self):
-        self.make_login(self.status_logined)
-        self.url_post_data_redirect_test(
+    def test_post_statuses_create_by_logged(self):
+        self.make_logged_as(self.logged)
+        self.check_for_redirect_with_message_after_post_request(
             "statuses_create", None, self.data["create"],
             "statuses_index", StatusCreateView.success_message)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "statuses_index", expected_data=self.data["create_expected"])
 
 # statuses_update tests:
 
-    def test_status_update_unlogined(self):
-        self.url_get_redirect_test(
+    def test_get_statuses_update_by_unlogged(self):
+        self.check_for_redirect_with_message_after_get_request(
             "statuses_update", self.update_pk,
             "login", StatusUpdateView.message_not_authenticated)
 
-    def test_status_update_logined(self):
-        self.make_login(self.status_logined)
-        self.url_get_test("statuses_update", self.update_pk)
-        self.url_post_data_redirect_test(
+    def test_dispatch_statuses_update_by_logged(self):
+        self.make_logged_as(self.logged)
+        self.check_for_status_code_after_get_request(
+            "statuses_update", self.update_pk)
+        self.check_for_redirect_with_message_after_post_request(
             "statuses_update", self.update_pk, self.data["update"],
             "statuses_index", StatusUpdateView.success_message)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "statuses_index",
             expected_data=self.data["update_expected"],
             not_expected_data=self.data["update_not_expected"])
 
 # statuses_delete tests:
 
-    def test_status_delete_unlogined(self):
-        self.url_get_redirect_test(
+    def test_get_statuses_delete_by_unlogged(self):
+        self.check_for_redirect_with_message_after_get_request(
             "statuses_delete", self.delete_pk,
             "login", StatusDeleteView.message_not_authenticated)
 
-    def test_status_delete_logined_task_unused(self):
-        self.make_login(self.status_logined)
-        self.url_get_test("statuses_delete", self.delete_pk)
-        self.url_post_data_redirect_test(
+    def test_dispatch_statuses_delete_by_logged_with_status_unused_in_task(
+            self):
+        self.make_logged_as(self.logged)
+        self.check_for_status_code_after_get_request(
+            "statuses_delete", self.delete_pk)
+        self.check_for_redirect_with_message_after_post_request(
             "statuses_delete", self.delete_pk, self.data["delete"],
             "statuses_index", StatusDeleteView.success_message)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "statuses_index",
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
 
-    def test_status_delete_logined_task_used(self):
-        self.make_login(self.status_logined)
-        self.url_get_test("statuses_delete", self.delete_pk_task_used)
-        self.url_post_data_redirect_test(
-            "statuses_delete", self.delete_pk_task_used, self.data["delete"],
+    def test_dispatch_statuses_delete_by_logged_with_status_used_in_task(
+            self):
+        self.make_logged_as(self.logged)
+        self.check_for_status_code_after_get_request(
+            "statuses_delete", self.delete_pk_used_in_task)
+        self.check_for_redirect_with_message_after_post_request(
+            "statuses_delete",
+            self.delete_pk_used_in_task, self.data["delete"],
             "statuses_index", StatusDeleteView.message_used_object)
-        self.url_get_data_test(
+        self.check_for_response_data_after_get_request(
             "statuses_index", expected_data=self.data["statuses_expected"])

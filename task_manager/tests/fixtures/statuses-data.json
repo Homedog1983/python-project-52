@@ -26,7 +26,7 @@
   "update_not_expected": [
     "Not yet"
   ],
-  "delete_task_used": {
+  "delete_used_in_task": {
     "pk": 1
   },
   "delete": {

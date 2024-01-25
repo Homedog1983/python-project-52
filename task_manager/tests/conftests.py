@@ -40,45 +40,48 @@ class BaseTestCase(TestCase):
     def setUp(self):
         self.data = get_content_from(self.data_json)
 
-    def make_login(self, username):
+    def make_logged_as(self, username):
         user = CustomUser.objects.get(username=username)
         self.client.force_login(user)
 
     def get_message(self, response):
         return list(response.context.get("messages"))[0].message
 
-    def redirect_with_message_test(
-            self, response, expected_url, expected_message):
-        self.assertEqual(expected_message, self.get_message(response))
-        self.assertRedirects(
-            response, reverse(expected_url), status_code=302,
-            target_status_code=200, fetch_redirect_response=True)
-
-    def url_get_test(self, url, pk, status_code=200):
+    def check_for_status_code_after_get_request(
+            self, request_url_name, pk, status_code=200):
         args = [pk, ] if pk else []
-        response = self.client.get(reverse(url, args=args))
+        response = self.client.get(reverse(request_url_name, args=args))
         self.assertEqual(response.status_code, status_code)
 
-    def url_get_data_test(
-            self, url, get_data={}, expected_data=[],
+    def check_for_redirect_with_message_in_response(
+            self, response, expected_url_name, expected_message):
+        self.assertEqual(expected_message, self.get_message(response))
+        self.assertRedirects(
+            response, reverse(expected_url_name), status_code=302,
+            target_status_code=200, fetch_redirect_response=True)
+
+    def check_for_redirect_with_message_after_get_request(
+            self, request_url_name, pk, redirect_url_name, expected_message):
+        args = [pk, ] if pk else []
+        response = self.client.get(
+            reverse(request_url_name, args=args), follow=True)
+        self.check_for_redirect_with_message_in_response(
+            response, redirect_url_name, expected_message)
+
+    def check_for_redirect_with_message_after_post_request(
+            self, request_url_name, pk, post_data,
+            redirect_url_name, message_expected):
+        args = [pk, ] if pk else []
+        response = self.client.post(
+            reverse(request_url_name, args=args), post_data, follow=True)
+        self.check_for_redirect_with_message_in_response(
+            response, redirect_url_name, message_expected)
+
+    def check_for_response_data_after_get_request(
+            self, request_url_name, get_data={}, expected_data=[],
             not_expected_data=[]):
-        response = self.client.get(reverse(url), get_data)
+        response = self.client.get(reverse(request_url_name), get_data)
         for elem in expected_data:
             self.assertContains(response, elem, status_code=200)
         for elem in not_expected_data:
             self.assertNotContains(response, elem, status_code=200)
-
-    def url_get_redirect_test(self, url, pk, url_redirect, expected_message):
-        args = [pk, ] if pk else []
-        response = self.client.get(
-            reverse(url, args=args), follow=True)
-        self.redirect_with_message_test(
-            response, url_redirect, expected_message)
-
-    def url_post_data_redirect_test(
-            self, url, pk, data, url_redirect, message_expected):
-        args = [pk, ] if pk else []
-        response = self.client.post(
-            reverse(url, args=args), data, follow=True)
-        self.redirect_with_message_test(
-            response, url_redirect, message_expected)

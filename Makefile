@@ -31,6 +31,8 @@ amend:
 	git push --force
 test:
 	python manage.py test --noinput -v 2
+test-tag:
+	python manage.py test --tag='labels' --noinput -v 2
 test-coverage:
 	coverage run --source='.' manage.py test
 	coverage xml

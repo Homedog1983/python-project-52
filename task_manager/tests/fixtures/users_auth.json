@@ -2,23 +2,23 @@
   "_users_specific": null,
   "creator": "user_1",
   "not_creator": "user_2",
-  "task_used": "user_2",
+  "used_in_task": "user_2",
   
   "_statuses_specific": null,
-  "status_logined": "user_3",
+  "statuses_logged": "user_3",
   
+  "_labels_specific": null,
+  "labels_logged": "user_3",
+
   "_tasks_specific": null,
-  "task_logined": "user_4",
-  "logined_create": "user_1",
-  "logined_update": "user_4",
+  "tasks_logged": "user_4",
+  "logged_create": "user_1",
+  "logged_update": "user_4",
   "not_creator_delete": "user_1",
   "creator_delete": "user_2",
 
   "_tasks_filter_specific": null,
-  "task_logined_1": "user_1",
-  "task_logined_2": "user_2",
-  "task_logined_3": "user_3",
-
-  "_labels_specific": null,
-  "label_logined": "user_3"
+  "tasks_logged_1": "user_1",
+  "tasks_logged_2": "user_2",
+  "tasks_logged_3": "user_3"
 }

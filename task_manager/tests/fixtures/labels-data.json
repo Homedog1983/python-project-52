@@ -23,7 +23,7 @@
   "update_not_expected": [
     "Beat"
   ],
-  "delete_task_used": {
+  "delete_used_in_task": {
     "pk": 2
   },
   "delete": {

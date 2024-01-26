@@ -18,45 +18,45 @@ class StatusesTestCase(BaseTestCase):
 # labels_index tests:
 
     def test_get_labels_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "labels_index", None,
             "login", LabelIndexView.message_not_authenticated)
 
     def test_get_labels_by_logged(self):
         self.make_logged_as(self.logged)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "labels_index", expected_data=self.data["labels_expected"])
 
 # labels_create tests:
 
     def test_get_labels_create_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "labels_create", None,
             "login", LabelCreateView.message_not_authenticated)
 
     def test_post_labels_create_by_logged(self):
         self.make_logged_as(self.logged)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "labels_create", None, self.data["create"],
             "labels_index", LabelCreateView.success_message)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "labels_index", expected_data=self.data["create_expected"])
 
 # labels_update tests:
 
     def test_get_labels_update_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "labels_update", self.update_pk,
             "login", LabelUpdateView.message_not_authenticated)
 
     def test_dispatch_labels_update_by_logged(self):
         self.make_logged_as(self.logged)
-        self.check_for_status_code_after_get_request(
+        self.assert_status_code_after_get_request(
             "labels_update", self.update_pk)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "labels_update", self.update_pk, self.data["update"],
             "labels_index", LabelUpdateView.success_message)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "labels_index",
             expected_data=self.data["update_expected"],
             not_expected_data=self.data["update_not_expected"])
@@ -64,19 +64,19 @@ class StatusesTestCase(BaseTestCase):
 # labels_delete tests:
 
     def test_get_labels_delete_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "labels_delete", self.delete_pk,
             "login", LabelDeleteView.message_not_authenticated)
 
     def test_dispatch_labels_delete_by_logged_with_label_unused_in_task(
             self):
         self.make_logged_as(self.logged)
-        self.check_for_status_code_after_get_request(
+        self.assert_status_code_after_get_request(
             "labels_delete", self.delete_pk)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "labels_delete", self.delete_pk, self.data["delete"],
             "labels_index", LabelDeleteView.success_message)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "labels_index",
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
@@ -84,11 +84,11 @@ class StatusesTestCase(BaseTestCase):
     def test_dispatch_labels_delete_by_logged_with_label_used_in_task(
             self):
         self.make_logged_as(self.logged)
-        self.check_for_status_code_after_get_request(
+        self.assert_status_code_after_get_request(
             "labels_delete", self.delete_pk_used_in_task)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "labels_delete",
             self.delete_pk_used_in_task, self.data["delete"],
             "labels_index", LabelDeleteView.message_used_object)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "labels_index", expected_data=self.data["labels_expected"])

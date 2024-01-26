@@ -8,10 +8,8 @@ class CustomUser(User):
     def __str__(self):
         return self.get_full_name()
 
-    def is_used_in_task(self):
-        if self.task_creator_set.all():
-            return True
-        if self.task_executor_set.all():
+    def is_object_in_use(self):
+        if self.task_creator_set.exists() or self.task_executor_set.exists():
             return True
         return False
 

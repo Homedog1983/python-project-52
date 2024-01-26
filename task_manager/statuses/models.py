@@ -10,5 +10,5 @@ class Status(models.Model):
     def __str__(self):
         return self.name
 
-    def is_used_in_task(self):
-        return True if self.task_set.all() else False
+    def is_object_in_use(self):
+        return True if self.task_set.exists() else False

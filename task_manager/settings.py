@@ -17,14 +17,13 @@ import dj_database_url
 from django.utils.translation import gettext_lazy as _
 
 
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-if "SECRET_KEY" not in os.environ:
-    load_dotenv()
-
-SECRET_KEY = os.getenv('SECRET_KEY')
-DATABASE_URL = os.getenv('DATABASE_URL', default='sqlite3')
 DEBUG = os.getenv('DEBUG', default=True)
+SECRET_KEY = os.getenv('SECRET_KEY')
+DATABASE_TYPE = os.getenv('DATABASE_TYPE', default='postgreSQL')
+DATABASE_URL = os.getenv('DATABASE_URL', default='sqlite3')
 ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN', default='ROLLBAR_TOKEN')
 
 ALLOWED_HOSTS = [
@@ -96,14 +95,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-if 'postgres' not in DATABASE_URL:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
+if DATABASE_TYPE == 'postgreSQL':
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
@@ -111,6 +103,14 @@ else:
             conn_health_checks=True
         ),
     }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'task_manager/tests/fixtures'), ]
 
@@ -151,10 +151,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = [
-    'task_manager/locale',
-]
-
+LOCALE_PATHS = [BASE_DIR / "task_manager/locale", ]
+print(LOCALE_PATHS)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

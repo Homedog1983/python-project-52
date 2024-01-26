@@ -22,46 +22,46 @@ class TasksTestCase(BaseTestCase):
 # tasks_index tests:
 
     def test_get_tasks_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "tasks_index", None,
             "login", FilterIndexView.message_not_authenticated)
 
     def test_get_tasks_by_logged(self):
         self.make_logged_as(self.logged)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "tasks_index", expected_data=self.data["tasks_expected"])
 
 # tasks_create tests:
 
     def test_get_tasks_create_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "tasks_create", None,
             "login", TaskCreateView.message_not_authenticated)
 
     def test_post_tasks_create_by_logged(self):
         self.make_logged_as(self.logged_create)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "tasks_create", None, self.data["create"],
             "tasks_index", TaskCreateView.success_message)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "tasks_index",
             expected_data=self.data["create_expected"])
 
 # tasks_update tests:
 
     def test_get_tasks_update_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "tasks_update", self.update_pk,
             "login", TaskUpdateView.message_not_authenticated)
 
     def test_dispatch_tasks_update_by_logged(self):
         self.make_logged_as(self.logged_update)
-        self.check_for_status_code_after_get_request(
+        self.assert_status_code_after_get_request(
             "tasks_update", self.update_pk)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "tasks_update", self.update_pk, self.data["update"],
             "tasks_index", TaskUpdateView.success_message)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "tasks_index",
             expected_data=self.data["update_expected"],
             not_expected_data=self.data["update_not_expected"])
@@ -69,24 +69,24 @@ class TasksTestCase(BaseTestCase):
 # tasks_delete tests:
 
     def test_get_task_delete_by_unlogged(self):
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "tasks_delete", self.delete_pk,
             "login", TaskDeleteView.message_not_authenticated)
 
     def test_get_task_delete_by_logged_not_creator(self):
         self.make_logged_as(self.not_creator_delete)
-        self.check_for_redirect_with_message_after_get_request(
+        self.assert_redirect_with_message_after_get_request(
             "tasks_delete", self.delete_pk,
             "tasks_index", TaskDeleteView.message_not_creator)
 
     def test_dispatch_task_delete_by_logged_creator(self):
         self.make_logged_as(self.creator_delete)
-        self.check_for_status_code_after_get_request(
+        self.assert_status_code_after_get_request(
             "tasks_delete", self.update_pk)
-        self.check_for_redirect_with_message_after_post_request(
+        self.assert_redirect_with_message_after_post_request(
             "tasks_delete", self.delete_pk, self.data["delete"],
             "tasks_index", TaskDeleteView.success_message)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "tasks_index",
             expected_data=self.data["delete_expected"],
             not_expected_data=self.data["delete_not_expected"])
@@ -114,61 +114,61 @@ class TasksFilterTestCase(BaseTestCase):
 
     def test_tasks_filter_without_filter(self):
         self.make_logged_as(self.logged_1)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             "tasks_index", expected_data=self.data["initial_expected"])
 
     def test_tasks_filter_by_status_only(self):
         self.make_logged_as(self.logged_1)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["only_status"],
             expected_data=self.data["only_status_expected"],
             not_expected_data=self.data["only_status_not_expected"])
 
     def test_tasks_filter_by_executor_only(self):
         self.make_logged_as(self.logged_1)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["only_executor"],
             expected_data=self.data["only_executor_expected"],
             not_expected_data=self.data["only_executor_not_expected"])
 
     def test_tasks_filter_by_labels_only(self):
         self.make_logged_as(self.logged_1)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["only_labels"],
             expected_data=self.data["only_labels_expected"],
             not_expected_data=self.data["only_labels_not_expected"])
 
     def test_tasks_filter_by_creator_1_only(self):
         self.make_logged_as(self.logged_1)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["self_tasks"],
             expected_data=self.data["self_tasks_1_expected"],
             not_expected_data=self.data["self_tasks_1_not_expected"])
 
     def test_tasks_filter_by_creator_2_only(self):
         self.make_logged_as(self.logged_2)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["self_tasks"],
             expected_data=self.data["self_tasks_2_expected"],
             not_expected_data=self.data["self_tasks_2_not_expected"])
 
     def test_tasks_filter_by_creator_3_only(self):
         self.make_logged_as(self.logged_3)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["self_tasks"],
             expected_data=self.data["self_tasks_3_expected"],
             not_expected_data=self.data["self_tasks_3_not_expected"])
 
     def test_tasks_filter_by_creator_3_complex_1(self):
         self.make_logged_as(self.logged_3)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["complex_user_3_1"],
             expected_data=self.data["complex_user_3_1_expected"],
             not_expected_data=self.data["complex_user_3_1_not_expected"])
 
     def test_tasks_filter_by_creator_3_complex_2(self):
         self.make_logged_as(self.logged_3)
-        self.check_for_response_data_after_get_request(
+        self.assert_response_data_after_get_request(
             self.filter_url, get_data=self.data["complex_user_3_2"],
             expected_data=self.data["complex_user_3_2_expected"],
             not_expected_data=self.data["complex_user_3_2_not_expected"])

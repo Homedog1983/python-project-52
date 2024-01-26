@@ -32,7 +32,7 @@ class ObjectUnusedRequaredMixin:
     url_name_object_used = "main_page"
 
     def form_valid(self, form):
-        if self.object.is_used_in_task():
+        if self.object.is_object_in_use():
             messages.warning(self.request, self.message_used_object)
             return redirect(reverse(self.url_name_object_used))
         return super().form_valid(form)

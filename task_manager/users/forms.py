@@ -30,6 +30,7 @@ class CustomUserCreationForm(UserCreationForm):
     def clean_username(self):
         """Reject usernames that differ only in case
         and allow to use same username"""
-        if 'username' not in self.changed_data:
-            return self.cleaned_data.get("username")
-        return super().clean_username()
+
+        if 'username' in self.changed_data:
+            return super().clean_username()
+        return self.cleaned_data.get("username")

@@ -2,7 +2,7 @@ from django.utils.translation import gettext as _
 from django.urls import reverse_lazy
 from task_manager.users.models import CustomUser
 from task_manager.mixins import (
-    LoginRequiredMixin, CreatorRequaredMixin)
+    LoginRequiredRedirectMixin, CreatorRequaredMixin)
 
 
 class CommonUserDetailMixin:
@@ -15,7 +15,7 @@ class CommonUserDetailMixin:
 
 
 class ChangeUserMixin(
-        LoginRequiredMixin,
+        LoginRequiredRedirectMixin,
         CreatorRequaredMixin,
         CommonUserDetailMixin):
     """ Required common mixin's sequence for user's update and delete."""

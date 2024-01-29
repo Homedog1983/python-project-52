@@ -6,11 +6,11 @@ from .models import Status
 from .forms import StatusForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import (
-    LoginRequiredMixin, ObjectUnusedRequaredMixin)
+    LoginRequiredRedirectMixin, ObjectUnusedRequaredMixin)
 from .mixins import CommonStatusMixin
 
 
-class StatusIndexView(LoginRequiredMixin, ListView):
+class StatusIndexView(LoginRequiredRedirectMixin, ListView):
     model = Status
     template_name = 'statuses/index.html'
 

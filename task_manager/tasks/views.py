@@ -5,18 +5,18 @@ from django_filters.views import FilterView
 from .forms import TaskForm
 from .filter import TaskFilterSet
 from django.contrib.messages.views import SuccessMessageMixin
-from .mixins import CommonTaskMixin, AutoAddCreatorMixin
+from .mixins import CommonTaskMixin, AddCreatorMixin
 from task_manager.mixins import (
-    LoginRequiredMixin, CreatorRequaredMixin)
+    LoginRequiredRedirectMixin, CreatorRequaredMixin)
 
 
-class FilterIndexView(LoginRequiredMixin, FilterView):
+class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
     filterset_class = TaskFilterSet
     template_name = 'tasks/index_filter.html'
 
 
 class TaskCreateView(
-        CommonTaskMixin, AutoAddCreatorMixin,
+        CommonTaskMixin, AddCreatorMixin,
         SuccessMessageMixin, CreateView):
     form_class = TaskForm
     extra_context = {
@@ -26,7 +26,7 @@ class TaskCreateView(
 
 
 class TaskUpdateView(
-        CommonTaskMixin, AutoAddCreatorMixin,
+        CommonTaskMixin,
         SuccessMessageMixin, UpdateView):
     form_class = TaskForm
     extra_context = {

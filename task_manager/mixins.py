@@ -4,9 +4,7 @@ from django.urls import reverse
 from django.contrib import messages
 # from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-# import rollbar
-# rollbar.init('POST_SERVER_ITEM_ACCESS_TOKEN', 'dev')
+import rollbar
 
 
 class LoginRequiredRedirectMixin(LoginRequiredMixin):
@@ -34,12 +32,13 @@ class ObjectUnusedRequaredMixin:
     def form_valid(self, form):
         try:
             getattr(self.object, 'is_object_in_use')
+            print('method is_object_in_use is exist')
             if self.object.is_object_in_use():
                 messages.warning(self.request, self.message_used_object)
                 return redirect(reverse(self.url_name_object_used))
             return super().form_valid(form)
         except AttributeError:
-            # rollbar.report_message(__rollbar_message, 'fatal')
+            rollbar.report_message(self.__rollbar_message, 'fatal')
             messages.warning(self.request, self.__message_object_has_not_attr)
             return redirect(reverse(self.url_name_object_used))
 

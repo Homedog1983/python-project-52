@@ -24,7 +24,16 @@ DEBUG = os.getenv('DEBUG', default=True)
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_TYPE = os.getenv('DATABASE_TYPE', default='postgreSQL')
 DATABASE_URL = os.getenv('DATABASE_URL', default='sqlite3')
-ROLLBAR_TOKEN = os.getenv('ROLLBAR_TOKEN', default='ROLLBAR_TOKEN')
+
+# ROLLBAR TOKENS:
+
+RB_READ_TOKEN = os.getenv('RB_READ_TOKEN', default='RB_READ_TOKEN')
+RB_WRITE_TOKEN = os.getenv('RB_WRITE_TOKEN', default='RB_WRITE_TOKEN')
+RB_POST_SERVER_ITEM_TOKEN = os.getenv(
+    'RB_POST_SERVER_ITEM_TOKEN', default='RB_POST_SERVER_ITEM_TOKEN')
+RB_POST_CLIENT_ITEM_TOKEN = os.getenv(
+    'RB_POST_CLIENT_ITEM_TOKEN', default='RB_POST_CLIENT_ITEM_TOKEN')
+
 
 ALLOWED_HOSTS = [
     "localhost",
@@ -152,7 +161,6 @@ USE_I18N = True
 USE_TZ = True
 
 LOCALE_PATHS = [BASE_DIR / "task_manager/locale", ]
-print(LOCALE_PATHS)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -226,7 +234,7 @@ BOOTSTRAP5 = {
 }
 
 ROLLBAR = {
-    'access_token': ROLLBAR_TOKEN,
+    'access_token': RB_POST_SERVER_ITEM_TOKEN,
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,

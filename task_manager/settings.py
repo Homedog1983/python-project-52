@@ -20,19 +20,19 @@ from django.utils.translation import gettext_lazy as _
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = os.getenv('DEBUG', default=True)
+DEBUG = os.getenv('DEBUG', default=False)
 SECRET_KEY = os.getenv('SECRET_KEY')
 DATABASE_TYPE = os.getenv('DATABASE_TYPE', default='postgreSQL')
-DATABASE_URL = os.getenv('DATABASE_URL', default='sqlite3')
+DATABASE_URL = os.getenv('DATABASE_URL', default='DATABASE_URL')
 
 # ROLLBAR TOKENS:
 
-RB_READ_TOKEN = os.getenv('RB_READ_TOKEN', default='RB_READ_TOKEN')
-RB_WRITE_TOKEN = os.getenv('RB_WRITE_TOKEN', default='RB_WRITE_TOKEN')
+# RB_READ_TOKEN = os.getenv('RB_READ_TOKEN', default='RB_READ_TOKEN')
+# RB_WRITE_TOKEN = os.getenv('RB_WRITE_TOKEN', default='RB_WRITE_TOKEN')
 RB_POST_SERVER_ITEM_TOKEN = os.getenv(
     'RB_POST_SERVER_ITEM_TOKEN', default='RB_POST_SERVER_ITEM_TOKEN')
-RB_POST_CLIENT_ITEM_TOKEN = os.getenv(
-    'RB_POST_CLIENT_ITEM_TOKEN', default='RB_POST_CLIENT_ITEM_TOKEN')
+# RB_POST_CLIENT_ITEM_TOKEN = os.getenv(
+#     'RB_POST_CLIENT_ITEM_TOKEN', default='RB_POST_CLIENT_ITEM_TOKEN')
 
 
 ALLOWED_HOSTS = [

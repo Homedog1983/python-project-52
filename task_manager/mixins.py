@@ -1,19 +1,21 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
-from django.urls import reverse
-from django.contrib import messages
 # from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-import rollbar
+from task_manager.functions import (
+    redirect_with_warning_message,
+    redirect_with_send_report_and_warning_message)
 
 
 class LoginRequiredRedirectMixin(LoginRequiredMixin):
     message_not_authenticated = _(
         'You are not login. Please, login')
+    __redirect_url_name = 'login'
 
     def handle_no_permission(self):
-        messages.warning(self.request, self.message_not_authenticated)
-        return redirect(reverse('login'))
+        return redirect_with_warning_message(
+            self.request, self.message_not_authenticated,
+            self.__redirect_url_name)
 
 
 class ObjectUnusedRequaredMixin:
@@ -27,20 +29,21 @@ class ObjectUnusedRequaredMixin:
     url_name_object_used = "main_page"
     __message_object_has_not_attr = _(
         'Enternal error: Unable to delete object!')
-    __rollbar_message = _("Object has not attr is_object_in_use")
+    __report_message = _("Object has not attr is_object_in_use")
 
     def form_valid(self, form):
         try:
             getattr(self.object, 'is_object_in_use')
-            print('method is_object_in_use is exist')
             if self.object.is_object_in_use():
-                messages.warning(self.request, self.message_used_object)
-                return redirect(reverse(self.url_name_object_used))
+                return redirect_with_warning_message(
+                    self.request, self.message_used_object,
+                    self.url_name_object_used)
             return super().form_valid(form)
         except AttributeError:
-            rollbar.report_message(self.__rollbar_message, 'fatal')
-            messages.warning(self.request, self.__message_object_has_not_attr)
-            return redirect(reverse(self.url_name_object_used))
+            return redirect_with_send_report_and_warning_message(
+                self.__report_message, self.request,
+                self.__message_object_has_not_attr,
+                self.url_name_object_used)
 
 
 class CreatorRequaredMixin:
@@ -53,8 +56,9 @@ class CreatorRequaredMixin:
         if request.method == "GET":
             object = get_object_or_404(self.model, id=kwargs['pk'])
             if request.user.username != object.get_creator_username():
-                messages.warning(request, self.message_not_creator)
-                return redirect(reverse(self.url_name_not_creator))
+                return redirect_with_warning_message(
+                    request, self.message_not_creator,
+                    self.url_name_not_creator)
         return super().dispatch(request, *args, **kwargs)
 
 

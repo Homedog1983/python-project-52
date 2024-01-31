@@ -11,4 +11,4 @@ class Status(models.Model):
         return self.name
 
     def is_object_in_use(self):
-        return True if self.task_set.exists() else False
+        return self.task_set.exists()

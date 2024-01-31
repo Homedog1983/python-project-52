@@ -9,9 +9,7 @@ class CustomUser(User):
         return self.get_full_name()
 
     def is_object_in_use(self):
-        if self.task_creator_set.exists() or self.task_executor_set.exists():
-            return True
-        return False
+        return self.task_creator_set.exists() | self.task_executor_set.exists()
 
-    def get_creator_username(self):
-        return self.username
+    def get_creator(self):
+        return self

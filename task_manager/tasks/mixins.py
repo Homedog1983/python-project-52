@@ -1,14 +1,3 @@
-from django.urls import reverse_lazy
-from .models import Task
-from task_manager.mixins import LoginRequiredRedirectMixin
-
-
-class CommonTaskMixin(LoginRequiredRedirectMixin):
-    model = Task
-    template_name = 'tasks/detail.html'
-    success_url = reverse_lazy('tasks_index')
-
-
 class AddCreatorMixin:
     """
     Add authenticated user as task.creator

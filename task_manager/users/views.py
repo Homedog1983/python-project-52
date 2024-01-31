@@ -7,8 +7,7 @@ from task_manager.users.models import CustomUser
 from .forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import ObjectUnusedRequaredMixin
-from .mixins import (
-    CommonUserDetailMixin, ChangeUserMixin)
+from .mixins import ChangeUserMixin
 
 
 class UserIndexView(ListView):
@@ -17,9 +16,10 @@ class UserIndexView(ListView):
 
 
 class UserCreateView(
-        CommonUserDetailMixin,
         SuccessMessageMixin,
         CreateView):
+    model = CustomUser
+    template_name = 'users/detail.html'
     form_class = CustomUserCreationForm
     extra_context = {
         'header': _('Registration'),
@@ -32,6 +32,8 @@ class UserUpdateView(
         ChangeUserMixin,
         SuccessMessageMixin,
         UpdateView):
+    model = CustomUser
+    template_name = 'users/detail.html'
     form_class = CustomUserCreationForm
     extra_context = {
         'header': _('User update'),
@@ -44,6 +46,8 @@ class UserDeleteView(
         ObjectUnusedRequaredMixin,
         SuccessMessageMixin,
         DeleteView):
+    model = CustomUser
+    template_name = 'users/detail.html'
     template_name = 'users/delete.html'
     success_message = _("User is deleted successfully")
     url_name_object_used = 'users_index'

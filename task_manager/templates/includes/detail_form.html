@@ -11,7 +11,7 @@
   {% for field in form %}
   
   <div class="fieldWrapper mb-3">
-    {% bootstrap_field field placeholder='' show_help=False exclude=exclude_field_names %}
+    {% bootstrap_field field show_help=False %}
     {% if field.help_text %}
       <div class="form-text text-warning mb-3">
         {{ field.help_text|safe }}

@@ -9,4 +9,4 @@ coverage.xml
 .pytest_cache/
 .vim
 .vscode/
-.sqlite3
+*.sqlite3

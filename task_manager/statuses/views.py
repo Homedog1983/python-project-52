@@ -23,7 +23,7 @@ class StatusCreateView(
         'header': _('Status creation'),
         'button_text': _('Create')}
     success_message = _("Status is created successfully")
-    template_name = 'statuses/detail.html'
+    template_name = 'statuses/form.html'
     success_url = reverse_lazy('statuses_index')
 
 
@@ -35,7 +35,7 @@ class StatusUpdateView(
         'header': _('Status update'),
         'button_text': _('Update')}
     success_message = _("Status is updated successfully")
-    template_name = 'statuses/detail.html'
+    template_name = 'statuses/form.html'
     success_url = reverse_lazy('statuses_index')
 
 

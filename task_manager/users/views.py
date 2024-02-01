@@ -19,7 +19,7 @@ class UserCreateView(
         SuccessMessageMixin,
         CreateView):
     model = CustomUser
-    template_name = 'users/detail.html'
+    template_name = 'users/form.html'
     form_class = CustomUserCreationForm
     extra_context = {
         'header': _('Registration'),
@@ -33,7 +33,7 @@ class UserUpdateView(
         SuccessMessageMixin,
         UpdateView):
     model = CustomUser
-    template_name = 'users/detail.html'
+    template_name = 'users/form.html'
     form_class = CustomUserCreationForm
     extra_context = {
         'header': _('User update'),
@@ -47,7 +47,6 @@ class UserDeleteView(
         SuccessMessageMixin,
         DeleteView):
     model = CustomUser
-    template_name = 'users/detail.html'
     template_name = 'users/delete.html'
     success_message = _("User is deleted successfully")
     url_name_object_used = 'users_index'

@@ -19,7 +19,7 @@ class LabelCreateView(
         LoginRequiredRedirectMixin, SuccessMessageMixin, CreateView):
     model = Label
     form_class = LabelForm
-    template_name = 'labels/detail.html'
+    template_name = 'labels/form.html'
     extra_context = {
         'header': _('Label creation'),
         'button_text': _('Create')}
@@ -31,7 +31,7 @@ class LabelUpdateView(
         LoginRequiredRedirectMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
-    template_name = 'labels/detail.html'
+    template_name = 'labels/form.html'
     extra_context = {
         'header': _('Label update'),
         'button_text': _('Update')}

@@ -201,7 +201,7 @@ BOOTSTRAP5 = {
     'horizontal_field_offset_class': 'offset-sm-2',
 
     # Set placeholder attributes to label if no placeholder is provided.
-    'set_placeholder': True,
+    'set_placeholder': False,
 
     # Class to indicate required field (better to set this in your Django form).
     # 'required_css_class': '',

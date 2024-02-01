@@ -32,7 +32,7 @@ class ObjectUnusedRequaredMixin:
 
     def form_valid(self, form):
         if not hasattr(self.object, 'is_object_in_use'):
-            rollbar.report_message(self.report_message, "fatal")
+            rollbar.report_message(self.report_message)
             messages.warning(self.request, self.message_object_has_not_attr)
             return redirect(reverse(self.url_name_object_used))
         if self.object.is_object_in_use():
@@ -41,35 +41,16 @@ class ObjectUnusedRequaredMixin:
         return super().form_valid(form)
 
 
-# class CreatorRequaredMixin:
-#     """ Creator requared (if not - redirect with message). """
-#     message_not_creator = _(
-#         'Object is possible to change for its creator only!')
-#     url_name_not_creator = "main_page"
-
-#     def dispatch(self, request, *args, **kwargs):
-#         print("request.method: ", self.request.method)
-#         print("get object from DB")
-#         object = self.get_object()
-#         if request.user != object.get_creator():
-#             messages.warning(self.request, self.message_not_creator)
-#             return redirect(reverse(self.url_name_not_creator))
-#         return super().dispatch(request, *args, **kwargs)
-
-
 class CreatorRequaredMixin(UserPassesTestMixin):
     message_not_creator = _(
         'Object is possible to change for its creator only!')
     url_name_not_creator = "main_page"
 
     def test_func(self):
-        print("use test func - get object from DB")
         object = self.get_object()
         return self.request.user == object.get_creator()
 
     def dispatch(self, request, *args, **kwargs):
-        print("dispatch")
-        print("request.method: ", self.request.method)
         if not self.test_func():
             messages.warning(self.request, self.message_not_creator)
             return redirect(reverse(self.url_name_not_creator))

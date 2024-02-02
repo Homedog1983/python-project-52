@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-02 06:13+0000\n"
+"POT-Creation-Date: 2024-02-02 06:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgid "Label update"
 msgstr "Изменение метки"
 
 #: task_manager/labels/views.py:37 task_manager/statuses/views.py:36
-#: task_manager/tasks/views.py:45 task_manager/users/views.py:42
+#: task_manager/tasks/views.py:44 task_manager/users/views.py:42
 msgid "Update"
 msgstr "Изменить"
 
@@ -149,15 +149,15 @@ msgstr "Создание задачи"
 msgid "Task is created successfully!"
 msgstr "Задача успешно создана!"
 
-#: task_manager/tasks/views.py:44
+#: task_manager/tasks/views.py:43
 msgid "Task update"
 msgstr "Изменение задачи"
 
-#: task_manager/tasks/views.py:46
+#: task_manager/tasks/views.py:45
 msgid "Task is updated successfully"
 msgstr "Задача успешно изменена"
 
-#: task_manager/tasks/views.py:56
+#: task_manager/tasks/views.py:55
 msgid "Task is deleted successfully"
 msgstr "Задача успешно удалена"
 
@@ -240,7 +240,7 @@ msgstr "Хекслет. Практические курсы по програм�
 
 #: task_manager/templates/index.html:25
 msgid "The project strengthens skills, including"
-msgstr "Проект тренирует навыки, в том"
+msgstr "Проект тренирует навыки, в том числе"
 
 #: task_manager/templates/index.html:28
 msgid ""

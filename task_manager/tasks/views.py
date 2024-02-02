@@ -30,8 +30,7 @@ class TaskCreateView(
 
     def form_valid(self, form):
         if self.request.method == 'POST':
-            task = form.save(commit=False)
-            task.creator = self.request.user
+            form.instance.creator = self.request.user
         return super().form_valid(form)
 
 

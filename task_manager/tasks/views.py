@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from task_manager.tasks.models import Task
 from django_filters.views import FilterView
 from django.views.generic.edit import (

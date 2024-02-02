@@ -1,4 +1,4 @@
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from task_manager.users.models import CustomUser
 from django.contrib.auth.forms import UserCreationForm
 

@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import (
     CreateView, UpdateView, DeleteView)
 from django.views.generic.list import ListView

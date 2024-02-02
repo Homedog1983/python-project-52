@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-01 11:28+0000\n"
+"POT-Creation-Date: 2024-02-02 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,25 +57,21 @@ msgstr "Метка успешно изменена"
 msgid "Label is deleted successfully"
 msgstr "Метка успешно удалена"
 
-#: task_manager/mixins.py:12
+#: task_manager/mixins.py:10
 msgid "You are not login. Please, login"
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/mixins.py:27
+#: task_manager/mixins.py:25
 msgid "Unable to delete because it is used in task!"
 msgstr "Невозможно удалить, поскольку объект изспользуется в задаче!"
 
-#: task_manager/mixins.py:30
+#: task_manager/mixins.py:28
 msgid "Enternal error: Unable to delete object!"
 msgstr "Внутренняя ошибка: Невозможно удалить объект!"
 
-#: task_manager/mixins.py:31
+#: task_manager/mixins.py:29
 msgid "Object has not attr is_object_in_use"
 msgstr "Объект не имеет атрибута is_object_in_use"
-
-#: task_manager/mixins.py:46
-msgid "Object is possible to change for its creator only!"
-msgstr "Объект может удалить только ее создатель!"
 
 #: task_manager/settings.py:153
 msgid "English"
@@ -112,6 +108,10 @@ msgstr "Метка"
 #: task_manager/tasks/filter.py:24
 msgid "Show only my tasks"
 msgstr "Только свои задачи"
+
+#: task_manager/tasks/mixins.py:10
+msgid "Task is possible to delete for its creator only!"
+msgstr "Задачу может удалить только ее создатель!"
 
 #: task_manager/tasks/models.py:14
 #: task_manager/templates/tasks/index_filter.html:34
@@ -160,10 +160,6 @@ msgstr "Задача успешно изменена"
 #: task_manager/tasks/views.py:56
 msgid "Task is deleted successfully"
 msgstr "Задача успешно удалена"
-
-#: task_manager/tasks/views.py:59
-msgid "Task is possible to delete for its creator only!"
-msgstr "Задачу может удалить только ее создатель!"
 
 #: task_manager/templates/404.html:12
 msgid "There are not the page you're looking for."
@@ -406,9 +402,13 @@ msgstr "Имя пользователя"
 msgid "Full name"
 msgstr "Полное имя"
 
-#: task_manager/users/forms.py:23
+#: task_manager/users/forms.py:22
 msgid "Input more then 3 symbols, please."
 msgstr "Введите минимум 3 символа, пожалуйста."
+
+#: task_manager/users/mixins.py:10
+msgid "You are have not permission to change other user!"
+msgstr "Вы не имеете прав для изменения другого пользователя!"
 
 #: task_manager/users/views.py:27
 msgid "Register"
@@ -426,11 +426,7 @@ msgstr "Изменение пользователя"
 msgid "User is updated successfully"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:47 task_manager/users/views.py:63
-msgid "You are have not permission to change other user!"
-msgstr "Вы не имеете прав для изменения другого пользователя!"
-
-#: task_manager/users/views.py:58
+#: task_manager/users/views.py:55
 msgid "User is deleted successfully"
 msgstr "Пользователь успешно удален"
 
@@ -441,6 +437,9 @@ msgstr "Вы залогинены"
 #: task_manager/views.py:22
 msgid "You are logged out"
 msgstr "Вы разлогинены"
+
+#~ msgid "Object is possible to change for its creator only!"
+#~ msgstr "Объект может удалить только ее создатель!"
 
 #~ msgid "Password"
 #~ msgstr "Пароль"

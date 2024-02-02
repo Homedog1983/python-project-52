@@ -1,14 +1,14 @@
 from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
-from django.views.generic.edit import (
-    CreateView, UpdateView, DeleteView)
 from task_manager.tasks.models import Task
 from django_filters.views import FilterView
+from django.views.generic.edit import (
+    CreateView, UpdateView, DeleteView)
+from django.contrib.messages.views import SuccessMessageMixin
+from task_manager.mixins import LoginRequiredRedirectMixin
+from .mixins import CreatorRequaredMixin
 from .forms import TaskForm
 from .filter import TaskFilterSet
-from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import (
-    LoginRequiredRedirectMixin, CreatorRequaredMixin)
 
 
 class FilterIndexView(LoginRequiredRedirectMixin, FilterView):
@@ -54,7 +54,4 @@ class TaskDeleteView(
     model = Task
     template_name = 'tasks/delete.html'
     success_message = _("Task is deleted successfully")
-    url_name_not_creator = "tasks_index"
-    message_not_creator = _(
-        "Task is possible to delete for its creator only!")
     success_url = reverse_lazy('tasks_index')

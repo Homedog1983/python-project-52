@@ -37,6 +37,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
-
-    def get_creator(self):
-        return self.creator

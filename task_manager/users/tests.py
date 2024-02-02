@@ -44,7 +44,7 @@ class UsersTestCase(BaseTestCase):
         self.make_logged_as(self.not_creator)
         self.assert_redirect_with_message_after_get_request(
             "users_update", self.update_pk,
-            "users_index", UserUpdateView.message_not_creator)
+            "users_index", UserUpdateView.message_not_owner)
         self.assert_response_data_after_get_request(
             "users_index",
             expected_data=self.data["users_expected"])
@@ -72,7 +72,7 @@ class UsersTestCase(BaseTestCase):
         self.make_logged_as(self.not_creator)
         self.assert_redirect_with_message_after_get_request(
             "users_delete", self.delete_pk,
-            "users_index", UserDeleteView.message_not_creator)
+            "users_index", UserDeleteView.message_not_owner)
         self.assert_response_data_after_get_request(
             "users_index",
             expected_data=self.data["users_expected"])

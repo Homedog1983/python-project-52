@@ -2,9 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.utils.translation import gettext as _
-from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-import rollbar
 
 
 class LoginRequiredRedirectMixin(LoginRequiredMixin):
@@ -32,26 +30,8 @@ class ObjectUnusedRequaredMixin:
 
     def form_valid(self, form):
         if not hasattr(self.object, 'is_object_in_use'):
-            rollbar.report_message(self.report_message)
-            messages.warning(self.request, self.message_object_has_not_attr)
-            return redirect(reverse(self.url_name_object_used))
+            return super().form_valid(form)
         if self.object.is_object_in_use():
             messages.warning(self.request, self.message_used_object)
             return redirect(reverse(self.url_name_object_used))
         return super().form_valid(form)
-
-
-class CreatorRequaredMixin(UserPassesTestMixin):
-    message_not_creator = _(
-        'Object is possible to change for its creator only!')
-    url_name_not_creator = "main_page"
-
-    def test_func(self):
-        object = self.get_object()
-        return self.request.user == object.get_creator()
-
-    def dispatch(self, request, *args, **kwargs):
-        if not self.test_func():
-            messages.warning(self.request, self.message_not_creator)
-            return redirect(reverse(self.url_name_not_creator))
-        return super().dispatch(request, *args, **kwargs)
